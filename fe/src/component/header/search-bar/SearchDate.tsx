@@ -1,0 +1,51 @@
+import styled from 'styled-components';
+import { FaTimes } from 'react-icons/fa';
+import { LabelInput } from '../../ui-util/LabelInput';
+
+export const SearchDate = () => {
+  return (
+    <StyleSearchDate>
+      <StyleFlexItems>
+        <LabelInput
+          type='text'
+          title='체크인'
+          value=''
+          placeholder='날짜 추가'
+          disabled={true}
+        />
+        <LabelInput
+          type='text'
+          title='체크아웃'
+          value=''
+          placeholder='날짜 추가'
+          disabled={true}
+        />
+      </StyleFlexItems>
+      <StyleResetButton>
+        <FaTimes />
+      </StyleResetButton>
+    </StyleSearchDate>
+  );
+};
+
+const StyleSearchDate = styled.div`
+  position: relative;
+`;
+
+const StyleFlexItems = styled.div`
+  display: flex;
+  & > * {
+    width: 50%;
+  }
+`;
+
+const StyleResetButton = styled.div`
+  position: absolute;
+  cursor: pointer;
+  top: calc(50% - 0.875rem);
+  right: 1rem;
+  padding: 0.5rem;
+  background-color: #f5f5f7;
+  border-radius: 50%;
+  font-size: 0.75rem;
+`;

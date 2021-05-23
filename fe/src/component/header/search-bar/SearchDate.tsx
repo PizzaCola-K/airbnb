@@ -1,8 +1,11 @@
 import styled from 'styled-components';
 import { FaTimes } from 'react-icons/fa';
 import { LabelInput } from '../../ui-util/LabelInput';
+import { isOnClick } from "./SearchBar";
 
-export const SearchDate = () => {
+
+export const SearchDate = ({onClick}:isOnClick) => {
+
   return (
     <StyleSearchDate>
       <StyleFlexItems>
@@ -12,6 +15,7 @@ export const SearchDate = () => {
           value=''
           placeholder='날짜 추가'
           disabled={true}
+          onClick={onClick}
         />
         <LabelInput
           type='text'
@@ -19,6 +23,7 @@ export const SearchDate = () => {
           value=''
           placeholder='날짜 추가'
           disabled={true}
+          onClick={onClick}
         />
       </StyleFlexItems>
       <StyleResetButton>

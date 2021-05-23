@@ -1,9 +1,10 @@
 import styled, { ThemeProvider } from 'styled-components';
 import { FaTimes } from 'react-icons/fa';
 import { LabelInput } from '../../ui-util/LabelInput';
+import { isOnClick } from "../search-bar/SearchBar";
 
-console.log(ThemeProvider);
-export const SearchPersonnel = () => {
+export const SearchPersonnel = ({onClick}:isOnClick) => {
+
   return (
     <StyleSearchPersonnel>
       <div>
@@ -13,6 +14,7 @@ export const SearchPersonnel = () => {
           value=''
           placeholder='게스트 추가'
           disabled={true}
+          onClick={onClick}
         />
       </div>
       <StyleResetButton>

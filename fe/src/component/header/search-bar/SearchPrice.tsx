@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 import { FaTimes } from 'react-icons/fa';
 import { LabelInput } from '../../ui-util/LabelInput';
+import { isOnClick } from './SearchBar';
 
-export const SearchPrice = () => {
+export const SearchPrice = ({onClick}:isOnClick) => {
+
   return (
     <StyleSearchPrice>
       <div>
@@ -12,6 +14,7 @@ export const SearchPrice = () => {
           value=''
           placeholder='금액대 설정'
           disabled={true}
+          onClick={onClick}
         />
       </div>
       <StyleResetButton>

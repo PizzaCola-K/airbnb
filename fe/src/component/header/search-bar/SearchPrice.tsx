@@ -31,6 +31,7 @@ const StyleSearchPrice = styled.div`
 const StyleResetButton = styled.div`
   position: absolute;
   cursor: pointer;
+  display: flex;
   top: calc(50% - 0.875rem);
   right: 1rem;
   padding: 0.5rem;

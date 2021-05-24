@@ -85,17 +85,17 @@ export const SearchBar = () => {
 
   // 클릭시 checkIn checkOut 구분해서 껏다켯다 and 바깥영역 클릭 시 꺼지기.
   const popUpON = (e:React.MouseEvent<HTMLElement>,option:String) => {
-    const targetClass = (e.target as Element).classList[2];
-    console.log("e.target : ",targetClass);
-    console.log("className : ", className);
+    const target = e.target as HTMLElement;
+    const checkInAndOut = target.classList[2];
+    const labelInput = target.closest('.label-input');
     if(popUpState.currentValue === `${option}ON`) {
-      if(className === targetClass) dispatch({type: `repeat`});
-      else if(className !== targetClass) dispatch({ type: `${option}ON`})
+      if(className === checkInAndOut && labelInput ) dispatch({type: `repeat`});
+      else if(className !== checkInAndOut && labelInput ) dispatch({ type: `${option}ON`})
       else dispatch({type: `repeat`});
     } else {
       dispatch({ type: `${option}ON`})
     }
-    setClassName(targetClass);
+    setClassName(checkInAndOut);
   }
 
   return (

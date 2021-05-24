@@ -1,9 +1,9 @@
 import styled, { ThemeProvider } from 'styled-components';
 import { FaTimes } from 'react-icons/fa';
 import { LabelInput } from '../../ui-util/LabelInput';
-import { isOnClick } from "../search-bar/SearchBar";
+import { isOnClick } from '../search-bar/SearchBar';
 
-export const SearchPersonnel = ({onClick}:isOnClick) => {
+export const SearchPersonnel = ({ onClick }: isOnClick) => {
   return (
     <StyleSearchPersonnel>
       <div>
@@ -33,6 +33,7 @@ const StyleSearchPersonnel = styled.div`
 const StyleResetButton = styled.div`
   position: absolute;
   cursor: pointer;
+  display: flex;
   top: calc(50% - 0.875rem);
   right: 1rem;
   padding: 0.5rem;

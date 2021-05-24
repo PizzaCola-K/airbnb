@@ -5,7 +5,7 @@ import Sum from './sum/Sum';
 
 const ModalContent = () => {
     return (
-        <StyledModalContent>
+        <StyledModalContent className='modal-content'>
             <Info />
             <Sum />
         </StyledModalContent>

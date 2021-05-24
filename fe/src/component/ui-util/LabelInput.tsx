@@ -6,6 +6,7 @@ interface LabelInputInterface {
   value: string;
   disabled: boolean;
   placeholder: string;
+  onClick?(e: React.MouseEvent<HTMLInputElement>): void;
 }
 
 export const LabelInput: React.FunctionComponent<LabelInputInterface> = ({

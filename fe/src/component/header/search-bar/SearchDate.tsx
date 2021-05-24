@@ -1,11 +1,9 @@
 import styled from 'styled-components';
 import { FaTimes } from 'react-icons/fa';
 import { LabelInput } from '../../ui-util/LabelInput';
-import { isOnClick } from "./SearchBar";
+import { isOnClick } from './SearchBar';
 
-
-export const SearchDate = ({onClick}:isOnClick) => {
-
+export const SearchDate = ({ onClick }: isOnClick) => {
   return (
     <StyleSearchDate>
       <StyleFlexItems>

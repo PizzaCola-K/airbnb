@@ -14,8 +14,6 @@ function App() {
     observer: IntersectionObserver
   ) => {
     entries.forEach((entry) => {
-      console.log('entry : ' + entry.isIntersecting);
-      console.log('ratio : ' + entry.intersectionRatio);
       if (entry.intersectionRatio === 0) {
         setActive(true);
       } else {

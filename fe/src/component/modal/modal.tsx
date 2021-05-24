@@ -6,7 +6,6 @@ interface ModalInterface {
 }
 
 const Modal: React.FunctionComponent<ModalInterface> = ({ data }) => {
-  console.log(data);
   return (
     <StyledModal>
       <ModalContent />

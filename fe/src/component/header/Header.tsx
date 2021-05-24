@@ -10,7 +10,6 @@ interface isProps {
 }
 
 export const Header: React.FunctionComponent<isProps> = ({ active }) => {
-  console.log(active);
   return (
     <StyleHeader active={active}>
       <div className='global-navigation-bar'>

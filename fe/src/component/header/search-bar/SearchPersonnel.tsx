@@ -1,10 +1,9 @@
 import styled, { ThemeProvider } from 'styled-components';
 import { FaTimes } from 'react-icons/fa';
 import { LabelInput } from '../../ui-util/LabelInput';
-import { isOnClick } from "../search-bar/SearchBar";
+import { isOnClick } from '../search-bar/SearchBar';
 
-export const SearchPersonnel = ({onClick}:isOnClick) => {
-
+export const SearchPersonnel = ({ onClick }: isOnClick) => {
   return (
     <StyleSearchPersonnel>
       <div>

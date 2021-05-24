@@ -7,7 +7,7 @@ interface IProps {
 
 const PopUp = ({popUpState}:IProps) => {
     return (
-        <StylePopUp popUpState={popUpState}>
+        <StylePopUp className="pop-up" popUpState={popUpState}>
             {/* {popUpState.calendarPopUp} */}
         </StylePopUp>
     )

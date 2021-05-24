@@ -1,22 +1,26 @@
 import styled from 'styled-components';
 
 interface LabelInputInterface {
+  className?: string;
   type: string;
   title: string;
   value: string;
   disabled: boolean;
   placeholder: string;
+  onClick?(e: React.MouseEvent<HTMLInputElement>): void;
 }
 
 export const LabelInput: React.FunctionComponent<LabelInputInterface> = ({
+  className = '',
   type = 'text',
   title = '',
   value = '',
   disabled = false,
   placeholder = '',
+  onClick,
 }) => {
   return (
-    <StyleLabelInput>
+    <StyleLabelInput onClick={onClick} className={className}>
       <label>{title}</label>
       <input {...{ type, value, placeholder, disabled }} />
     </StyleLabelInput>

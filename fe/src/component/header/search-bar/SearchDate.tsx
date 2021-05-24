@@ -5,11 +5,11 @@ import { isOnClick } from "./SearchBar";
 
 
 export const SearchDate = ({onClick}:isOnClick) => {
-
   return (
     <StyleSearchDate>
       <StyleFlexItems>
         <LabelInput
+          className="check-in"
           type='text'
           title='체크인'
           value=''
@@ -18,6 +18,7 @@ export const SearchDate = ({onClick}:isOnClick) => {
           onClick={onClick}
         />
         <LabelInput
+          className="check-out"
           type='text'
           title='체크아웃'
           value=''

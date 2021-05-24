@@ -4,7 +4,6 @@ import { LabelInput } from '../../ui-util/LabelInput';
 import { isOnClick } from "../search-bar/SearchBar";
 
 export const SearchPersonnel = ({onClick}:isOnClick) => {
-
   return (
     <StyleSearchPersonnel>
       <div>

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React, { useReducer } from 'react';
+import { useReducer, useEffect, useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { SearchDate } from './SearchDate';
 import { SearchPrice } from './SearchPrice';
@@ -7,7 +7,7 @@ import { SearchPersonnel } from './SearchPersonnel';
 import PopUp from './popUp/PopUp';
 
 export interface isOnClick {
-  onClick(): void;
+  onClick: (e: React.MouseEvent<HTMLElement>) => void;
 }
 
 export interface State {
@@ -15,6 +15,7 @@ export interface State {
   pricePopUp: boolean;
   personnelPopUp: boolean;
   currentValue: String;
+  currentClass?: String;
 }
 
 const initialState: State = {
@@ -22,13 +23,14 @@ const initialState: State = {
   pricePopUp: false,
   personnelPopUp: false,
   currentValue: '',
+  currentClass: '',
 };
 
 interface Action {
   type: String;
 }
 
-const popUpReducer = (state: any, action: Action) => {
+const popUpReducer = (state: State, action: Action) => {
   switch (action.type) {
     case 'calendarON':
       return {
@@ -70,19 +72,39 @@ const popUpReducer = (state: any, action: Action) => {
 
 export const SearchBar = () => {
   const [popUpState, dispatch] = useReducer(popUpReducer, initialState);
+  const [className, setClassName] = useState<string>('');
+
+  useEffect(() => {
+    document.addEventListener('click', (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (target.closest('.search-bar') || target.closest('.pop-up')) return;
+      dispatch({ type: 'repeat' });
+    });
+    // return window.removeEventListener('click',() => {})
+  }, []);
 
   // 클릭시 checkIn checkOut 구분해서 껏다켯다 and 바깥영역 클릭 시 꺼지기.
-  const popUpON = (option: String) => {
-    if (popUpState.currentValue === `${option}ON`)
-      return dispatch({ type: `repeat` });
-    return dispatch({ type: `${option}ON` });
+  const popUpON = (e: React.MouseEvent<HTMLElement>, option: String) => {
+    const targetClass = (e.target as Element).classList[2];
+    console.log('e.target : ', targetClass);
+    console.log('className : ', className);
+    if (popUpState.currentValue === `${option}ON`) {
+      if (className === targetClass) dispatch({ type: `repeat` });
+      else if (className !== targetClass) dispatch({ type: `${option}ON` });
+      else dispatch({ type: `repeat` });
+    } else {
+      dispatch({ type: `${option}ON` });
+    }
+    setClassName(targetClass);
   };
 
   return (
-    <StyleSearchBar>
-      <SearchDate onClick={() => popUpON(`calendar`)}></SearchDate>
-      <SearchPrice onClick={() => popUpON(`price`)}></SearchPrice>
-      <SearchPersonnel onClick={() => popUpON(`personnel`)}></SearchPersonnel>
+    <StyleSearchBar className='search-bar'>
+      <SearchDate onClick={(e) => popUpON(e, `calendar`)}></SearchDate>
+      <SearchPrice onClick={(e) => popUpON(e, `price`)}></SearchPrice>
+      <SearchPersonnel
+        onClick={(e) => popUpON(e, `personnel`)}
+      ></SearchPersonnel>
       <StyleSearchButton>
         <FaSearch />
       </StyleSearchButton>

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 interface LabelInputInterface {
+  className?: string;
   type: string;
   title: string;
   value: string;
@@ -10,14 +11,16 @@ interface LabelInputInterface {
 }
 
 export const LabelInput: React.FunctionComponent<LabelInputInterface> = ({
+  className = '',
   type = 'text',
   title = '',
   value = '',
   disabled = false,
   placeholder = '',
+  onClick,
 }) => {
   return (
-    <StyleLabelInput>
+    <StyleLabelInput onClick={onClick} className={className}>
       <label>{title}</label>
       <input {...{ type, value, placeholder, disabled }} />
     </StyleLabelInput>

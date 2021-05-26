@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="HotelCell" customModule="JacksonBnB" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="343" height="357"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="343" height="357"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uEg-CQ-C5w" userLabel="HotelThumbnailImageView">
+                        <rect key="frame" x="0.0" y="0.0" width="343" height="240"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="uEg-CQ-C5w" secondAttribute="height" multiplier="343:240" id="nLi-EL-p7b"/>
+                        </constraints>
+                    </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="TSf-kG-pyx" userLabel="RatingImageView">
+                        <rect key="frame" x="0.0" y="247.5" width="15" height="15"/>
+                        <color key="tintColor" red="0.86274516580000005" green="0.20000001789999999" blue="0.24313727020000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="TSf-kG-pyx" secondAttribute="height" multiplier="1:1" id="eBI-xZ-rHx"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RatingLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zVB-FI-t0O" userLabel="RatingLabel">
+                        <rect key="frame" x="20.5" y="248" width="90" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="haR-BS-0us"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PricePerDayLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J54-7B-VfE" userLabel="PricePerDayLabel">
+                        <rect key="frame" x="0.0" y="305.5" width="135" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TotalPriceLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1qD-Re-77d" userLabel="TotalPriceLabel">
+                        <rect key="frame" x="0.0" y="334" width="117" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NameLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KEu-tC-3I1" userLabel="NameLabel">
+                        <rect key="frame" x="0.0" y="272.5" width="343" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="KEu-tC-3I1" secondAttribute="height" multiplier="343:25" id="KLP-cW-rjh"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="J54-7B-VfE" firstAttribute="top" secondItem="KEu-tC-3I1" secondAttribute="bottom" constant="8" id="6gM-Pe-xLf"/>
+                <constraint firstItem="uEg-CQ-C5w" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="8h4-7V-M7x"/>
+                <constraint firstItem="1qD-Re-77d" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="8sW-EM-skO"/>
+                <constraint firstItem="1qD-Re-77d" firstAttribute="top" secondItem="J54-7B-VfE" secondAttribute="bottom" constant="8" id="E9c-B7-1du"/>
+                <constraint firstItem="zVB-FI-t0O" firstAttribute="baseline" secondItem="TSf-kG-pyx" secondAttribute="baseline" id="OJa-lM-9jb"/>
+                <constraint firstAttribute="trailing" secondItem="KEu-tC-3I1" secondAttribute="trailing" id="OWI-Wi-qht"/>
+                <constraint firstItem="uEg-CQ-C5w" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="PGd-OI-kmf"/>
+                <constraint firstItem="zVB-FI-t0O" firstAttribute="top" secondItem="uEg-CQ-C5w" secondAttribute="bottom" constant="8" id="SH9-Za-TaL"/>
+                <constraint firstItem="J54-7B-VfE" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="V1D-RC-0eh"/>
+                <constraint firstItem="TSf-kG-pyx" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ddH-0z-jn6"/>
+                <constraint firstItem="zVB-FI-t0O" firstAttribute="leading" secondItem="TSf-kG-pyx" secondAttribute="trailing" constant="5.5" id="fty-JK-NFJ"/>
+                <constraint firstItem="KEu-tC-3I1" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="owo-cx-PKl"/>
+                <constraint firstAttribute="trailing" secondItem="uEg-CQ-C5w" secondAttribute="trailing" id="uV4-EY-xFm"/>
+                <constraint firstItem="TSf-kG-pyx" firstAttribute="top" secondItem="uEg-CQ-C5w" secondAttribute="bottom" constant="8" id="vEE-Xe-hrK"/>
+                <constraint firstItem="KEu-tC-3I1" firstAttribute="top" secondItem="zVB-FI-t0O" secondAttribute="bottom" constant="8.5" id="yUg-xr-wnG"/>
+            </constraints>
+            <size key="customSize" width="315" height="287"/>
+            <point key="canvasLocation" x="354.34782608695656" y="146.98660714285714"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="star.fill" catalog="system" width="128" height="116"/>
+    </resources>
+</document>

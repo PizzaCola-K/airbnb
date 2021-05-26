@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { useReducer, useEffect, useState } from 'react';
+
+import { useReducer, useEffect,useState, MouseEvent } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { SearchDate } from './SearchDate';
 import { SearchPrice } from './SearchPrice';
@@ -7,7 +8,7 @@ import { SearchPersonnel } from './SearchPersonnel';
 import PopUp from './popUp/PopUp';
 
 export interface isOnClick {
-  onClick: (e: React.MouseEvent<HTMLElement>) => void;
+  onClick:(e:MouseEvent<HTMLElement>) => void;
 }
 
 export interface State {
@@ -75,7 +76,7 @@ export const SearchBar = () => {
   const [className, setClassName] = useState<string>('');
 
   useEffect(() => {
-    document.addEventListener('click', (e: MouseEvent) => {
+    document.addEventListener('click', (e) => {
       const target = e.target as HTMLElement;
       if (target.closest('.search-bar') || target.closest('.pop-up')) return;
       dispatch({ type: 'repeat' });
@@ -84,19 +85,21 @@ export const SearchBar = () => {
   }, []);
 
   // 클릭시 checkIn checkOut 구분해서 껏다켯다 and 바깥영역 클릭 시 꺼지기.
-  const popUpON = (e: React.MouseEvent<HTMLElement>, option: String) => {
-    const targetClass = (e.target as Element).classList[2];
-    console.log('e.target : ', targetClass);
-    console.log('className : ', className);
-    if (popUpState.currentValue === `${option}ON`) {
-      if (className === targetClass) dispatch({ type: `repeat` });
-      else if (className !== targetClass) dispatch({ type: `${option}ON` });
-      else dispatch({ type: `repeat` });
-    } else {
-      dispatch({ type: `${option}ON` });
-    }
-    setClassName(targetClass);
-  };
+  const popUpON = (e:MouseEvent<HTMLElement>,option:String) => {
+    const target = e.target as HTMLElement;
+    const checkInAndOut = target.closest('.check-in') ? 'check-in' : 'check-out';
+    const labelInput = target.closest('.label-input');
+    if(popUpState.currentValue === `${option}ON`) {
+      if(className === checkInAndOut && labelInput ) {
+        dispatch({type: `repeat`});
+      } 
+      else if(className !== checkInAndOut && labelInput ) {
+        dispatch({ type: `${option}ON`})
+      }
+      else dispatch({type: `repeat`});
+    } else dispatch({ type: `${option}ON`});
+    setClassName(checkInAndOut);
+  }
 
   return (
     <StyleSearchBar className='search-bar'>

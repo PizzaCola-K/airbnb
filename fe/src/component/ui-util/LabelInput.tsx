@@ -20,7 +20,7 @@ export const LabelInput: React.FunctionComponent<LabelInputInterface> = ({
   onClick,
 }) => {
   return (
-    <StyleLabelInput onClick={onClick} className={className}>
+    <StyleLabelInput onClick={onClick} className={className + ' label-input'}>
       <label>{title}</label>
       <input {...{ type, value, placeholder, disabled }} />
     </StyleLabelInput>

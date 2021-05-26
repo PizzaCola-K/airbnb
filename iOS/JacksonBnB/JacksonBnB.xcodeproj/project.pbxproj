@@ -30,6 +30,7 @@
 		FACAFB04265DEB7400FBEF41 /* FoundHotelsByListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACAFB03265DEB7400FBEF41 /* FoundHotelsByListViewController.swift */; };
 		FACAFB07265DEC3A00FBEF41 /* HotelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACAFB05265DEC3A00FBEF41 /* HotelCell.swift */; };
 		FACAFB08265DEC3A00FBEF41 /* HotelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FACAFB06265DEC3A00FBEF41 /* HotelCell.xib */; };
+		FACAFB0B265E374300FBEF41 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACAFB0A265E374300FBEF41 /* NetworkManager.swift */; };
 		FF388F66DE14903A010115F7 /* Pods_JacksonBnB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1BE35E383E2FA2372B564AC /* Pods_JacksonBnB.framework */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +88,7 @@
 		FACAFB03265DEB7400FBEF41 /* FoundHotelsByListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundHotelsByListViewController.swift; sourceTree = "<group>"; };
 		FACAFB05265DEC3A00FBEF41 /* HotelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelCell.swift; sourceTree = "<group>"; };
 		FACAFB06265DEC3A00FBEF41 /* HotelCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HotelCell.xib; sourceTree = "<group>"; };
+		FACAFB0A265E374300FBEF41 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,6 +206,7 @@
 		FA7942C52653F3B700D73017 /* JacksonBnB */ = {
 			isa = PBXGroup;
 			children = (
+				FACAFB09265E372700FBEF41 /* Network */,
 				FACAFAFE265CD96500FBEF41 /* Delegates */,
 				FA7A935026578A27006878F0 /* Persistance */,
 				FA77FD8B2653FB5A00F37BDD /* Controller */,
@@ -253,6 +256,14 @@
 				FACAFB01265CD98D00FBEF41 /* SearchLocationDataSource.swift */,
 			);
 			path = Delegates;
+			sourceTree = "<group>";
+		};
+		FACAFB09265E372700FBEF41 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				FACAFB0A265E374300FBEF41 /* NetworkManager.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -506,6 +517,7 @@
 				FA7A930D265650E1006878F0 /* SearchLocationsViewController.swift in Sources */,
 				FA7942C72653F3B700D73017 /* AppDelegate.swift in Sources */,
 				FACAFB04265DEB7400FBEF41 /* FoundHotelsByListViewController.swift in Sources */,
+				FACAFB0B265E374300FBEF41 /* NetworkManager.swift in Sources */,
 				FA7942C92653F3B700D73017 /* SceneDelegate.swift in Sources */,
 				FA7A934C2656A494006878F0 /* LocationCell.swift in Sources */,
 				FA7A930B2654C762006878F0 /* FavoriteViewController.swift in Sources */,

@@ -10,6 +10,7 @@ import UIKit
 
 class LottieAnimation {
     
+    
     let animationView = AnimationView(name: "airbnb-logo")
     
     init(with view: UIView) {

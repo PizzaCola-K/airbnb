@@ -21,10 +21,4 @@ class LocationCell: UICollectionViewCell {
         locationNameLabel.text = "서울시"
     }
     
-//    func fillLocations() {
-//        let dbManager = DataBaseManager()
-//        let locations = dbManager.getLocations()
-//        
-//    }
-
 }

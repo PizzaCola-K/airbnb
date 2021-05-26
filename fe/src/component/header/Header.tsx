@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { LoginButton } from './gnb/LoginButton';
 import { Logo } from './gnb/Logo';
@@ -9,27 +9,9 @@ interface isProps {
   active: boolean;
 }
 
-export const Header = () => {
-  const [active, setActive] = useState(false);
-
-  const onIntersect: any = async ([entry]: any, observer: any) => {
-    console.log('entry', entry);
-    if (entry.isIntersecting) {
-      // observer.unobserve(entry.target);
-      // observer.observe(entry.target);
-    }
-  };
-
-  const target: any = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(onIntersect, { threshold: 0.5 });
-    observer.observe(target.current);
-    return () => observer.disconnect();
-  }, [target]);
-
+export const Header: React.FunctionComponent<isProps> = ({ active }) => {
   return (
-    <StyleHeader active={active} ref={target}>
+    <StyleHeader active={active}>
       <div className='global-navigation-bar'>
         <Logo />
         <Navigation />
@@ -44,6 +26,8 @@ const StyleHeader = styled.header`
   position: fixed;
   width: 100vw;
   padding: 1.25rem 5rem 1.25rem;
+  top: 0;
+  transition: bottom 0.5s linear;
   background-color: ${(props: isProps) =>
     props.active ? '#fff' : 'transparent'};
   .global-navigation-bar {

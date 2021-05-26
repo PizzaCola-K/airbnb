@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { useReducer, useEffect,useState, MouseEvent } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { SearchDate } from './SearchDate';
@@ -11,77 +12,77 @@ export interface isOnClick {
 }
 
 export interface State {
-  calendarPopUp: boolean,
-  pricePopUp: boolean,
-  personnelPopUp: boolean,
-  currentValue: String,
-  currentClass?: String,
+  calendarPopUp: boolean;
+  pricePopUp: boolean;
+  personnelPopUp: boolean;
+  currentValue: String;
+  currentClass?: String;
 }
 
 const initialState: State = {
   calendarPopUp: false,
   pricePopUp: false,
   personnelPopUp: false,
-  currentValue:'',
-  currentClass:'',
-}
+  currentValue: '',
+  currentClass: '',
+};
 
 interface Action {
-  type:String,
+  type: String;
 }
 
-const popUpReducer = (state: State, action:Action) => {
+const popUpReducer = (state: State, action: Action) => {
   switch (action.type) {
     case 'calendarON':
       return {
         calendarPopUp: true,
         pricePopUp: false,
         personnelPopUp: false,
-        currentValue: action.type
+        currentValue: action.type,
       };
     case 'priceON':
       return {
         calendarPopUp: false,
         pricePopUp: true,
         personnelPopUp: false,
-        currentValue: action.type
-      }
+        currentValue: action.type,
+      };
     case 'personnelON':
       return {
         calendarPopUp: false,
         pricePopUp: false,
         personnelPopUp: true,
-        currentValue: action.type
-      }
+        currentValue: action.type,
+      };
     case `repeat`:
       return {
         calendarPopUp: false,
         pricePopUp: false,
         personnelPopUp: false,
         currentValue: '',
-      }
+      };
     default:
       return {
         calendarPopUp: false,
         pricePopUp: false,
         personnelPopUp: false,
         currentValue: '',
-      }
+      };
   }
-}
+};
 
 export const SearchBar = () => {
-  const [popUpState, dispatch] = useReducer(popUpReducer,initialState);
+  const [popUpState, dispatch] = useReducer(popUpReducer, initialState);
   const [className, setClassName] = useState<string>('');
 
   useEffect(() => {
     document.addEventListener('click', (e) => {
       const target = e.target as HTMLElement;
-      if(target.closest('.search-bar') || target.closest('.pop-up')) return;
-      dispatch({type : 'repeat'});
+      if (target.closest('.search-bar') || target.closest('.pop-up')) return;
+      dispatch({ type: 'repeat' });
     });
     // return window.removeEventListener('click',() => {})
-  },[]);
+  }, []);
 
   // 클릭시 checkIn checkOut 구분해서 껏다켯다 and 바깥영역 클릭 시 꺼지기.
   const popUpON = (e:MouseEvent<HTMLElement>,option:String) => {
@@ -101,10 +102,12 @@ export const SearchBar = () => {
   }
 
   return (
-    <StyleSearchBar className="search-bar">
-      <SearchDate onClick={(e) => popUpON(e,`calendar`)}></SearchDate>
-      <SearchPrice onClick={(e) => popUpON(e,`price`)}></SearchPrice>
-      <SearchPersonnel onClick={(e) => popUpON(e,`personnel`)}></SearchPersonnel>
+    <StyleSearchBar className='search-bar'>
+      <SearchDate onClick={(e) => popUpON(e, `calendar`)}></SearchDate>
+      <SearchPrice onClick={(e) => popUpON(e, `price`)}></SearchPrice>
+      <SearchPersonnel
+        onClick={(e) => popUpON(e, `personnel`)}
+      ></SearchPersonnel>
       <StyleSearchButton>
         <FaSearch />
       </StyleSearchButton>

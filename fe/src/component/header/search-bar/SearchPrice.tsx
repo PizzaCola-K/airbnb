@@ -3,8 +3,7 @@ import { FaTimes } from 'react-icons/fa';
 import { LabelInput } from '../../ui-util/LabelInput';
 import { isOnClick } from './SearchBar';
 
-export const SearchPrice = ({onClick}:isOnClick) => {
-
+export const SearchPrice = ({ onClick }: isOnClick) => {
   return (
     <StyleSearchPrice>
       <div>
@@ -34,6 +33,7 @@ const StyleSearchPrice = styled.div`
 const StyleResetButton = styled.div`
   position: absolute;
   cursor: pointer;
+  display: flex;
   top: calc(50% - 0.875rem);
   right: 1rem;
   padding: 0.5rem;

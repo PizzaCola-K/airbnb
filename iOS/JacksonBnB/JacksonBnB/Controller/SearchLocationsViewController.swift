@@ -9,13 +9,14 @@ import UIKit
 
 class SearchLocationsViewController: UIViewController {
     
-    var searchLocationDataSource: SearchLocationDataSource?
+    var searchLocationDataSource: SearchLocationDataSource_Delegate?
     @IBOutlet weak var locationsCollectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchLocationDataSource = SearchLocationDataSource()
+        searchLocationDataSource = SearchLocationDataSource_Delegate()
         self.locationsCollectionView.dataSource = searchLocationDataSource
+        self.locationsCollectionView.delegate = searchLocationDataSource
         title = "숙소 찾기"
                 
         locationsCollectionView.collectionViewLayout = setCollectionViewLayout()

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-class SearchLocationDataSource: NSObject, UICollectionViewDataSource, UISearchResultsUpdating {
+class SearchLocationDataSource_Delegate: NSObject, UICollectionViewDataSource, UISearchResultsUpdating, UICollectionViewDelegate {
     
     let searchLocationsController = UISearchController()
     let dbManager = DataBaseManager()
@@ -49,4 +49,29 @@ class SearchLocationDataSource: NSObject, UICollectionViewDataSource, UISearchRe
         NotificationCenter.default.post(name: Notification.Name("cellsChanged"), object: nil)
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        print(indexPath)
+        var requiredInfo = ""
+        if searchLocationsController.isActive {
+            requiredInfo = allLocations.locations[indexPath.item].name
+        }else {
+            requiredInfo = allLocations.locations[indexPath.item].name
+        }
+        
+        let networkManager = NetworkManager()
+        networkManager.getHotelsByLocation(by: requiredInfo){ (result:Result<[HotelsResponse],Error>) in
+            switch result {
+            case .success(let txt):
+                print("result",txt)
+            case .failure(let error):
+                print(error)
+            }
+            
+        }
+        
+        //            DispatchQueue.main.async {
+        //                print("response =", response)
+        //                print(""r)
+        //            }
+    }
 }

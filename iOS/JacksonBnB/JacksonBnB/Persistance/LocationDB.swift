@@ -18,7 +18,6 @@ class LocationDB: Object {
         return "id"
     }
     
-    
     convenience init(id: Int, name: String, imageName: String) {
         self.init()
         self.id = id

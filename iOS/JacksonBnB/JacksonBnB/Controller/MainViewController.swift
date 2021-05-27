@@ -7,7 +7,6 @@
 
 import UIKit
 import Lottie
-//import Hero
 
 class MainViewController: UIViewController {
 

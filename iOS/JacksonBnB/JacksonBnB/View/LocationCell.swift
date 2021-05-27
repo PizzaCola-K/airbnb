@@ -15,10 +15,7 @@ class LocationCell: UICollectionViewCell {
     static let reuseIdentifier = String(describing: LocationCell.self)
     
     override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        locationCellImageView.image = UIImage(named: "CodeSquadHotel")
-        locationNameLabel.text = "서울시"
+        super.awakeFromNib()        
     }
     
 }

@@ -8,10 +8,6 @@
 import Foundation
 import Alamofire
 
-//private protocol NetworkOperation {
-//    func getHotelsByLocation(name: String)
-//}
-//http://3.36.239.71/places?district=강남&checkIn=2021-05-12&checkOut=2021-05-19&minPrice=20000&maxPrice=40000&adult=2&child=0&infant=1
 protocol NetworkManagerOperations {
     func getHotelsByLocation<T: Decodable>(by name: String, completion: @escaping (Result<T,Error>) -> Void)
 }
@@ -19,13 +15,12 @@ class NetworkManager: NetworkManagerOperations {
     
     //네트워크는 네트워크 통신만 해주는게 맞다.
     func getHotelsByLocation<T: Decodable>(by name: String, completion: @escaping (Result<T,Error>) -> Void) {
-
-        //content-Type?
+    
         let param: Parameters = [
             "district" : name
         ]
         
-        let locationURL = "http://3.36.239.71/places?"//?district=강남구"
+        let locationURL = "http://3.36.239.71/places?"
         AF.request(locationURL, method: .get, parameters: param, encoding: URLEncoding.queryString)
             .validate(statusCode: 200..<300)
             .responseDecodable(of: T.self) { response in

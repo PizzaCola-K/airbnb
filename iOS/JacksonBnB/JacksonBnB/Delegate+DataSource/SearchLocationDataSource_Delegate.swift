@@ -19,6 +19,7 @@ class SearchLocationDataSource_Delegate: NSObject, UICollectionViewDataSource, U
         searchLocationsController.obscuresBackgroundDuringPresentation = false
         allLocations = dbManager.getAllLocations()
     }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if searchLocationsController.isActive {
             return filteredLocations.locations.count
@@ -40,8 +41,6 @@ class SearchLocationDataSource_Delegate: NSObject, UICollectionViewDataSource, U
         }
         return cell
     }
-    
-    
     
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = self.searchLocationsController.searchBar.text else {

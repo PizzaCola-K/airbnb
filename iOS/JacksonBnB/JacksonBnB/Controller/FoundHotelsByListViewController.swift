@@ -29,10 +29,8 @@ class FoundHotelsByListViewController: UIViewController, UICollectionViewDataSou
         requestNetworkToGetHotels(by: self.locationName) { (result:Result<[HotelsResponse],Error>) in
             switch result {
             case .success(let hotelsData):
-                
-//                print("hotelsData",hotelsData)
                 self.parseResponseToData(hotelsData)
-                self.foundHotelsColletionView.reloadData()//여기서 하면 되는거 아닌가?
+                self.foundHotelsColletionView.reloadData()
             case .failure(let error):
                 print(error)
             }

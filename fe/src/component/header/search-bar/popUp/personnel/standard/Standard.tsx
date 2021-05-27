@@ -4,7 +4,7 @@ import {
   IoIosRemoveCircleOutline,
 } from 'react-icons/io';
 import { StandardProp, StyledStandardProp, optionProp } from '../../../../../ui-util/GlobalInterface';
-import { usePersonnelState, usePersonnelDispatch } from '../../../../../ui-util/PersonnelContext';
+import { usePersonnelDispatch } from '../../../../../ui-util/PersonnelContext';
 
 const Standard = ({ table, index }: StandardProp) => {
   const state = table.count;

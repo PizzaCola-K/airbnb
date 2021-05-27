@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct LocationRespons: Decodable {
+struct LocationResponse: Decodable {
     let latitude: Double
     let longitude: Double
     let address: String
@@ -21,7 +21,7 @@ struct LocationRespons: Decodable {
 struct HotelsResponse: Decodable {
     let id: Int
     let imageUrl: String
-    let location: LocationRespons
+    let location: LocationResponse
     let name: String
     let likeCount: Int
     let price: Int

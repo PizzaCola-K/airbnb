@@ -46,9 +46,9 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TotalPriceLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1qD-Re-77d" userLabel="TotalPriceLabel">
-                        <rect key="frame" x="0.0" y="334" width="117" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
+                        <rect key="frame" x="0.0" y="334" width="105.5" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NameLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KEu-tC-3I1" userLabel="NameLabel">
@@ -56,7 +56,7 @@
                         <constraints>
                             <constraint firstAttribute="width" secondItem="KEu-tC-3I1" secondAttribute="height" multiplier="343:25" id="KLP-cW-rjh"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -81,6 +81,13 @@
                 <constraint firstItem="KEu-tC-3I1" firstAttribute="top" secondItem="zVB-FI-t0O" secondAttribute="bottom" constant="8.5" id="yUg-xr-wnG"/>
             </constraints>
             <size key="customSize" width="315" height="287"/>
+            <connections>
+                <outlet property="nameLabel" destination="KEu-tC-3I1" id="JoW-CI-1jo"/>
+                <outlet property="pricePerDayLabel" destination="J54-7B-VfE" id="Hcd-2E-oxU"/>
+                <outlet property="ratingLabel" destination="zVB-FI-t0O" id="2YG-lX-jgM"/>
+                <outlet property="thumbnailImageView" destination="uEg-CQ-C5w" id="UXK-No-dPO"/>
+                <outlet property="totalPriceLabel" destination="1qD-Re-77d" id="cCg-pL-qUz"/>
+            </connections>
             <point key="canvasLocation" x="354.34782608695656" y="146.98660714285714"/>
         </collectionViewCell>
     </objects>

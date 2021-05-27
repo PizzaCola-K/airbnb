@@ -13,34 +13,86 @@ import UIKit
 
 class FoundHotelsByListViewController: UIViewController, UICollectionViewDataSource {
     
+    @IBOutlet weak var foundHotelsColletionView: UICollectionView!
+    
     var locationName: String = ""
-//    let networkManager = NetworkManager()
-//    networkManager.getHotelsByLocation(by: requiredInfo){ (result:Result<[HotelsResponse],Error>) in
-//        switch result {
-//        case .success(let txt):
-//            print("result",txt)
-//        case .failure(let error):
-//            print(error)
-//        }
-//
-//    }
+    
+    var foundHotels = Hotels(hotels: [])
+    let networkManager = NetworkManager()
     override func viewDidLoad() {
         super.viewDidLoad()
         
-    }
-    /*받은 정보를 보여줍니다.*/
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        print("locationName =",locationName)
+        foundHotelsColletionView.dataSource = self
+        setLocationNib()
+        foundHotelsColletionView.collectionViewLayout = setCollectionViewLayout()
+        
+        requestNetworkToGetHotels(by: self.locationName) { (result:Result<[HotelsResponse],Error>) in
+            switch result {
+            case .success(let hotelsData):
+                
+//                print("hotelsData",hotelsData)
+                self.parseResponseToData(hotelsData)
+                self.foundHotelsColletionView.reloadData()//여기서 하면 되는거 아닌가?
+            case .failure(let error):
+                print(error)
+            }
+        }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        1
+        self.foundHotels.hotels.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell()
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HotelCell.reuseIdentifier, for: indexPath) as? HotelCell else {
+            return .init()
+        }
+        
+        let url = URL(string: foundHotels.hotels[indexPath.row].imageUrl)
+        let imagedata = try? Data(contentsOf: url!)
+        DispatchQueue.main.async { cell.thumbnailImageView.image = UIImage(data: imagedata!) }
+        
+        cell.nameLabel.text = foundHotels.hotels[indexPath.row].name
+        cell.ratingLabel.text = String(foundHotels.hotels[indexPath.row].likeCount)
+        cell.pricePerDayLabel.text = "₩"+String(foundHotels.hotels[indexPath.row].price)+"/ 박"
+        cell.totalPriceLabel.text = "총액 ₩"+String(foundHotels.hotels[indexPath.row].price * 3)
+        return cell
     }
     
+    func setLocationNib() {
+        let hotelNib = UINib(nibName: HotelCell.reuseIdentifier, bundle: nil)
+        
+        foundHotelsColletionView.register(hotelNib, forCellWithReuseIdentifier: HotelCell.reuseIdentifier)
+    }
+    func setCollectionViewLayout() -> UICollectionViewLayout { //콜렉션 뷰 레이아웃 설정
+        let size = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+        let item = NSCollectionLayoutItem(layoutSize: size)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.6))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
+        let section = NSCollectionLayoutSection(group: group)
+        let layout = UICollectionViewCompositionalLayout(section: section)
+        return layout
+    }
     
+    func parseResponseToData(_ hotelResponse: [HotelsResponse]) {
+        //DTO 파싱 역할하기.
+        hotelResponse.forEach { hotel in
+            foundHotels.hotels.append(Hotel(id: hotel.id, imageUrl: hotel.imageUrl, location: LocationDetail(latitude: hotel.location.latitude, longitude: hotel.location.longitude, address: hotel.location.address), name: hotel.name, likeCount: hotel.likeCount, price: hotel.price, option: hotel.option, additionalOption: hotel.additionalOption))
+        }
+    }
+        
+    func requestNetworkToGetHotels(by name: String, completion: @escaping (Result<([HotelsResponse]),Error>) -> Void ) {
+        
+        networkManager.getHotelsByLocation(by: name){ (result:Result<[HotelsResponse],Error>) in
+            switch result {
+            case .success(let hotels):
+                completion(.success(hotels))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+        
+    }
 }
+

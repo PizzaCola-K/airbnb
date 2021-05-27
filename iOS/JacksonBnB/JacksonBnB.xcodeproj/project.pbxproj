@@ -32,6 +32,7 @@
 		FACAFB08265DEC3A00FBEF41 /* HotelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FACAFB06265DEC3A00FBEF41 /* HotelCell.xib */; };
 		FACAFB0B265E374300FBEF41 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACAFB0A265E374300FBEF41 /* NetworkManager.swift */; };
 		FACAFB0F265E65E500FBEF41 /* HotelsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACAFB0E265E65E500FBEF41 /* HotelsResponse.swift */; };
+		FACAFB11265F605300FBEF41 /* Hotel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACAFB10265F605300FBEF41 /* Hotel.swift */; };
 		FF388F66DE14903A010115F7 /* Pods_JacksonBnB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1BE35E383E2FA2372B564AC /* Pods_JacksonBnB.framework */; };
 /* End PBXBuildFile section */
 
@@ -91,6 +92,7 @@
 		FACAFB06265DEC3A00FBEF41 /* HotelCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HotelCell.xib; sourceTree = "<group>"; };
 		FACAFB0A265E374300FBEF41 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		FACAFB0E265E65E500FBEF41 /* HotelsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelsResponse.swift; sourceTree = "<group>"; };
+		FACAFB10265F605300FBEF41 /* Hotel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hotel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				FA7A935326578AA4006878F0 /* Location.swift */,
+				FACAFB10265F605300FBEF41 /* Hotel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -512,6 +515,7 @@
 			files = (
 				FA77FD8D2654AAA800F37BDD /* LottieAnimation.swift in Sources */,
 				FA7A935226578A45006878F0 /* DataBaseManager.swift in Sources */,
+				FACAFB11265F605300FBEF41 /* Hotel.swift in Sources */,
 				FACAFB07265DEC3A00FBEF41 /* HotelCell.swift in Sources */,
 				FA7A935426578AA4006878F0 /* Location.swift in Sources */,
 				FACAFB02265CD98D00FBEF41 /* SearchLocationDataSource_Delegate.swift in Sources */,

@@ -30,7 +30,7 @@ class SearchLocationDataSource_Delegate: NSObject, UICollectionViewDataSource, U
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LocationCell.reuseIdentifier, for: indexPath) as? LocationCell else {
                     return .init()
-                 }
+                 }        
         if searchLocationsController.isActive {
             cell.locationNameLabel.text = filteredLocations.locations[indexPath.row].name
             cell.locationCellImageView.image = UIImage(named: filteredLocations.locations[indexPath.row].imageName)
@@ -40,6 +40,8 @@ class SearchLocationDataSource_Delegate: NSObject, UICollectionViewDataSource, U
         }
         return cell
     }
+    
+    
     
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = self.searchLocationsController.searchBar.text else {

@@ -139,6 +139,9 @@
                             <constraint firstItem="t5E-a5-s5U" firstAttribute="leading" secondItem="9xU-Yb-7jH" secondAttribute="leading" id="jqc-JE-D9u"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="foundHotelsColletionView" destination="t5E-a5-s5U" id="5b0-gE-lr2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lF1-PZ-QKL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

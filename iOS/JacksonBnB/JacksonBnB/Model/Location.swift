@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Location{
+struct Location {
     let id: Int
     let name: String
     let imageName: String

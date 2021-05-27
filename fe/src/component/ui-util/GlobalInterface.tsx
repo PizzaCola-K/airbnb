@@ -23,6 +23,7 @@ export interface StyledStandardProp {
 
 export interface optionProp {
     option: number;
+    index:number;
 }
 
 export type personnelState = {

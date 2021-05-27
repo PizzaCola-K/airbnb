@@ -7,8 +7,9 @@ import { StandardProp, StyledStandardProp, optionProp } from '../../../../../ui-
 import { usePersonnelDispatch } from '../../../../../ui-util/PersonnelContext';
 
 const Standard = ({ table, index }: StandardProp) => {
-  const state = table.count;
   const dispatch = usePersonnelDispatch();
+  const state = table.count;
+
   const Plus = () => {
     dispatch({index: index, counter: 1})
   };
@@ -22,7 +23,7 @@ const Standard = ({ table, index }: StandardProp) => {
         <Title>{table.title}</Title>
         <Desc>{table.desc}</Desc>
       </div>
-      <CountBox option={state}>
+      <CountBox option={state} index={index}>
         <IoIosRemoveCircleOutline onClick={Minus} />
         <Count>{table.count}</Count>
         <IoIosAddCircleOutline onClick={Plus} />
@@ -45,6 +46,11 @@ const CountBox = styled.div<optionProp>`
   > svg:first-child {
     pointer-events: ${({ option }) => option === 0 ? 'none' : null};
     color: ${({ option }) => option === 0 ? '#E0E0E0' : '#828282'};
+  }
+
+  > svg:last-child {
+    pointer-events: ${({ option, index }) => option === 5 && index !== 0 ? 'none' : option === 16 && index === 0 ? 'none' : null};
+    color: ${({ option, index}) => option === 5 && index !== 0 ? '#E0E0E0' : option === 16 && index === 0 ? '#E0E0E0' : '#828282'};
   }
 
   > svg {

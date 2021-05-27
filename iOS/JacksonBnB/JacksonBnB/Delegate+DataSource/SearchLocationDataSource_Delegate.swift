@@ -17,23 +17,25 @@ class SearchLocationDataSource_Delegate: NSObject, UICollectionViewDataSource, U
         super.init()
         searchLocationsController.searchResultsUpdater = self
         searchLocationsController.obscuresBackgroundDuringPresentation = false
+        allLocations = dbManager.getLocations()
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if searchLocationsController.isActive {
             return filteredLocations.locations.count
         }else {
-            allLocations = dbManager.getLocations()
             return allLocations.locations.count
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LocationCell.reuseIdentifier, for: indexPath) as! LocationCell
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LocationCell.reuseIdentifier, for: indexPath) as! LocationCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LocationCell.reuseIdentifier, for: indexPath) as? LocationCell else {
+                    return .init()
+                 }
         if searchLocationsController.isActive {
             cell.locationNameLabel.text = filteredLocations.locations[indexPath.row].name
             cell.locationCellImageView.image = UIImage(named: filteredLocations.locations[indexPath.row].imageName)
         }else {
-            allLocations = dbManager.getLocations()
             cell.locationNameLabel.text = allLocations.locations[indexPath.row].name
             cell.locationCellImageView.image = UIImage(named: allLocations.locations[indexPath.row].imageName)
         }

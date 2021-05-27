@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-private protocol DBOperations {
+protocol DBOperations {
     func getLocations() -> Locations //모든주소에 대한 DB데이터를 가져옵니다.
     func getFilteredLocations(by query: String) -> Locations //필터된 주소에 대한 DB데이터를 가져옵니다.
 }

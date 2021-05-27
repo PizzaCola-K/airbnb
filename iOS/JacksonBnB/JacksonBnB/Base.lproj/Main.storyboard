@@ -68,7 +68,7 @@
         <!--Search Locations View Controller-->
         <scene sceneID="Ryq-bE-f9d">
             <objects>
-                <viewController storyboardIdentifier="SearchHotelsViewController" id="SYX-9T-PQa" customClass="SearchLocationsViewController" customModule="JacksonBnB" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchLocationsViewController" id="SYX-9T-PQa" customClass="SearchLocationsViewController" customModule="JacksonBnB" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qIa-ZT-2Hq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -113,7 +113,7 @@
         <!--Found Hotels By List View Controller-->
         <scene sceneID="41P-Io-iEA">
             <objects>
-                <viewController id="bKA-g7-Gj4" customClass="FoundHotelsByListViewController" customModule="JacksonBnB" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FoundHotelsByListViewController" id="bKA-g7-Gj4" customClass="FoundHotelsByListViewController" customModule="JacksonBnB" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KhT-hj-Aj8">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

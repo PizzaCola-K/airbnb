@@ -49,12 +49,25 @@ class SearchLocationsViewController: UIViewController {
     
     func setNotificationCenter() {
         NotificationCenter.default.addObserver(self, selector: #selector (SearchLocationsViewController.changeCollectionView), name: Notification.Name("cellsChanged"), object: nil)
+        
+        
+        NotificationCenter.default.addObserver(self, selector: #selector (SearchLocationsViewController.tabCollecionViewCell), name: Notification.Name("cellsTabbed"), object: nil)
+        
     }
     
     @objc func changeCollectionView() {
         DispatchQueue.main.async {
             self.locationsCollectionView.reloadData()
         }
+    }
+    
+    //셀을 클릭시 FoundHotelsByListViewController로 화면을 이동하면서 동시에 클릭한 Cell의 "위치 이름"을 전달합니다.
+    @objc func tabCollecionViewCell(_ notification : NSNotification) {
+        guard let vc = self.storyboard?.instantiateViewController(identifier: "FoundHotelsByListViewController") as? FoundHotelsByListViewController else {return}
+        guard let locationName = notification.object as? String else {return}
+        vc.locationName = locationName
+        self.navigationController?.pushViewController(vc, animated: true)
+        
     }
     
 }

@@ -17,7 +17,7 @@ class SearchLocationDataSource_Delegate: NSObject, UICollectionViewDataSource, U
         super.init()
         searchLocationsController.searchResultsUpdater = self
         searchLocationsController.obscuresBackgroundDuringPresentation = false
-        allLocations = dbManager.getLocations()
+        allLocations = dbManager.getAllLocations()
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if searchLocationsController.isActive {
@@ -28,7 +28,6 @@ class SearchLocationDataSource_Delegate: NSObject, UICollectionViewDataSource, U
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LocationCell.reuseIdentifier, for: indexPath) as! LocationCell
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LocationCell.reuseIdentifier, for: indexPath) as? LocationCell else {
                     return .init()
                  }
@@ -46,13 +45,12 @@ class SearchLocationDataSource_Delegate: NSObject, UICollectionViewDataSource, U
         guard let text = self.searchLocationsController.searchBar.text else {
             return
         }
-        print(text)
         filteredLocations = dbManager.getFilteredLocations(by: text)
         NotificationCenter.default.post(name: Notification.Name("cellsChanged"), object: nil)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        print(indexPath)
+        
         var requiredInfo = ""
         if searchLocationsController.isActive {
             requiredInfo = allLocations.locations[indexPath.item].name
@@ -60,20 +58,6 @@ class SearchLocationDataSource_Delegate: NSObject, UICollectionViewDataSource, U
             requiredInfo = allLocations.locations[indexPath.item].name
         }
         
-        let networkManager = NetworkManager()
-        networkManager.getHotelsByLocation(by: requiredInfo){ (result:Result<[HotelsResponse],Error>) in
-            switch result {
-            case .success(let txt):
-                print("result",txt)
-            case .failure(let error):
-                print(error)
-            }
-            
-        }
-        
-        //            DispatchQueue.main.async {
-        //                print("response =", response)
-        //                print(""r)
-        //            }
+        NotificationCenter.default.post(name: Notification.Name("cellsTabbed"), object: requiredInfo)
     }
 }

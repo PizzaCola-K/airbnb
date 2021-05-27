@@ -176,9 +176,9 @@
 			isa = PBXGroup;
 			children = (
 				FA7942CA2653F3B700D73017 /* MainViewController.swift */,
-				FA7A930A2654C762006878F0 /* FavoriteViewController.swift */,
 				FA7A930C265650E1006878F0 /* SearchLocationsViewController.swift */,
 				FACAFB03265DEB7400FBEF41 /* FoundHotelsByListViewController.swift */,
+				FA7A930A2654C762006878F0 /* FavoriteViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

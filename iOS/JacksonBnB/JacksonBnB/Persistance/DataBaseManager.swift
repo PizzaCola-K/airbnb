@@ -9,14 +9,14 @@ import Foundation
 import RealmSwift
 
 protocol DBOperations {
-    func getLocations() -> Locations //모든주소에 대한 DB데이터를 가져옵니다.
+    func getAllLocations() -> Locations //모든주소에 대한 DB데이터를 가져옵니다.
     func getFilteredLocations(by query: String) -> Locations //필터된 주소에 대한 DB데이터를 가져옵니다.
 }
 class DataBaseManager: DBOperations {
     
     let realm = try! Realm()
     
-    func getLocations() -> Locations {
+    func getAllLocations() -> Locations {
         var allLocations = Locations(locations: [])
         let locationsDB = realm.objects(LocationDB.self)
         

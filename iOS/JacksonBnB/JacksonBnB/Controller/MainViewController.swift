@@ -20,15 +20,17 @@ class MainViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         let lottieAnimation = LottieAnimation(with: self.view)
+        
         mainImageView.addSubview(lottieAnimation.animationView)
         lottieAnimation.animationView.play()
+         
     }
     
     @IBAction func searchHotels(_ sender: Any) {
-        let vc = self.storyboard?.instantiateViewController(identifier: "SearchHotelsViewController")
-//        let vc = UIStoryboard.create(identifier: UIViewController.self, name: "SearchHotelsViewController")
-        self.navigationController?.pushViewController(vc!, animated: true)
+        guard let vc = self.storyboard?.instantiateViewController(identifier: "SearchLocationsViewController") as? SearchLocationsViewController else {return}
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }

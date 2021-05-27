@@ -1,117 +1,61 @@
 import styled from 'styled-components';
-
-import { useReducer, useEffect,useState, MouseEvent } from 'react';
+import { useEffect,useState, MouseEvent } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { SearchDate } from './SearchDate';
 import { SearchPrice } from './SearchPrice';
 import { SearchPersonnel } from './SearchPersonnel';
 import PopUp from './popUp/PopUp';
+import { usePopUpState, usePopUpDispatch } from '../../ui-util/PopUpContext';
+import { CalendarContext } from '../../ui-util/CalendarContext';
 
 export interface isOnClick {
   onClick:(e:MouseEvent<HTMLElement>) => void;
 }
 
-export interface State {
-  calendarPopUp: boolean;
-  pricePopUp: boolean;
-  personnelPopUp: boolean;
-  currentValue: String;
-  currentClass?: String;
-}
-
-const initialState: State = {
-  calendarPopUp: false,
-  pricePopUp: false,
-  personnelPopUp: false,
-  currentValue: '',
-  currentClass: '',
-};
-
-interface Action {
-  type: String;
-}
-
-const popUpReducer = (state: State, action: Action) => {
-  switch (action.type) {
-    case 'calendarON':
-      return {
-        calendarPopUp: true,
-        pricePopUp: false,
-        personnelPopUp: false,
-        currentValue: action.type,
-      };
-    case 'priceON':
-      return {
-        calendarPopUp: false,
-        pricePopUp: true,
-        personnelPopUp: false,
-        currentValue: action.type,
-      };
-    case 'personnelON':
-      return {
-        calendarPopUp: false,
-        pricePopUp: false,
-        personnelPopUp: true,
-        currentValue: action.type,
-      };
-    case `repeat`:
-      return {
-        calendarPopUp: false,
-        pricePopUp: false,
-        personnelPopUp: false,
-        currentValue: '',
-      };
-    default:
-      return {
-        calendarPopUp: false,
-        pricePopUp: false,
-        personnelPopUp: false,
-        currentValue: '',
-      };
-  }
-};
-
 export const SearchBar = () => {
-  const [popUpState, dispatch] = useReducer(popUpReducer, initialState);
   const [className, setClassName] = useState<string>('');
+  const popUpState = usePopUpState();
+  const popUpDispatch = usePopUpDispatch();
 
   useEffect(() => {
     document.addEventListener('click', (e) => {
       const target = e.target as HTMLElement;
       if (target.closest('.search-bar') || target.closest('.pop-up')) return;
-      dispatch({ type: 'repeat' });
+      popUpDispatch({ type: 'repeat' });
     });
     // return window.removeEventListener('click',() => {})
   }, []);
 
   // 클릭시 checkIn checkOut 구분해서 껏다켯다 and 바깥영역 클릭 시 꺼지기.
-  const popUpON = (e:MouseEvent<HTMLElement>,option:String) => {
+  const popUpON = (e:MouseEvent<HTMLElement>,option:string) => {
     const target = e.target as HTMLElement;
     const checkInAndOut = target.closest('.check-in') ? 'check-in' : 'check-out';
     const labelInput = target.closest('.label-input');
     if(popUpState.currentValue === `${option}ON`) {
       if(className === checkInAndOut && labelInput ) {
-        dispatch({type: `repeat`});
+        popUpDispatch({type: `repeat`});
       } 
       else if(className !== checkInAndOut && labelInput ) {
-        dispatch({ type: `${option}ON`})
+        popUpDispatch({ type: `${option}ON`})
       }
-      else dispatch({type: `repeat`});
-    } else dispatch({ type: `${option}ON`});
+      else popUpDispatch({type: `repeat`});
+    } else popUpDispatch({ type: `${option}ON`});
     setClassName(checkInAndOut);
   }
 
   return (
     <StyleSearchBar className='search-bar'>
-      <SearchDate onClick={(e) => popUpON(e, `calendar`)}></SearchDate>
-      <SearchPrice onClick={(e) => popUpON(e, `price`)}></SearchPrice>
-      <SearchPersonnel
-        onClick={(e) => popUpON(e, `personnel`)}
-      ></SearchPersonnel>
-      <StyleSearchButton>
-        <FaSearch />
-      </StyleSearchButton>
-      <PopUp popUpState={popUpState} />
+      <CalendarContext>
+        <SearchDate onClick={(e) => popUpON(e, `calendar`)}></SearchDate>
+        <SearchPrice onClick={(e) => popUpON(e, `price`)}></SearchPrice>
+        <SearchPersonnel
+          onClick={(e) => popUpON(e, `personnel`)}
+        ></SearchPersonnel>
+        <StyleSearchButton>
+          <FaSearch />
+        </StyleSearchButton>
+        <PopUp popUpState={popUpState} />
+      </CalendarContext>
     </StyleSearchBar>
   );
 };

@@ -1,21 +1,21 @@
 import styled from 'styled-components';
 import { Calendar } from '../../../ui-util/Calendar';
-import { State } from '../SearchBar';
+import { popUpState } from '../../../ui-util/GlobalInterface';
 import Personnel from './personnel/Personnel';
 
 interface IProps {
-  popUpState: State;
+  popUpState: popUpState;
 }
 
 const PopUp = ({ popUpState }: IProps) => {
   return (
-    <StylePopUp className='pop-up' popUpState={popUpState}>
-      {popUpState.calendarPopUp && <Calendar />}
-      {/* {popUpState.pricePopUp &&} */}
+      <StylePopUp className='pop-up' popUpState={popUpState}>
+        {popUpState.calendarPopUp && <Calendar />}
+        {/* {popUpState.pricePopUp &&} */}
 
-      {/* 펭돌 이거 잠시 주석처리 해둘게요 */}
-      {popUpState.personnelPopUp && <Personnel />}
-    </StylePopUp>
+        {/* 펭돌 이거 잠시 주석처리 해둘게요 */}
+        {popUpState.personnelPopUp && <Personnel />}
+      </StylePopUp>
   );
 };
 

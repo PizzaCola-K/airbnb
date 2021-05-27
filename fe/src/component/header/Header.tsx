@@ -1,9 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { LoginButton } from './gnb/LoginButton';
 import { Logo } from './gnb/Logo';
 import { Navigation } from './gnb/Navigation';
 import { SearchBar } from './search-bar/SearchBar';
+import { PopUpProvider } from '../ui-util/PopUpContext';
+import { PersonnelProvider } from '../ui-util/PersonnelContext'
 
 interface isProps {
   active: boolean;
@@ -12,12 +13,16 @@ interface isProps {
 export const Header: React.FunctionComponent<isProps> = ({ active }) => {
   return (
     <StyleHeader active={active}>
-      <div className='global-navigation-bar'>
-        <Logo />
-        <Navigation />
-        <LoginButton />
-      </div>
-      <SearchBar />
+      <PopUpProvider>
+        <PersonnelProvider>
+          <div className='global-navigation-bar'>
+            <Logo />
+            <Navigation />
+            <LoginButton />
+          </div>
+          <SearchBar />
+        </PersonnelProvider>
+      </PopUpProvider>
     </StyleHeader>
   );
 };

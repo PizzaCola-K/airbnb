@@ -30,7 +30,7 @@
                             <constraint firstAttribute="width" secondItem="TSf-kG-pyx" secondAttribute="height" multiplier="1:1" id="eBI-xZ-rHx"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RatingLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zVB-FI-t0O" userLabel="RatingLabel">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RatingLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zVB-FI-t0O" userLabel="LikeCount">
                         <rect key="frame" x="20.5" y="248" width="90" height="16"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="haR-BS-0us"/>
@@ -82,9 +82,9 @@
             </constraints>
             <size key="customSize" width="315" height="287"/>
             <connections>
+                <outlet property="likeCount" destination="zVB-FI-t0O" id="2YG-lX-jgM"/>
                 <outlet property="nameLabel" destination="KEu-tC-3I1" id="JoW-CI-1jo"/>
                 <outlet property="pricePerDayLabel" destination="J54-7B-VfE" id="Hcd-2E-oxU"/>
-                <outlet property="ratingLabel" destination="zVB-FI-t0O" id="2YG-lX-jgM"/>
                 <outlet property="thumbnailImageView" destination="uEg-CQ-C5w" id="UXK-No-dPO"/>
                 <outlet property="totalPriceLabel" destination="1qD-Re-77d" id="cCg-pL-qUz"/>
             </connections>

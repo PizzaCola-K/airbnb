@@ -22,13 +22,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="300" height="84"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RB9-8b-g2b" userLabel="LocationNameLabel">
-                                <rect key="frame" x="250.5" y="8" width="41.5" height="68"/>
+                                <rect key="frame" x="226.5" y="8" width="41.5" height="68"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZXF-Ku-JUS" userLabel="LocationImageView">
-                                <rect key="frame" x="0.0" y="8" width="164" height="68"/>
+                                <rect key="frame" x="0.0" y="8" width="68" height="68"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBound" value="YES"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -40,8 +40,8 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="ZXF-Ku-JUS" firstAttribute="leading" secondItem="wgi-D0-HS1" secondAttribute="leading" id="7Nw-vw-75Z"/>
-                            <constraint firstItem="RB9-8b-g2b" firstAttribute="trailing" secondItem="ZXF-Ku-JUS" secondAttribute="trailing" constant="128" id="7kO-n0-dHW"/>
-                            <constraint firstAttribute="trailing" secondItem="RB9-8b-g2b" secondAttribute="trailing" constant="8" id="Lf5-mR-U5L"/>
+                            <constraint firstItem="RB9-8b-g2b" firstAttribute="trailing" secondItem="ZXF-Ku-JUS" secondAttribute="trailing" priority="800" constant="200" id="7kO-n0-dHW"/>
+                            <constraint firstAttribute="trailing" secondItem="RB9-8b-g2b" secondAttribute="trailing" constant="32" id="Lf5-mR-U5L"/>
                             <constraint firstItem="ZXF-Ku-JUS" firstAttribute="top" secondItem="wgi-D0-HS1" secondAttribute="top" constant="8" id="SEv-BX-cVx"/>
                             <constraint firstAttribute="bottom" secondItem="ZXF-Ku-JUS" secondAttribute="bottom" constant="8" id="W55-NW-eaN"/>
                             <constraint firstItem="RB9-8b-g2b" firstAttribute="top" secondItem="wgi-D0-HS1" secondAttribute="top" constant="8" id="pue-7r-yru"/>

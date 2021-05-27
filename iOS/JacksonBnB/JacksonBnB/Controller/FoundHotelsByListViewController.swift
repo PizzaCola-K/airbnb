@@ -54,7 +54,7 @@ class FoundHotelsByListViewController: UIViewController, UICollectionViewDataSou
         DispatchQueue.main.async { cell.thumbnailImageView.image = UIImage(data: imagedata!) }
         
         cell.nameLabel.text = foundHotels.hotels[indexPath.row].name
-        cell.ratingLabel.text = String(foundHotels.hotels[indexPath.row].likeCount)
+        cell.likeCount.text = String(foundHotels.hotels[indexPath.row].likeCount)+" 명이 좋아해요."
         cell.pricePerDayLabel.text = "₩"+String(foundHotels.hotels[indexPath.row].price)+"/ 박"
         cell.totalPriceLabel.text = "총액 ₩"+String(foundHotels.hotels[indexPath.row].price * 3)
         return cell

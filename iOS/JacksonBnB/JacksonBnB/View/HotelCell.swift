@@ -11,7 +11,7 @@ class HotelCell: UICollectionViewCell {
 
     @IBOutlet weak var thumbnailImageView: UIImageView!
     
-    @IBOutlet weak var ratingLabel: UILabel!
+    @IBOutlet weak var likeCount: UILabel!
     
     @IBOutlet weak var nameLabel: UILabel!
     

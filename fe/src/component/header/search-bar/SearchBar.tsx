@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { useEffect,useState, MouseEvent } from 'react';
+import { Link } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
 import { SearchDate } from './SearchDate';
 import { SearchPrice } from './SearchPrice';
@@ -51,7 +52,7 @@ export const SearchBar = () => {
         <SearchPersonnel
           onClick={(e) => popUpON(e, `personnel`)}
         ></SearchPersonnel>
-        <StyleSearchButton>
+        <StyleSearchButton to={'/list'}>
           <FaSearch />
         </StyleSearchButton>
         <PopUp popUpState={popUpState} />
@@ -71,7 +72,11 @@ const StyleSearchBar = styled.div`
   position: relative;
 `;
 
-const StyleSearchButton = styled.button`
+const StyleSearchButton = styled(Link)`
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #ff4545;
   border: 0;
   outline: 0;

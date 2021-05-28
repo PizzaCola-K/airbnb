@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { Switch, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import { Header } from './component/header/Header';
 import { List } from './component/list/List';
@@ -37,8 +38,10 @@ function App() {
       <StyleHeaderWrapper ref={target}>
         <Header active={active} />
       </StyleHeaderWrapper>
-      {/* <List /> */}
-      <Main />
+      <Switch>
+        <Route path='/' component={Main} exact />
+        <Route path='/list' component={List} />
+      </Switch>
     </div>
   );
 }

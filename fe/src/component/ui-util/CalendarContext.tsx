@@ -12,7 +12,7 @@ export interface DateAction {
   [key: string] : string | Date;
 }
 
-export const CalendarDateContext = createContext<[DateInterface, React.Dispatch<DateAction>] | null>(null);
+export const CalendarDateContext = createContext<[DateInterface, React.Dispatch<DateAction>] | [null, null]>([null, null]);
 
 const dateReducer = (state: DateInterface, action: DateAction): DateInterface => {
   // 선택한 날짜를 받음

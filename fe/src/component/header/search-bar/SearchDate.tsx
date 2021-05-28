@@ -1,9 +1,23 @@
 import styled from 'styled-components';
 import { FaTimes } from 'react-icons/fa';
+import { useContext } from 'react';
 import { LabelInput } from '../../ui-util/LabelInput';
 import { isOnClick } from './SearchBar';
+import { CalendarDateContext } from '../../ui-util/CalendarContext';
+
+const getFormatDate = (date:Date):string => {
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  return month + '월 ' + day + '일';
+};
 
 export const SearchDate = ({ onClick }: isOnClick) => {
+  const selectedDate = useContext(CalendarDateContext)[0];
+  const startDate = selectedDate?.startDate;
+  const endDate = selectedDate?.endDate;
+  const formatStartDate:string = startDate ? getFormatDate(startDate) : '';
+  const formatEndDate:string = endDate ? getFormatDate(endDate) : '';
+  
   return (
     <StyleSearchDate>
       <StyleFlexItems>
@@ -11,7 +25,7 @@ export const SearchDate = ({ onClick }: isOnClick) => {
           className='check-in'
           type='text'
           title='체크인'
-          value=''
+          value={formatStartDate}
           placeholder='날짜 추가'
           disabled={true}
           onClick={onClick}
@@ -20,7 +34,7 @@ export const SearchDate = ({ onClick }: isOnClick) => {
           className='check-out'
           type='text'
           title='체크아웃'
-          value=''
+          value={formatEndDate}
           placeholder='날짜 추가'
           disabled={true}
           onClick={onClick}

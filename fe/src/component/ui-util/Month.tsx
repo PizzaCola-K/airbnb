@@ -5,9 +5,9 @@ import { DateAction } from './CalendarContext';
 interface MonthProp {
   date: Date;
   now: Date;
-  startDate: string | Date | null;
-  endDate: string | Date | null;
-  dateDispatch: Dispatch<DateAction>;
+  startDate: string | Date | null | undefined;
+  endDate: string | Date | null | undefined;
+  dateDispatch: Dispatch<DateAction> | null;
 }
 
 interface StyleDayProp {
@@ -44,7 +44,7 @@ export const Month = ({ date, now, startDate, endDate, dateDispatch }: MonthProp
   const handleClick = (e:React.MouseEvent) => {
     const tmpDate = date;
     const target = e.target as HTMLElement;
-    if(!target?.textContent || target?.textContent === '') {
+    if(!target?.textContent || target?.textContent === '' || !dateDispatch) {
       return;
     }
     tmpDate.setDate(Number(target?.textContent));

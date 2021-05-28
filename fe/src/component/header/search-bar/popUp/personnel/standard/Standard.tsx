@@ -1,8 +1,5 @@
 import styled from 'styled-components';
-import {
-  IoIosAddCircleOutline,
-  IoIosRemoveCircleOutline,
-} from 'react-icons/io';
+import { IoIosAddCircleOutline, IoIosRemoveCircleOutline } from 'react-icons/io';
 import { StandardProp, StyledStandardProp, optionProp } from '../../../../../ui-util/GlobalInterface';
 import { usePersonnelDispatch } from '../../../../../ui-util/PersonnelContext';
 
@@ -49,8 +46,12 @@ const CountBox = styled.div<optionProp>`
   }
 
   > svg:last-child {
-    pointer-events: ${({ option, index }) => option === 5 && index !== 0 ? 'none' : option === 16 && index === 0 ? 'none' : null};
-    color: ${({ option, index}) => option === 5 && index !== 0 ? '#E0E0E0' : option === 16 && index === 0 ? '#E0E0E0' : '#828282'};
+    pointer-events: ${({ option, index }) => 
+      option === 5 && index !== 0 ? 'none' : 
+      option === 16 && index === 0 ? 'none' : null};
+    color: ${({ option, index}) => 
+      option === 5 && index !== 0 ? '#E0E0E0' : 
+      option === 16 && index === 0 ? '#E0E0E0' : '#828282'};
   }
 
   > svg {

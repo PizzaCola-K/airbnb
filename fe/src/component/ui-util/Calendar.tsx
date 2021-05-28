@@ -5,31 +5,31 @@ import { CalendarDateContext } from './CalendarContext';
 import { Month } from './Month';
 
 export const Calendar = () => {
-  alert(useContext(CalendarDateContext));
-  // const [selectedDate, dateDispatch] = useContext(CalendarDateContext);
+  // alert(useContext(CalendarDateContext));
+  const [selectedDate, dateDispatch] = useContext(CalendarDateContext);
   const [startMonth, setStartMonth] = useState(new Date());
 
   // if(selectedDate) {
   //   return;
   // }
-  // const now = new Date();
-  // now.setHours(0, 0, 0, 0);
-  // const months = Array(4)
-  //   .fill('')
-  //   .map((_, i) => {
-  //     const tmpDate = new Date(startMonth);
-  //     const date = new Date(tmpDate.setMonth(tmpDate.getMonth() + i - 1));
-  //     return (
-  //       <Month 
-  //         key={tmpDate.getFullYear() + i} 
-  //         date={date} 
-  //         now={now} 
-  //         startDate={selectedDate.startDate} 
-  //         endDate={selectedDate.endDate}
-  //         dateDispatch={dateDispatch}
-  //       />
-  //     );
-  //   });
+  const now = new Date();
+  now.setHours(0, 0, 0, 0);
+  const months = Array(4)
+    .fill('')
+    .map((_, i) => {
+      const tmpDate = new Date(startMonth);
+      const date = new Date(tmpDate.setMonth(tmpDate.getMonth() + i - 1));
+      return (
+        <Month 
+          key={tmpDate.getFullYear() + i} 
+          date={date} 
+          now={now} 
+          startDate={selectedDate?.startDate} 
+          endDate={selectedDate?.endDate}
+          dateDispatch={dateDispatch}
+        />
+      );
+    });
 
   const onMoveMonth = (cnt: number) => {
     const tmpDate = new Date(startMonth);
@@ -43,7 +43,7 @@ export const Calendar = () => {
 
   return (
     <StyleCalendar>
-      <StyleMonths></StyleMonths>
+      <StyleMonths>{months}</StyleMonths>
       <StyleButtons>
         <button onClick={() => onMoveMonth(-1)}>
           <FaAngleLeft />

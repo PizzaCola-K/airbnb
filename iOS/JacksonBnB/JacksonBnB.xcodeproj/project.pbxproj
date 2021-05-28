@@ -26,6 +26,7 @@
 		FA7A934F2657749E006878F0 /* LocationDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7A934E2657749E006878F0 /* LocationDB.swift */; };
 		FA7A935226578A45006878F0 /* DataBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7A935126578A45006878F0 /* DataBaseManager.swift */; };
 		FA7A935426578AA4006878F0 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7A935326578AA4006878F0 /* Location.swift */; };
+		FAC874DE2660ABEF00FAA3A4 /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC874DD2660ABEF00FAA3A4 /* UILabelExtension.swift */; };
 		FACAFB02265CD98D00FBEF41 /* SearchLocationDataSource_Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACAFB01265CD98D00FBEF41 /* SearchLocationDataSource_Delegate.swift */; };
 		FACAFB04265DEB7400FBEF41 /* FoundHotelsByListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACAFB03265DEB7400FBEF41 /* FoundHotelsByListViewController.swift */; };
 		FACAFB07265DEC3A00FBEF41 /* HotelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACAFB05265DEC3A00FBEF41 /* HotelCell.swift */; };
@@ -86,6 +87,7 @@
 		FA7A934E2657749E006878F0 /* LocationDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDB.swift; sourceTree = "<group>"; };
 		FA7A935126578A45006878F0 /* DataBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseManager.swift; sourceTree = "<group>"; };
 		FA7A935326578AA4006878F0 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		FAC874DD2660ABEF00FAA3A4 /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UILabelExtension.swift; path = ../../../../../../../../../Applications/UILabelExtension.swift; sourceTree = "<group>"; };
 		FACAFB01265CD98D00FBEF41 /* SearchLocationDataSource_Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationDataSource_Delegate.swift; sourceTree = "<group>"; };
 		FACAFB03265DEB7400FBEF41 /* FoundHotelsByListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundHotelsByListViewController.swift; sourceTree = "<group>"; };
 		FACAFB05265DEC3A00FBEF41 /* HotelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelCell.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 		FA7942C52653F3B700D73017 /* JacksonBnB */ = {
 			isa = PBXGroup;
 			children = (
+				FAC874DC2660ABDA00FAA3A4 /* Extenssions */,
 				FACAFB09265E372700FBEF41 /* Network */,
 				FACAFAFE265CD96500FBEF41 /* Delegate+DataSource */,
 				FA7A935026578A27006878F0 /* Persistance */,
@@ -253,6 +256,14 @@
 				FA7A935126578A45006878F0 /* DataBaseManager.swift */,
 			);
 			path = Persistance;
+			sourceTree = "<group>";
+		};
+		FAC874DC2660ABDA00FAA3A4 /* Extenssions */ = {
+			isa = PBXGroup;
+			children = (
+				FAC874DD2660ABEF00FAA3A4 /* UILabelExtension.swift */,
+			);
+			path = Extenssions;
 			sourceTree = "<group>";
 		};
 		FACAFAFE265CD96500FBEF41 /* Delegate+DataSource */ = {
@@ -515,6 +526,7 @@
 			files = (
 				FA77FD8D2654AAA800F37BDD /* LottieAnimation.swift in Sources */,
 				FA7A935226578A45006878F0 /* DataBaseManager.swift in Sources */,
+				FAC874DE2660ABEF00FAA3A4 /* UILabelExtension.swift in Sources */,
 				FACAFB11265F605300FBEF41 /* Hotel.swift in Sources */,
 				FACAFB07265DEC3A00FBEF41 /* HotelCell.swift in Sources */,
 				FA7A935426578AA4006878F0 /* Location.swift in Sources */,

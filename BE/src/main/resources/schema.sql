@@ -1,7 +1,7 @@
 CREATE TABLE `user`
 (
     user_id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    github  VARCHAR(30) NOT NULL,
+    github  VARCHAR(30) UNIQUE NOT NULL,
     host    BIT(1) DEFAULT 0,
     `admin` BIT(1) DEFAULT 0
 );

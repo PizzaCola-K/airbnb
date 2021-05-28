@@ -5,6 +5,7 @@ import { Navigation } from './gnb/Navigation';
 import { SearchBar } from './search-bar/SearchBar';
 import { PopUpProvider } from '../ui-util/PopUpContext';
 import { PersonnelProvider } from '../ui-util/PersonnelContext'
+import { CalendarContext } from '../ui-util/CalendarContext'
 
 interface isProps {
   active: boolean;
@@ -14,6 +15,7 @@ export const Header: React.FunctionComponent<isProps> = ({ active }) => {
   return (
     <StyleHeader active={active}>
       <PopUpProvider>
+      <CalendarContext>
         <PersonnelProvider>
           <div className='global-navigation-bar'>
             <Logo />
@@ -22,6 +24,7 @@ export const Header: React.FunctionComponent<isProps> = ({ active }) => {
           </div>
           <SearchBar />
         </PersonnelProvider>
+        </CalendarContext>
       </PopUpProvider>
     </StyleHeader>
   );

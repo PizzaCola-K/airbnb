@@ -16,11 +16,11 @@ const Info = () => {
                 <div>
                     <CheckIO>
                         <CheckTitle>체크인</CheckTitle>
-                        <CheckInfo>2021.5.17</CheckInfo>
+                        <CheckInfo>1</CheckInfo>
                     </CheckIO>
                     <CheckIO>
                         <CheckTitle>체크아웃</CheckTitle>
-                        <CheckInfo>2021.6.4</CheckInfo>
+                        <CheckInfo>2</CheckInfo>
                     </CheckIO>
                 </div>
                 <div>

@@ -84,7 +84,6 @@ export const Month = ({ date, now, startDate, endDate, dateDispatch }: MonthProp
             if(startDate && new Date(tmpDate).getTime() === new Date(startDate).getTime()) start = 1;
             if(endDate && new Date(tmpDate).getTime() === new Date(endDate).getTime()) end = 1;
             if(startDate && endDate && tmpDate >= startDate && tmpDate <= endDate) period = 1;
-            console.log(start, startDate, tmpDate, startDate === tmpDate);
           }
           return <StyleDay period={period} start={start} end={end} previous={previous} key={date.getDate() + i}>{v}</StyleDay>
           })

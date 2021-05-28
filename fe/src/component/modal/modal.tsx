@@ -1,11 +1,23 @@
 import styled from 'styled-components';
 import ModalContent from './modalContent/ModalContent';
+import { useContext } from 'react';
+import { CalendarDateContext } from '../ui-util/CalendarContext';
 
-interface ModalInterface {
-  data: string;
-}
+const getFormatDate = (date:Date):string => {
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  return month + '월 ' + day + '일';
+};
 
-const Modal: React.FunctionComponent<ModalInterface> = ({ data }) => {
+const Modal = () => {
+  const selectedDate = useContext(CalendarDateContext)[0];
+  const startDate = selectedDate?.startDate;
+  const endDate = selectedDate?.endDate;
+  const formatStartDate:string = startDate ? getFormatDate(startDate) : '';
+  const formatEndDate:string = endDate ? getFormatDate(endDate) : '';
+
+  console.log(startDate,endDate);
+
   return (
     <StyledModal>
       <ModalContent />

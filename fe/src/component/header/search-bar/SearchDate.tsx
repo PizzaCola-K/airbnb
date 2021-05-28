@@ -17,7 +17,7 @@ export const SearchDate = ({ onClick }: isOnClick) => {
   const endDate = selectedDate?.endDate;
   const formatStartDate:string = startDate ? getFormatDate(startDate) : '';
   const formatEndDate:string = endDate ? getFormatDate(endDate) : '';
-  
+
   return (
     <StyleSearchDate>
       <StyleFlexItems>

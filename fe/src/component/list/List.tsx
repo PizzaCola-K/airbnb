@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect,useContext } from 'react';
 import styled from 'styled-components';
 import Modal from '../modal/modal';
 import { Stay } from './Stay';
+import { CalendarDateContext, CalendarContext } from '../ui-util/CalendarContext';
 
 interface Target {
   closest: HTMLElement | null;
@@ -22,7 +23,15 @@ interface StayInterface {
   addtionalOption: string;
 }
 
-export const List = () => {
+const getFormatDate = (date:Date):string => {
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  return month + '월 ' + day + '일';
+};
+
+export const List = ({location}:any) => {
+  console.log(location)
+
   const [stays, setStays] = useState<StayInterface[]>([]);
 
   useEffect(() => {
@@ -33,15 +42,12 @@ export const List = () => {
     data();
   },[]);
 
-  const [modal, setModal] = useState({
-    show: false,
-    data: '',
-  });
+  const [modal, setModal] = useState({show: false});
   const onShowModal = (event: React.MouseEvent<HTMLElement>): void => {
     const target = event.target as HTMLElement;
     const closest = target.closest('button');
     if (closest) return;
-    else setModal({ show: true, data: '' });
+    else setModal({ show: true });
   };
   const onListClick = (event: React.MouseEvent<HTMLElement>): void => {
     const target = event.target as HTMLElement;
@@ -49,7 +55,6 @@ export const List = () => {
     if (modal.show && !closest) setModal({ ...modal, show: false });
   };
 
-  console.log(stays);
   return (
     <StyleList onClick={(e) => onListClick(e)}>
       <div>
@@ -65,7 +70,9 @@ export const List = () => {
         </StyleStays>
       </div>
       <div />
-      {modal.show && <Modal data={modal.data} />}
+      <CalendarContext>
+        {modal.show && <Modal />}
+      </CalendarContext>
     </StyleList>
   );
 };

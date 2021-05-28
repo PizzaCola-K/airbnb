@@ -4,7 +4,7 @@ import { Logo } from './gnb/Logo';
 import { Navigation } from './gnb/Navigation';
 import { SearchBar } from './search-bar/SearchBar';
 import { PopUpProvider } from '../ui-util/PopUpContext';
-import { PersonnelProvider } from '../ui-util/PersonnelContext'
+import { PersonnelProvider } from '../ui-util/PersonnelContext';
 
 interface isProps {
   active: boolean;

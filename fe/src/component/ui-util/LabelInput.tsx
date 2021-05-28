@@ -48,4 +48,8 @@ const StyleLabelInput = styled.div`
   input.active {
     color: #333;
   }
+  &:last-child > input {
+    max-width: 7rem;
+    text-overflow: ellipsis;
+  }
 `;

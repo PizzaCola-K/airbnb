@@ -12,9 +12,9 @@ interface StayInterface {
   imageUrl: string[];
   name: string;
   location: {
-    latitude: number,
-    longitude: number,
-    address: string
+    latitude: number;
+    longitude: number;
+    address: string;
   };
   likeCount: number;
   price: number;
@@ -27,11 +27,13 @@ export const List = () => {
 
   useEffect(() => {
     const data = async () => {
-      const result = await fetch('http://3.36.239.71/places').then(res => res.json());
+      const result = await fetch('http://3.36.239.71/places').then((res) =>
+        res.json()
+      );
       setStays(result);
     };
     data();
-  },[]);
+  }, []);
 
   const [modal, setModal] = useState({
     show: false,
@@ -49,7 +51,6 @@ export const List = () => {
     if (modal.show && !closest) setModal({ ...modal, show: false });
   };
 
-  console.log(stays);
   return (
     <StyleList onClick={(e) => onListClick(e)}>
       <div>
@@ -61,7 +62,10 @@ export const List = () => {
         </StyleSearchCategories>
         <h1>지도에서 선택한 지역의 숙소</h1>
         <StyleStays>
-          {stays && stays.map((stay, idx) => <Stay {...stay} key={stay.id} onShowModal={onShowModal} />)}
+          {stays &&
+            stays.map((stay, idx) => (
+              <Stay {...stay} key={stay.id} onShowModal={onShowModal} />
+            ))}
         </StyleStays>
       </div>
       <div />

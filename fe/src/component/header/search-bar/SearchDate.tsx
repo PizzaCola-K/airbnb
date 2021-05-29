@@ -5,18 +5,22 @@ import { LabelInput } from '../../ui-util/LabelInput';
 import { isOnClick } from './SearchBar';
 import { CalendarDateContext } from '../../ui-util/CalendarContext';
 
-const getFormatDate = (date:Date):string => {
+const getFormatDate = (date: Date): string => {
   const month = date.getMonth() + 1;
   const day = date.getDate();
   return month + '월 ' + day + '일';
 };
 
 export const SearchDate = ({ onClick }: isOnClick) => {
-  const selectedDate = useContext(CalendarDateContext)[0];
+  const [selectedDate, dispatch] = useContext(CalendarDateContext);
   const startDate = selectedDate?.startDate;
   const endDate = selectedDate?.endDate;
-  const formatStartDate:string = startDate ? getFormatDate(startDate) : '';
-  const formatEndDate:string = endDate ? getFormatDate(endDate) : '';
+  const formatStartDate: string = startDate ? getFormatDate(startDate) : '';
+  const formatEndDate: string = endDate ? getFormatDate(endDate) : '';
+
+  const resetDate = () => {
+    if (dispatch) dispatch({ type: 'RESET', value: new Date() });
+  };
 
   return (
     <StyleSearchDate>
@@ -40,7 +44,7 @@ export const SearchDate = ({ onClick }: isOnClick) => {
           onClick={onClick}
         />
       </StyleFlexItems>
-      <StyleResetButton>
+      <StyleResetButton onClick={resetDate}>
         <FaTimes />
       </StyleResetButton>
     </StyleSearchDate>

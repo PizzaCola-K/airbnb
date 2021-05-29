@@ -10,7 +10,7 @@ import { usePopUpState, usePopUpDispatch } from '../../ui-util/PopUpContext';
 import { CalendarDateContext } from '../../ui-util/CalendarContext';
 
 export interface isOnClick {
-  onClick:(e:MouseEvent<HTMLElement>) => void;
+  onClick: (e: MouseEvent<HTMLElement>) => void;
 }
 
 const getFormatDate = (date:Date):string => {
@@ -39,21 +39,21 @@ export const SearchBar = () => {
   }, []);
 
   // 클릭시 checkIn checkOut 구분해서 껏다켯다 and 바깥영역 클릭 시 꺼지기.
-  const popUpON = (e:MouseEvent<HTMLElement>,option:string) => {
+  const popUpON = (e: MouseEvent<HTMLElement>, option: string) => {
     const target = e.target as HTMLElement;
-    const checkInAndOut = target.closest('.check-in') ? 'check-in' : 'check-out';
+    const checkInAndOut = target.closest('.check-in')
+      ? 'check-in'
+      : 'check-out';
     const labelInput = target.closest('.label-input');
-    if(popUpState.currentValue === `${option}ON`) {
-      if(className === checkInAndOut && labelInput ) {
-        popUpDispatch({type: `repeat`});
-      } 
-      else if(className !== checkInAndOut && labelInput ) {
-        popUpDispatch({ type: `${option}ON`})
-      }
-      else popUpDispatch({type: `repeat`});
-    } else popUpDispatch({ type: `${option}ON`});
+    if (popUpState.currentValue === `${option}ON`) {
+      if (className === checkInAndOut && labelInput) {
+        popUpDispatch({ type: `repeat` });
+      } else if (className !== checkInAndOut && labelInput) {
+        popUpDispatch({ type: `${option}ON` });
+      } else popUpDispatch({ type: `repeat` });
+    } else popUpDispatch({ type: `${option}ON` });
     setClassName(checkInAndOut);
-  }
+  };
 
   return (
     <StyleSearchBar className='search-bar'>
@@ -67,7 +67,7 @@ export const SearchBar = () => {
           pathname: "/list",
           search: `?check-in=${formatStartDate}&check-out=${formatEndDate}`,
           // hash: "#the-hash",
-          state: { date: selectedDate }
+          state: { startDate: startDate, endDate: endDate }
         }}> 
           <FaSearch />
         </StyleSearchButton>
@@ -96,6 +96,7 @@ const StyleSearchButton = styled(Link)`
   border: 0;
   outline: 0;
   border-radius: 0 3rem 3rem 0;
+  z-index: 1;
   * {
     color: #fff;
   }

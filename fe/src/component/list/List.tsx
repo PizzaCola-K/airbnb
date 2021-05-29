@@ -1,27 +1,35 @@
-import { useState, useEffect,useContext } from 'react';
+import { useState, useEffect, createContext, useReducer, useContext } from 'react';
 import styled from 'styled-components';
-import Modal from '../modal/modal';
 import { Stay } from './Stay';
-import { CalendarDateContext, CalendarContext } from '../ui-util/CalendarContext';
+import { Location, StayInterface, priceState, priceAction, priceDispatch } from '../ui-util/GlobalInterface';
+import Modal from '../modal/modal';
+import { CalendarContext } from '../ui-util/CalendarContext';
 
-interface Target {
-  closest: HTMLElement | null;
+export const ModalContext = createContext<[string,string] | null>(null);
+export const priceStateContext = createContext<priceState | null>(null);
+export const priceDispatchContext = createContext<priceDispatch | null>(null);
+
+const initPrice:priceState = {
+  price: 0,
 }
 
-interface StayInterface {
-  id: number;
-  imageUrl: string[];
-  name: string;
-  location: {
-    latitude: number,
-    longitude: number,
-    address: string
-  };
-  likeCount: number;
-  price: number;
-  option: string;
-  addtionalOption: string;
+const priceReducer = (state: priceState, action:priceAction):typeof initPrice => {
+  const newState:typeof initPrice = {...state};
+  newState.price = action.price;
+  return newState;
 }
+
+export const usePriceState = ():priceState => {
+  const priceState = useContext(priceStateContext);
+  if (!priceState) throw new Error('Cannot find SampleProvider');
+  return priceState;
+}
+
+export const usePriceDispatch = ():priceDispatch => {
+  const dispatch = useContext(priceDispatchContext);
+  if (!dispatch) throw new Error('Cannot find SampleProvider');
+  return dispatch;
+};
 
 const getFormatDate = (date:Date):string => {
   const month = date.getMonth() + 1;
@@ -29,18 +37,21 @@ const getFormatDate = (date:Date):string => {
   return month + '월 ' + day + '일';
 };
 
-export const List = ({location}:any) => {
-  console.log(location)
-
+export const List = ({location}:Location) => {
   const [stays, setStays] = useState<StayInterface[]>([]);
-
+  const startDate = getFormatDate(new Date(location.state.startDate));
+  const endDate = getFormatDate(new Date(location.state.endDate));
+  const [price, priceDispatch] = useReducer(priceReducer,initPrice);
+  
   useEffect(() => {
     const data = async () => {
-      const result = await fetch('http://3.36.239.71/places').then(res => res.json());
+      const result = await fetch('http://3.36.239.71/places').then((res) =>
+        res.json()
+      );
       setStays(result);
     };
     data();
-  },[]);
+  }, []);
 
   const [modal, setModal] = useState({show: false});
   const onShowModal = (event: React.MouseEvent<HTMLElement>): void => {
@@ -65,14 +76,22 @@ export const List = ({location}:any) => {
           <span>게스트 3명</span>
         </StyleSearchCategories>
         <h1>지도에서 선택한 지역의 숙소</h1>
-        <StyleStays>
-          {stays && stays.map((stay, idx) => <Stay {...stay} key={stay.id} onShowModal={onShowModal} />)}
-        </StyleStays>
+          <CalendarContext>
+            <StyleStays>
+            <priceDispatchContext.Provider value={priceDispatch}>
+              {stays &&
+                stays.map((stay, idx) => (
+                  <Stay key={stay.id} {...stay} onShowModal={onShowModal}/>
+                ))}
+              </priceDispatchContext.Provider>
+            </StyleStays>
+          </CalendarContext>
       </div>
-      <div />
-      <CalendarContext>
-        {modal.show && <Modal />}
-      </CalendarContext>
+      <ModalContext.Provider value={[startDate,endDate]}>
+        <priceStateContext.Provider value={price}>
+          {modal.show && price && <Modal />}
+        </priceStateContext.Provider>
+      </ModalContext.Provider>
     </StyleList>
   );
 };

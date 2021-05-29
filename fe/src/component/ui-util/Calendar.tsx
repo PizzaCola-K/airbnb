@@ -8,6 +8,7 @@ export const Calendar = () => {
   // alert(useContext(CalendarDateContext));
   const [selectedDate, dateDispatch] = useContext(CalendarDateContext);
   const [startMonth, setStartMonth] = useState(new Date());
+  const [count, setCount] = useState(0);
 
   // if(selectedDate) {
   //   return;
@@ -20,20 +21,29 @@ export const Calendar = () => {
       const tmpDate = new Date(startMonth);
       const date = new Date(tmpDate.setMonth(tmpDate.getMonth() + i - 1));
       return (
-        <Month 
-          key={tmpDate.getFullYear() + i} 
-          date={date} 
-          now={now} 
-          startDate={selectedDate?.startDate} 
+        <Month
+          key={tmpDate.getFullYear() + i}
+          date={date}
+          now={now}
+          startDate={selectedDate?.startDate}
           endDate={selectedDate?.endDate}
           dateDispatch={dateDispatch}
         />
       );
     });
 
-  const onMoveMonth = (cnt: number) => {
+  // const onMoveMonth = (cnt: number) => {
+  //   const tmpDate = new Date(startMonth);
+
+  //   tmpDate.setMonth(tmpDate.getMonth() + cnt);
+  //   setStartMonth(tmpDate);
+  // };
+
+  const onTransitionEnd = () => {
     const tmpDate = new Date(startMonth);
-    tmpDate.setMonth(tmpDate.getMonth() + cnt);
+
+    tmpDate.setMonth(tmpDate.getMonth() + count);
+    setCount(0);
     setStartMonth(tmpDate);
   };
 
@@ -43,12 +53,14 @@ export const Calendar = () => {
 
   return (
     <StyleCalendar>
-      <StyleMonths>{months}</StyleMonths>
+      <StyleMonths onTransitionEnd={onTransitionEnd} count={count}>
+        {months}
+      </StyleMonths>
       <StyleButtons>
-        <button onClick={() => onMoveMonth(-1)}>
+        <button onClick={() => setCount(-1)}>
           <FaAngleLeft />
         </button>
-        <button onClick={() => onMoveMonth(1)}>
+        <button onClick={() => setCount(1)}>
           <FaAngleRight />
         </button>
       </StyleButtons>
@@ -62,13 +74,21 @@ const StyleCalendar = styled.div`
   margin: 0 auto;
   margin-top: 2rem;
   margin-bottom: 1rem;
+  overflow: hidden;
 `;
 
-const StyleMonths = styled.div`
+const StyleMonths = styled.div<{ count: number }>`
   display: grid;
   width: 100%;
   grid-template-columns: repeat(4, 50%);
-  overflow: hidden;
+  transition: ${(props) =>
+    props.count !== 0 ? 'transform 0.3s ease-in-out' : ''};
+  transform: ${(props) =>
+    props.count === 1
+      ? 'translateX(-100%)'
+      : props.count === -1
+      ? 'translateX(0%)'
+      : 'translateX(-50%)'};
 `;
 
 const StyleButtons = styled.div`

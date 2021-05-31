@@ -2,6 +2,7 @@ PODS:
   - Alamofire (5.4.3)
   - Hero (1.6.1)
   - lottie-ios (3.2.3)
+  - NMapsMap (3.11.0)
   - Realm (10.7.6):
     - Realm/Headers (= 10.7.6)
   - Realm/Headers (10.7.6)
@@ -12,6 +13,7 @@ DEPENDENCIES:
   - Alamofire
   - Hero
   - lottie-ios
+  - NMapsMap
   - RealmSwift
 
 SPEC REPOS:
@@ -19,6 +21,7 @@ SPEC REPOS:
     - Alamofire
     - Hero
     - lottie-ios
+    - NMapsMap
     - Realm
     - RealmSwift
 
@@ -26,9 +29,10 @@ SPEC CHECKSUMS:
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
   Hero: 215865ba3ae41dd9bb08cd6c60a645529c6fc94b
   lottie-ios: c058aeafa76daa4cf64d773554bccc8385d0150e
+  NMapsMap: e6dbea85c2c195c7532deb637a5e90fd70f94fed
   Realm: ed860452717c8db8f4bf832b6807f7f2ce708839
   RealmSwift: e31c4ddbcc42ac879313d656b86f9ca539f6f4f4
 
-PODFILE CHECKSUM: f17df8111b4299f3affcabea7c8602c0f32b615e
+PODFILE CHECKSUM: 5ef144dddcd1ea9c46e716fdd5c8f815c042c42b
 
 COCOAPODS: 1.10.1

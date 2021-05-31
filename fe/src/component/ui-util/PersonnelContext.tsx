@@ -22,6 +22,7 @@ const personnelReducer = (
   else newState.forEach((v, i) => (newState[i].count = 0));
   return newState;
 };
+
 const personnelStateContext = createContext<personnelState[] | null>(null);
 const personnelDispatchContext = createContext<personnelDispatch | null>(null);
 
@@ -38,7 +39,7 @@ export const PersonnelProvider = ({
   const personDispatchValue = useMemo(() => personDispatch, [personDispatch]);
 
   return (
-    <personnelStateContext.Provider value={personValue}>
+    <personnelStateContext.Provider value={[personValue, personDsi]}>
       <personnelDispatchContext.Provider value={personDispatchValue}>
         {children}
       </personnelDispatchContext.Provider>

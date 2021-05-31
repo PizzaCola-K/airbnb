@@ -65,6 +65,9 @@ class FoundHotelsByListViewController: UIViewController {
     
     @objc func btnClickedToShowToMap() {
         print("클릭됌!")
+        guard let vc = self.storyboard?.instantiateViewController(identifier: "FoundHotelsByMapViewController") as? FoundHotelsByMapViewController else {return}
+        self.navigationController?.pushViewController(vc, animated: true)
+        
     }
     func setHotelsNib() { //콜렉션 뷰 헤더와 셀을 저장할 저장한다.
         let hotelNib = UINib(nibName: HotelCell.reuseIdentifier, bundle: nil)

@@ -147,6 +147,21 @@
             </objects>
             <point key="canvasLocation" x="3571" y="866"/>
         </scene>
+        <!--Found Hotels By Map View Controller-->
+        <scene sceneID="dyn-Iy-Frx">
+            <objects>
+                <viewController storyboardIdentifier="FoundHotelsByMapViewController" id="fS3-d4-Ala" customClass="FoundHotelsByMapViewController" customModule="JacksonBnB" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="d2j-4x-YSd">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="tiH-BH-FSU"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E7v-kH-sBV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4423" y="866"/>
+        </scene>
         <!--Favorite View Controller-->
         <scene sceneID="INL-98-m5e">
             <objects>

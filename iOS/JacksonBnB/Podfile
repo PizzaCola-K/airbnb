@@ -10,6 +10,9 @@ target 'JacksonBnB' do
   pod 'Hero'
   pod 'RealmSwift'
   pod 'Alamofire'
+  pod 'NMapsMap'
+	
+
   target 'JacksonBnBTests' do
     inherit! :search_paths
     # Pods for testing

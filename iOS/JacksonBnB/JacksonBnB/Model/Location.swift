@@ -16,3 +16,6 @@ struct Location {
 struct Locations {
     var locations: [Location]
 }
+
+
+

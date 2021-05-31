@@ -25,3 +25,5 @@ class LocationDB: Object {
         self.imageName = imageName
     }
 }
+
+

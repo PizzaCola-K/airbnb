@@ -27,6 +27,11 @@
 		FA7A935226578A45006878F0 /* DataBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7A935126578A45006878F0 /* DataBaseManager.swift */; };
 		FA7A935426578AA4006878F0 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7A935326578AA4006878F0 /* Location.swift */; };
 		FAC874DE2660ABEF00FAA3A4 /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC874DD2660ABEF00FAA3A4 /* UILabelExtension.swift */; };
+		FAC874E02660C5C100FAA3A4 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC874DF2660C5C100FAA3A4 /* UIFontExtension.swift */; };
+		FAC874E32660C95C00FAA3A4 /* HotelSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC874E12660C95C00FAA3A4 /* HotelSectionView.swift */; };
+		FAC874E42660C95C00FAA3A4 /* HotelSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAC874E22660C95C00FAA3A4 /* HotelSectionView.xib */; };
+		FAC874E62664B8A500FAA3A4 /* FoundHotelsByListViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC874E52664B8A500FAA3A4 /* FoundHotelsByListViewDelegate.swift */; };
+		FAC874E82664B8B400FAA3A4 /* FoundHotelsByListViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC874E72664B8B400FAA3A4 /* FoundHotelsByListViewDataSource.swift */; };
 		FACAFB02265CD98D00FBEF41 /* SearchLocationDataSource_Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACAFB01265CD98D00FBEF41 /* SearchLocationDataSource_Delegate.swift */; };
 		FACAFB04265DEB7400FBEF41 /* FoundHotelsByListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACAFB03265DEB7400FBEF41 /* FoundHotelsByListViewController.swift */; };
 		FACAFB07265DEC3A00FBEF41 /* HotelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACAFB05265DEC3A00FBEF41 /* HotelCell.swift */; };
@@ -88,6 +93,11 @@
 		FA7A935126578A45006878F0 /* DataBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseManager.swift; sourceTree = "<group>"; };
 		FA7A935326578AA4006878F0 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		FAC874DD2660ABEF00FAA3A4 /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UILabelExtension.swift; path = ../../../../../../../../../Applications/UILabelExtension.swift; sourceTree = "<group>"; };
+		FAC874DF2660C5C100FAA3A4 /* UIFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
+		FAC874E12660C95C00FAA3A4 /* HotelSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelSectionView.swift; sourceTree = "<group>"; };
+		FAC874E22660C95C00FAA3A4 /* HotelSectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HotelSectionView.xib; sourceTree = "<group>"; };
+		FAC874E52664B8A500FAA3A4 /* FoundHotelsByListViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundHotelsByListViewDelegate.swift; sourceTree = "<group>"; };
+		FAC874E72664B8B400FAA3A4 /* FoundHotelsByListViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundHotelsByListViewDataSource.swift; sourceTree = "<group>"; };
 		FACAFB01265CD98D00FBEF41 /* SearchLocationDataSource_Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationDataSource_Delegate.swift; sourceTree = "<group>"; };
 		FACAFB03265DEB7400FBEF41 /* FoundHotelsByListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundHotelsByListViewController.swift; sourceTree = "<group>"; };
 		FACAFB05265DEC3A00FBEF41 /* HotelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelCell.swift; sourceTree = "<group>"; };
@@ -173,6 +183,8 @@
 				FA77FD8C2654AAA800F37BDD /* LottieAnimation.swift */,
 				FACAFB05265DEC3A00FBEF41 /* HotelCell.swift */,
 				FACAFB06265DEC3A00FBEF41 /* HotelCell.xib */,
+				FAC874E12660C95C00FAA3A4 /* HotelSectionView.swift */,
+				FAC874E22660C95C00FAA3A4 /* HotelSectionView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -262,6 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				FAC874DD2660ABEF00FAA3A4 /* UILabelExtension.swift */,
+				FAC874DF2660C5C100FAA3A4 /* UIFontExtension.swift */,
 			);
 			path = Extenssions;
 			sourceTree = "<group>";
@@ -270,6 +283,8 @@
 			isa = PBXGroup;
 			children = (
 				FACAFB01265CD98D00FBEF41 /* SearchLocationDataSource_Delegate.swift */,
+				FAC874E52664B8A500FAA3A4 /* FoundHotelsByListViewDelegate.swift */,
+				FAC874E72664B8B400FAA3A4 /* FoundHotelsByListViewDataSource.swift */,
 			);
 			path = "Delegate+DataSource";
 			sourceTree = "<group>";
@@ -391,6 +406,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAC874E42660C95C00FAA3A4 /* HotelSectionView.xib in Resources */,
 				FACAFB08265DEC3A00FBEF41 /* HotelCell.xib in Resources */,
 				FA7942F72653FA6C00D73017 /* airbnb-logo.json in Resources */,
 				FA7A934D2656A494006878F0 /* LocationCell.xib in Resources */,
@@ -526,6 +542,7 @@
 			files = (
 				FA77FD8D2654AAA800F37BDD /* LottieAnimation.swift in Sources */,
 				FA7A935226578A45006878F0 /* DataBaseManager.swift in Sources */,
+				FAC874E32660C95C00FAA3A4 /* HotelSectionView.swift in Sources */,
 				FAC874DE2660ABEF00FAA3A4 /* UILabelExtension.swift in Sources */,
 				FACAFB11265F605300FBEF41 /* Hotel.swift in Sources */,
 				FACAFB07265DEC3A00FBEF41 /* HotelCell.swift in Sources */,
@@ -533,7 +550,10 @@
 				FACAFB02265CD98D00FBEF41 /* SearchLocationDataSource_Delegate.swift in Sources */,
 				FA7942CB2653F3B700D73017 /* MainViewController.swift in Sources */,
 				FA7A934F2657749E006878F0 /* LocationDB.swift in Sources */,
+				FAC874E62664B8A500FAA3A4 /* FoundHotelsByListViewDelegate.swift in Sources */,
+				FAC874E82664B8B400FAA3A4 /* FoundHotelsByListViewDataSource.swift in Sources */,
 				FA7A930D265650E1006878F0 /* SearchLocationsViewController.swift in Sources */,
+				FAC874E02660C5C100FAA3A4 /* UIFontExtension.swift in Sources */,
 				FA7942C72653F3B700D73017 /* AppDelegate.swift in Sources */,
 				FACAFB04265DEB7400FBEF41 /* FoundHotelsByListViewController.swift in Sources */,
 				FACAFB0B265E374300FBEF41 /* NetworkManager.swift in Sources */,

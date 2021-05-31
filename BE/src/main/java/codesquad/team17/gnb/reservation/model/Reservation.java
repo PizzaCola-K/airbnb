@@ -61,6 +61,20 @@ public class Reservation {
         return price;
     }
 
+    public Reservation withId(Long id) {
+        return new Builder()
+                .id(id)
+                .placeId(this.placeId)
+                .guestId(this.guestId)
+                .checkIn(this.checkIn)
+                .checkOut(this.checkOut)
+                .adult(this.adult)
+                .child(this.child)
+                .infant(this.infant)
+                .price(this.price)
+                .build();
+    }
+
     public static class Builder {
         private Long id;
         private Long placeId;
@@ -115,6 +129,10 @@ public class Reservation {
         public Builder price(int price) {
             this.price = price;
             return this;
+        }
+
+        public Reservation build() {
+            return new Reservation(this);
         }
     }
 }

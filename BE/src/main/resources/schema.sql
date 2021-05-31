@@ -35,11 +35,13 @@ CREATE TABLE reservation
 (
     reservation_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     place_id       BIGINT NOT NULL,
+    guest_id       BIGINT NOT NULL,
     check_in       DATE   NOT NULL,
     check_out      DATE   NOT NULL,
     adult          INT    NOT NULL,
     child          INT    NOT NULL,
     infant         INT    NOT NULL,
     price          INT    NOT NULL,
-    CONSTRAINT place_reserved FOREIGN KEY (place_id) REFERENCES place (place_id)
+    CONSTRAINT place_reserved FOREIGN KEY (place_id) REFERENCES place (place_id),
+    CONSTRAINT place_guest FOREIGN KEY (guest_id) REFERENCES `user` (user_id)
 );

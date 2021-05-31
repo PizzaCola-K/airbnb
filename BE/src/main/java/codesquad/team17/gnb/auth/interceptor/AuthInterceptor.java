@@ -3,6 +3,7 @@ package codesquad.team17.gnb.auth.interceptor;
 import codesquad.team17.gnb.auth.service.JwtUtils;
 import codesquad.team17.gnb.exception.NoAuthorizationException;
 import codesquad.team17.gnb.user.domain.User;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -21,7 +22,8 @@ public class AuthInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String token = getJwt(request);
-        User user = jwtUtils.getUserFromJwt(jwtUtils.verify(token));
+        DecodedJWT jwt = jwtUtils.verify(token);
+        User user = jwtUtils.getUserFromJwt(jwt);
 
         request.setAttribute("user", user);
         return true;

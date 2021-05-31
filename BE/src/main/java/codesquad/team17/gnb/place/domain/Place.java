@@ -1,5 +1,7 @@
 package codesquad.team17.gnb.place.domain;
 
+import codesquad.team17.gnb.reservation.dto.ReservationRequest;
+
 public class Place {
     private final Long id;
     private final String name;
@@ -64,6 +66,17 @@ public class Place {
 
     public String getDescription() {
         return description;
+    }
+
+    public void checkNumberOfPeople(ReservationRequest reservationRequest) {
+        if (maximumNumberOfPeople < reservationRequest.getNumberOfPeople()) {
+            //TODO : 예외 추가
+            throw new RuntimeException("인원 초과");
+        }
+    }
+
+    public int calculateTotalPrice(ReservationRequest reservationRequest) {
+        return price * reservationRequest.getNumberOfPeople();
     }
 
     public static class Builder {

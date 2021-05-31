@@ -3,12 +3,12 @@ package codesquad.team17.gnb.reservation.dto;
 import java.time.LocalDate;
 
 public class ReservationRequest {
-    public Long placeId;
-    public LocalDate checkIn;
-    public LocalDate checkOut;
-    public int adult;
-    public int child;
-    public int infant;
+    private Long placeId;
+    private LocalDate checkIn;
+    private LocalDate checkOut;
+    private int adult;
+    private int child;
+    private int infant;
 
     public Long getPlaceId() {
         return placeId;
@@ -56,5 +56,9 @@ public class ReservationRequest {
 
     public void setInfant(int infant) {
         this.infant = infant;
+    }
+
+    public int getNumberOfPeople() {
+        return adult + child;
     }
 }

@@ -27,6 +27,7 @@ public class JwtUtils {
     public JwtUtils(@Value("${auth.jwt.secret}") String SECRET) {
         ALGORITHM = Algorithm.HMAC256(SECRET);
         jwtVerifier = JWT.require(ALGORITHM)
+                .acceptExpiresAt(0)
                 .withIssuer(ISSUER)
                 .build();
     }

@@ -8,4 +8,17 @@ class ReservationSql {
         VALUES
         (:placeId, :guestId, :checkIn, :checkOut, :adult, :child, :infant, :price)
 """
+
+    public static String RESERVATION_CHECK = """
+        SELECT COUNT(place_id)
+            FROM reservation
+        WHERE place_id = :placeId
+        AND (
+                (check_in <= :checkIn AND check_out > :checkIn)
+            OR
+                (check_in < :checkOut AND check_out >= :checkOut)
+            OR
+                (:checkIn <= check_in AND check_in < :checkOut)
+        ) 
+"""
 }

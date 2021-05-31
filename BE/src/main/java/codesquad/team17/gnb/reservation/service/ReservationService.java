@@ -1,0 +1,49 @@
+package codesquad.team17.gnb.reservation.service;
+
+import codesquad.team17.gnb.exception.NotFoundException;
+import codesquad.team17.gnb.place.domain.Place;
+import codesquad.team17.gnb.place.repository.PlaceRepository;
+import codesquad.team17.gnb.reservation.dto.ReservationRequest;
+import codesquad.team17.gnb.reservation.model.Reservation;
+import codesquad.team17.gnb.reservation.repository.ReservationRepository;
+import codesquad.team17.gnb.user.domain.User;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+@Service
+public class ReservationService {
+
+    private final ReservationRepository reservationRepository;
+    private final PlaceRepository placeRepository;
+
+    public ReservationService(ReservationRepository reservationRepository, PlaceRepository placeRepository) {
+        this.reservationRepository = reservationRepository;
+        this.placeRepository = placeRepository;
+    }
+
+    @Transactional
+    public Reservation reserve(User user, ReservationRequest reservationRequest) {
+        Place place = placeRepository.findById(reservationRequest.getPlaceId())
+                .orElseThrow(() -> new NotFoundException("장소 없음"));
+
+        place.checkNumberOfPeople(reservationRequest);
+
+        if (!reservationRepository.canBeReserved(reservationRequest)) {
+            //TODO: 예외처리
+            throw new RuntimeException("다른 예약이 있음");
+        }
+
+        Reservation reservation = new Reservation.Builder()
+                .placeId(reservationRequest.getPlaceId())
+                .guestId(user.getId())
+                .checkIn(reservationRequest.getCheckIn())
+                .checkOut(reservationRequest.getCheckOut())
+                .adult(reservationRequest.getAdult())
+                .child(reservationRequest.getChild())
+                .infant(reservationRequest.getInfant())
+                .price(place.calculateTotalPrice(reservationRequest))
+                .build();
+
+        return reservationRepository.insert(reservation);
+    }
+}

@@ -9,6 +9,9 @@ import com.auth0.jwt.interfaces.JWTVerifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.sql.Date;
+import java.time.LocalDate;
+
 @Component
 public class JwtUtils {
 
@@ -39,6 +42,7 @@ public class JwtUtils {
                 .withClaim(IS_HOST, user.isHost())
                 .withClaim(IS_ADMIN, user.isAdmin())
                 .withIssuer(ISSUER)
+                .withExpiresAt(Date.valueOf(LocalDate.now().plusDays(2)))
                 .sign(ALGORITHM);
 
         return new AuthJwt(token);

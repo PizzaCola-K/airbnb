@@ -29,6 +29,7 @@ class FoundHotelsByListViewController: UIViewController {
         
         foundHotelsColletionView.delegate = foundHotelsByListViewDelegate
         foundHotelsColletionView.dataSource = foundHotelsByListViewDataSource
+        
         setHotelsNib()
         
         requestNetworkToGetHotels(by: self.locationName) { (result:Result<[HotelsResponse],Error>) in
@@ -43,6 +44,28 @@ class FoundHotelsByListViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        addShowMapButton() //콜렉션 뷰가 끝나고 추가해주기.
+    }
+    
+    func addShowMapButton() {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        button.setImage(UIImage(named: "mapButton"), for: UIControl.State.normal)
+        self.view.addSubview(button)
+        
+        button.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        button.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 675).isActive = true
+        
+        button.addTarget(self, action: #selector(btnClickedToShowToMap), for: .touchUpInside)
+        
+    }
+    
+    @objc func btnClickedToShowToMap() {
+        print("클릭됌!")
+    }
     func setHotelsNib() { //콜렉션 뷰 헤더와 셀을 저장할 저장한다.
         let hotelNib = UINib(nibName: HotelCell.reuseIdentifier, bundle: nil)
         let hotelHeaderNib = UINib(nibName: HotelSectionView.reuseIdentifier, bundle: nil)

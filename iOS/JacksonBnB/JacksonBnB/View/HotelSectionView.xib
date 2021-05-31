@@ -20,7 +20,7 @@
                         <constraint firstAttribute="width" constant="320" id="Byp-g2-8qx"/>
                         <constraint firstAttribute="height" constant="50" id="sPA-mb-TMA"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>

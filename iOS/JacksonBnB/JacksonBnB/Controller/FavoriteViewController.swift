@@ -1,17 +1,17 @@
+////
+////  FavoriteViewController.swift
+////  JacksonBnB
+////
+////  Created by jinseo park on 5/19/21.
+////
 //
-//  FavoriteViewController.swift
-//  JacksonBnB
+//import UIKit
 //
-//  Created by jinseo park on 5/19/21.
+//class FavoriteViewController: UIViewController {
 //
-
-import UIKit
-
-class FavoriteViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-    }
-    
-}
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//
+//    }
+//    
+//}

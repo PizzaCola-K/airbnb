@@ -31,7 +31,6 @@ class FoundHotelsByListViewController: UIViewController {
         foundHotelsColletionView.dataSource = foundHotelsByListViewDataSource
         
         setHotelsNib()
-        
         requestNetworkToGetHotels(by: self.locationName) { (result:Result<[HotelsResponse],Error>) in
             switch result {
             case .success(let hotelsData):
@@ -57,18 +56,18 @@ class FoundHotelsByListViewController: UIViewController {
         self.view.addSubview(button)
         
         button.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        button.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 675).isActive = true
+        button.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 500).isActive = true
         
         button.addTarget(self, action: #selector(btnClickedToShowToMap), for: .touchUpInside)
         
     }
     
-    @objc func btnClickedToShowToMap() {
-        print("클릭됌!")
+    @objc func btnClickedToShowToMap() {        
         guard let vc = self.storyboard?.instantiateViewController(identifier: "FoundHotelsByMapViewController") as? FoundHotelsByMapViewController else {return}
         self.navigationController?.pushViewController(vc, animated: true)
         
     }
+    
     func setHotelsNib() { //콜렉션 뷰 헤더와 셀을 저장할 저장한다.
         let hotelNib = UINib(nibName: HotelCell.reuseIdentifier, bundle: nil)
         let hotelHeaderNib = UINib(nibName: HotelSectionView.reuseIdentifier, bundle: nil)
@@ -83,7 +82,6 @@ class FoundHotelsByListViewController: UIViewController {
         hotelResponse.forEach { hotel in
             foundHotels.hotels.append(Hotel(id: hotel.id, imageUrl: hotel.imageUrl, location: LocationDetail(latitude: hotel.location.latitude, longitude: hotel.location.longitude, address: hotel.location.address), name: hotel.name, likeCount: hotel.likeCount, price: hotel.price, option: hotel.option, additionalOption: hotel.additionalOption))
         }
-        
         return foundHotels
     }
     

@@ -1,6 +1,15 @@
 INSERT INTO `user` (user_id, github, host, `admin`)
 VALUES (1, 'PizzaCola-K', 1, 1);
 
+INSERT INTO `user` (user_id, github, host, `admin`)
+VALUES (2, 'dudn1933', 1, 0);
+
+INSERT INTO `user` (user_id, github, host, `admin`)
+VALUES (3, 'JacksonPk', 1, 0);
+
+INSERT INTO `user` (user_id, github, host, `admin`)
+VALUES (4, 'kowoohyuk', 1, 0);
+
 INSERT INTO place (place_id, place_name, image_url, city, district, address1, address2, latitude, longitude, `option`,
                    additional_option, host_id, maximum_number_of_people, description, price)
 VALUES (1, '코드스쿼드', 'https://codesquad.kr/img/place/img_5225.jpg', '서울', '강남구', '역삼동', '역삼빌딩 4층',

@@ -45,3 +45,11 @@ CREATE TABLE reservation
     CONSTRAINT place_reserved FOREIGN KEY (place_id) REFERENCES place (place_id),
     CONSTRAINT place_guest FOREIGN KEY (guest_id) REFERENCES `user` (user_id)
 );
+
+CREATE TABLE `like`
+(
+    user_id BIGINT NOT NULL,
+    place_id BIGINT NOT NULL,
+    CONSTRAINT like_user FOREIGN KEY (user_id) REFERENCES `user` (user_id),
+    CONSTRAINT like_place FOREIGN KEY (place_id) REFERENCES place (place_id)
+);

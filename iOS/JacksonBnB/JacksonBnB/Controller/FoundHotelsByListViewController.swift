@@ -31,9 +31,6 @@ class FoundHotelsByListViewController: UIViewController {
         foundHotelsColletionView.delegate = foundHotelsByListViewDelegate
         foundHotelsColletionView.dataSource = foundHotelsByListViewDataSource
         
-        self.navigationController?.isNavigationBarHidden = false
-        self.tabBarController?.tabBar.isHidden = false
-        
         setHotelsNib()
         requestNetworkToGetHotels(by: self.locationName) { (result:Result<[HotelsResponse],Error>) in
             switch result {
@@ -50,6 +47,9 @@ class FoundHotelsByListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        self.navigationController?.isNavigationBarHidden = false
+        self.tabBarController?.tabBar.isHidden = false
         addShowMapButton() //콜렉션 뷰가 끝나고 추가해주기.
     }
     
@@ -58,10 +58,12 @@ class FoundHotelsByListViewController: UIViewController {
         
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(named: "mapButton"), for: UIControl.State.normal)
-        button.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true        
-        button.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 30).isActive = true
-        button.addTarget(self, action: #selector(btnClickedToShowToMap), for: .touchUpInside)
         self.view.addSubview(button)
+        
+        button.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        button.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -100).isActive = true
+        button.addTarget(self, action: #selector(btnClickedToShowToMap), for: .touchUpInside)
+        
         
     }
     

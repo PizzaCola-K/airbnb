@@ -18,10 +18,21 @@ class FoundHotelsByMapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let nmfmapView = NMFMapView(frame: view.frame)
-        parseDTO = ParseDTO()
         view.addSubview(nmfmapView)
-                
+        
+        /*초기 카메라 위치*/
+        let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: 37.49082129914656, lng: 127.03341667375932))
+        nmfmapView.moveCamera(cameraUpdate)
+        
+        parseDTO = ParseDTO()
+        
+        self.navigationController?.isNavigationBarHidden = true
+        self.tabBarController?.tabBar.isHidden = true
+        
+        addListViewButton()
+        
         /*네트워크 통신*/
         requestNetworkToGetHotels { (result:Result<[HotelsResponse],Error>) in
             switch result {
@@ -40,6 +51,23 @@ class FoundHotelsByMapViewController: UIViewController {
         }
     }
     
+    func addListViewButton() {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        button.setImage(UIImage(named: "listbutton"), for: UIControl.State.normal)
+        self.view.addSubview(button)
+                
+        button.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16).isActive = true
+        button.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 16).isActive = true
+        
+        button.addTarget(self, action: #selector(btnClickedToShowToList), for: .touchUpInside)
+    }
+    
+    @objc func btnClickedToShowToList() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     func createMarker(lat: Double, Lng: Double, price: Int, onto mapView: NMFMapView) {
         /*마커설정*/
         let marker = NMFMarker()
@@ -50,8 +78,10 @@ class FoundHotelsByMapViewController: UIViewController {
         
         marker.mapView = mapView
         
+        /*터치하면 하단에 호텔카드가 생긴다.*/
         let handler = {(overlay: NMFOverlay) -> Bool in //touchHandler 설정
             print("tabbed")
+            
             return true
         }
         

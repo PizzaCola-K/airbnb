@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HotelCardView" customModule="JacksonBnB" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="p4C-hI-IuK">
+            <rect key="frame" x="0.0" y="0.0" width="303" height="120"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HdY-Bi-FDA" userLabel="ThumbNailImageView">
+                    <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="HdY-Bi-FDA" secondAttribute="height" multiplier="1:1" id="HJ2-Or-Cra"/>
+                    </constraints>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Lek-AG-nkN" userLabel="LikeCountImageView">
+                    <rect key="frame" x="128" y="11" width="20" height="17.5"/>
+                    <color key="tintColor" red="0.86274516580000005" green="0.20000001789999999" blue="0.24313727020000001" alpha="1" colorSpace="calibratedRGB"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NameLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Iq-1I-1vL" userLabel="NameLabel">
+                    <rect key="frame" x="128" y="37" width="87" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PriceLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vJz-fm-TwI" userLabel="PriceLabel">
+                    <rect key="frame" x="128" y="91" width="80" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LikeCountLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AMm-A5-ckL" userLabel="LikeCountLabel">
+                    <rect key="frame" x="153.5" y="9.5" width="119" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="oAl-VD-KO3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="HdY-Bi-FDA" firstAttribute="top" secondItem="p4C-hI-IuK" secondAttribute="top" id="6FV-IB-16K"/>
+                <constraint firstItem="Lek-AG-nkN" firstAttribute="top" secondItem="p4C-hI-IuK" secondAttribute="top" constant="9.5" id="BoA-D6-6No"/>
+                <constraint firstAttribute="bottom" secondItem="vJz-fm-TwI" secondAttribute="bottom" constant="8" id="C60-gZ-0bm"/>
+                <constraint firstItem="7Iq-1I-1vL" firstAttribute="top" secondItem="AMm-A5-ckL" secondAttribute="bottom" constant="6.5" id="Nj2-yM-X46"/>
+                <constraint firstItem="Lek-AG-nkN" firstAttribute="leading" secondItem="HdY-Bi-FDA" secondAttribute="trailing" constant="8" id="S0S-ZL-2JF"/>
+                <constraint firstItem="vJz-fm-TwI" firstAttribute="leading" secondItem="HdY-Bi-FDA" secondAttribute="trailing" constant="8" id="Xej-7j-GPA"/>
+                <constraint firstItem="HdY-Bi-FDA" firstAttribute="leading" secondItem="oAl-VD-KO3" secondAttribute="leading" id="Zkp-09-hgK"/>
+                <constraint firstItem="AMm-A5-ckL" firstAttribute="top" secondItem="p4C-hI-IuK" secondAttribute="top" constant="9.5" id="euK-r8-6fw"/>
+                <constraint firstItem="7Iq-1I-1vL" firstAttribute="leading" secondItem="HdY-Bi-FDA" secondAttribute="trailing" constant="8" id="fGf-GU-9Wq"/>
+                <constraint firstItem="AMm-A5-ckL" firstAttribute="leading" secondItem="Lek-AG-nkN" secondAttribute="trailing" constant="5.5" id="oCd-Uk-zrD"/>
+                <constraint firstAttribute="bottom" secondItem="HdY-Bi-FDA" secondAttribute="bottom" id="uUe-zw-vEM"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-84.782608695652186" y="-177.45535714285714"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="heart.fill" catalog="system" width="128" height="109"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

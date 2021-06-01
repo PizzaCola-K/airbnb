@@ -55,16 +55,13 @@ class FoundHotelsByListViewController: UIViewController {
     
     func addShowMapButton() {
         let button = UIButton()
+        
         button.translatesAutoresizingMaskIntoConstraints = false
-        
         button.setImage(UIImage(named: "mapButton"), for: UIControl.State.normal)
-        self.view.addSubview(button)
-        
-        button.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        
-        button.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 600).isActive = true
-        
+        button.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true        
+        button.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 30).isActive = true
         button.addTarget(self, action: #selector(btnClickedToShowToMap), for: .touchUpInside)
+        self.view.addSubview(button)
         
     }
     

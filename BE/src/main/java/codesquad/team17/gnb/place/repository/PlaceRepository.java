@@ -11,9 +11,11 @@ public interface PlaceRepository {
 
     Optional<Place> findById(Long id);
 
-    List<Place> findBy(PlaceQueries placeQueries);
+    List<Place> findByPlaceQueries(PlaceQueries placeQueries);
 
     List<Place> findAllByStayPeriod(LocalDate checkIn, LocalDate checkOut);
 
     void like(Long id);
+
+    void dislike(Long id);
 }

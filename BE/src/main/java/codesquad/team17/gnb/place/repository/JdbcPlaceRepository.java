@@ -58,7 +58,7 @@ public class JdbcPlaceRepository implements PlaceRepository {
     }
 
     @Override
-    public List<Place> findBy(PlaceQueries placeQueries) {
+    public List<Place> findByPlaceQueries(PlaceQueries placeQueries) {
         SqlParameterSource namedParameters = setNamedParametersByPlaceQueries(placeQueries);
 
         return namedParameterJdbcTemplate.query(PlaceSql.findBy(placeQueries), namedParameters, PLACE_ROWMAPPER);
@@ -91,6 +91,14 @@ public class JdbcPlaceRepository implements PlaceRepository {
                 .addValue("placeId", id);
 
         namedParameterJdbcTemplate.update(PlaceSql.LIKE_COUNT_UP, namedParameters);
+    }
+
+    @Override
+    public void dislike(Long id) {
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("placeId", id);
+
+        namedParameterJdbcTemplate.update(PlaceSql.LIKE_COUNT_DOWN, namedParameters);
     }
 
 }

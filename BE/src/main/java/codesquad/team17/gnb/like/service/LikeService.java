@@ -36,7 +36,14 @@ public class LikeService {
         return likeRepository.insert(like);
     }
 
+    @Transactional
     public void delete(User user, Long placeId) {
-        likeRepository.delete(user.getId(), placeId);
+        Long userId = user.getId();
+
+        placeRepository.findById(placeId).orElseThrow(() -> new NotFoundException("숙소 없음"));
+        likeRepository.findByUserIdAndPlaceId(userId, placeId).orElseThrow(() -> new NotFoundException("좋아요 없음"));
+
+        placeRepository.dislike(placeId);
+        likeRepository.delete(userId, placeId);
     }
 }

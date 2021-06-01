@@ -18,7 +18,7 @@ public class PlaceService {
     }
 
     public List<PlaceSummary> placeSummaries(PlaceQueries placeQueries) {
-        return placeRepository.findBy(placeQueries).stream()
+        return placeRepository.findByPlaceQueries(placeQueries).stream()
                 .map(PlaceSummary::new)
                 .collect(Collectors.toList());
     }

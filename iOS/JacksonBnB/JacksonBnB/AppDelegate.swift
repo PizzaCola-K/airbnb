@@ -23,15 +23,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         try! realm.write {
             realm.deleteAll()
         }
-        
+
         for idx in 0..<locationIDs.count {
             let locationDB = LocationDB(id: locationIDs[idx], name: locationNames[idx], imageName: locationImageNames[idx])
-            
+
             try! realm.write {
                 realm.add(locationDB)
             }
         }
-        
+
         print(Realm.Configuration.defaultConfiguration.fileURL!)
     }
     

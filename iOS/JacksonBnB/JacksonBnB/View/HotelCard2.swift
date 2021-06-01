@@ -30,7 +30,7 @@ class HotelCardView: UIView {
     func customInit() {
         
         
-        let view = Bundle.main.loadNibNamed("HotelCardView", owner: self, options: nil)?.first as! UIView
+        let view = Bundle.main.loadNibNamed("HotelCard2", owner: self, options: nil)?.first as! UIView
         view.frame = self.bounds
         self.addSubview(view)
 //        thumbnailImageView.image = UIImage(named: "CodeSquadHotel")

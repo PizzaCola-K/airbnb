@@ -42,7 +42,7 @@ class FoundHotelsByMapViewController: UIViewController {
                 self.foundHotels = parsedHoels
                 self.foundHotels.hotels.forEach{ hotel in
                     DispatchQueue.main.async {
-                        self.createMarker(name: hotel.name, imageUrl: hotel.imageUrl, lat: hotel.location.latitude, Lng: hotel.location.longitude, price: hotel.price, onto: nmfmapView)
+                        self.createMarker(name: hotel.name, imageUrl: hotel.imageUrl, likeCount: hotel.likeCount, lat: hotel.location.latitude, Lng: hotel.location.longitude, price: hotel.price, onto: nmfmapView)
                     }
                 }
             case .failure(let error):
@@ -68,7 +68,7 @@ class FoundHotelsByMapViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
-    func createMarker(name: String, imageUrl: String, lat: Double, Lng: Double, price: Int, onto mapView: NMFMapView) {
+    func createMarker(name: String, imageUrl: String, likeCount: Int, lat: Double, Lng: Double, price: Int, onto mapView: NMFMapView) {
         /*마커설정*/
         
         let marker = NMFMarker()
@@ -82,35 +82,39 @@ class FoundHotelsByMapViewController: UIViewController {
         
         /*터치하면 하단에 호텔카드가 생긴다.*/
         let handler = {(overlay: NMFOverlay) -> Bool in //touchHandler 설정
-            print("tabbed : ", name)
-            self.showHotelCardView(name: name, imageUrl: imageUrl, price: price)
+            self.showHotelCardView(name: name, imageUrl: imageUrl, likeCount: likeCount, price: price)
             return true
         }
-        
         marker.touchHandler = handler
     }
     
-    func showHotelCardView(name: String, imageUrl: String, price: Int) {
-        //self.view.frame.width/2
-        let hotelCardView = HotelCardView(frame: CGRect(x: 0, y: 0, width: 320, height: 120))
-        
+    func showHotelCardView(name: String, imageUrl: String, likeCount: Int, price: Int) {
+        let hotelCardView = HotelCardView()
         let url = URL(string: imageUrl)
         let imagedata = try? Data(contentsOf: url!)
         DispatchQueue.main.async {
-            hotelCardView.thumbNailImageView.image = UIImage(data: imagedata!)
+            hotelCardView.thumbnailImageView.image = UIImage(data: imagedata!)
         }
+        
         hotelCardView.nameLabel.text = name
+        hotelCardView.likeCountLabel.text = String(likeCount)+"명이 좋아해요"
         hotelCardView.priceLabel.text = String(price)+"원"
         
-        self.view.addSubview(hotelCardView)
+        /*add Gesture*/
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(self.goToHotelDetailView(_:)))
+        hotelCardView.addGestureRecognizer(gesture)
         
         hotelCardView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(hotelCardView)
         
-        hotelCardView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 32).isActive = true
-//        hotelCardView.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor).isActive = true
+        hotelCardView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         hotelCardView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -150).isActive = true
-        hotelCardView.layer.cornerRadius = 30
         
+    }
+    
+    @objc func goToHotelDetailView(_ sender:UIGestureRecognizer)
+    {
+        print("하이 H I~")
     }
     
     func textToImage(drawText text: String, atPoint point: CGPoint) -> UIImage {

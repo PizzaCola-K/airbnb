@@ -28,8 +28,8 @@
 		FA7A935426578AA4006878F0 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7A935326578AA4006878F0 /* Location.swift */; };
 		FA9D849F2665E6C300E5CEF7 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9D849E2665E6C300E5CEF7 /* UIImageExtension.swift */; };
 		FA9D84A22665E93500E5CEF7 /* ParseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9D84A12665E93500E5CEF7 /* ParseDTO.swift */; };
-		FA9D84A4266612B200E5CEF7 /* HotelCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9D84A3266612B200E5CEF7 /* HotelCardView.swift */; };
-		FA9D84A62666132000E5CEF7 /* HotelCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA9D84A52666132000E5CEF7 /* HotelCardView.xib */; };
+		FAC18E802666677700C79AE7 /* HotelCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC18E7F2666677700C79AE7 /* HotelCardView.swift */; };
+		FAC18E822666678200C79AE7 /* HotelCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAC18E812666678200C79AE7 /* HotelCardView.xib */; };
 		FAC874DE2660ABEF00FAA3A4 /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC874DD2660ABEF00FAA3A4 /* UILabelExtension.swift */; };
 		FAC874E02660C5C100FAA3A4 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC874DF2660C5C100FAA3A4 /* UIFontExtension.swift */; };
 		FAC874E32660C95C00FAA3A4 /* HotelSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC874E12660C95C00FAA3A4 /* HotelSectionView.swift */; };
@@ -99,8 +99,8 @@
 		FA7A935326578AA4006878F0 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		FA9D849E2665E6C300E5CEF7 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		FA9D84A12665E93500E5CEF7 /* ParseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseDTO.swift; sourceTree = "<group>"; };
-		FA9D84A3266612B200E5CEF7 /* HotelCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelCardView.swift; sourceTree = "<group>"; };
-		FA9D84A52666132000E5CEF7 /* HotelCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HotelCardView.xib; sourceTree = "<group>"; };
+		FAC18E7F2666677700C79AE7 /* HotelCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelCardView.swift; sourceTree = "<group>"; };
+		FAC18E812666678200C79AE7 /* HotelCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HotelCardView.xib; sourceTree = "<group>"; };
 		FAC874DD2660ABEF00FAA3A4 /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UILabelExtension.swift; path = ../../../../../../../../../Applications/UILabelExtension.swift; sourceTree = "<group>"; };
 		FAC874DF2660C5C100FAA3A4 /* UIFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
 		FAC874E12660C95C00FAA3A4 /* HotelSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelSectionView.swift; sourceTree = "<group>"; };
@@ -195,8 +195,8 @@
 				FACAFB06265DEC3A00FBEF41 /* HotelCell.xib */,
 				FAC874E12660C95C00FAA3A4 /* HotelSectionView.swift */,
 				FAC874E22660C95C00FAA3A4 /* HotelSectionView.xib */,
-				FA9D84A3266612B200E5CEF7 /* HotelCardView.swift */,
-				FA9D84A52666132000E5CEF7 /* HotelCardView.xib */,
+				FAC18E7F2666677700C79AE7 /* HotelCardView.swift */,
+				FAC18E812666678200C79AE7 /* HotelCardView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -430,9 +430,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAC874E42660C95C00FAA3A4 /* HotelSectionView.xib in Resources */,
+				FAC18E822666678200C79AE7 /* HotelCardView.xib in Resources */,
 				FACAFB08265DEC3A00FBEF41 /* HotelCell.xib in Resources */,
 				FA7942F72653FA6C00D73017 /* airbnb-logo.json in Resources */,
-				FA9D84A62666132000E5CEF7 /* HotelCardView.xib in Resources */,
 				FA7A934D2656A494006878F0 /* LocationCell.xib in Resources */,
 				FA7942D32653F3B800D73017 /* LaunchScreen.storyboard in Resources */,
 				FA7942D02653F3B800D73017 /* Assets.xcassets in Resources */,
@@ -581,7 +581,7 @@
 				FA7A930D265650E1006878F0 /* SearchLocationsViewController.swift in Sources */,
 				FAC874E02660C5C100FAA3A4 /* UIFontExtension.swift in Sources */,
 				FA7942C72653F3B700D73017 /* AppDelegate.swift in Sources */,
-				FA9D84A4266612B200E5CEF7 /* HotelCardView.swift in Sources */,
+				FAC18E802666677700C79AE7 /* HotelCardView.swift in Sources */,
 				FACAFB04265DEB7400FBEF41 /* FoundHotelsByListViewController.swift in Sources */,
 				FACAFB0B265E374300FBEF41 /* NetworkManager.swift in Sources */,
 				FA9D84A22665E93500E5CEF7 /* ParseDTO.swift in Sources */,

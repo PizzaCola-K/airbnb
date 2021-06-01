@@ -15,16 +15,11 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         
         let lottieAnimation = LottieAnimation(with: self.view)
-        
         mainImageView.addSubview(lottieAnimation.animationView)
         lottieAnimation.animationView.play()
-         
+        
     }
     
     @IBAction func searchHotels(_ sender: Any) {

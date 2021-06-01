@@ -1,16 +1,16 @@
+////
+////  UIFontExtension.swift
+////  JacksonBnB
+////
+////  Created by jinseo park on 5/28/21.
+////
 //
-//  UIFontExtension.swift
-//  JacksonBnB
+//import Foundation
+//import UIKit
 //
-//  Created by jinseo park on 5/28/21.
+//extension UIFont {
+//    func bold() {
+//        
+//    }
+//}
 //
-
-import Foundation
-import UIKit
-
-extension UIFont {
-    func bold() {
-        
-    }
-}
-

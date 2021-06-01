@@ -26,6 +26,8 @@
 		FA7A934F2657749E006878F0 /* LocationDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7A934E2657749E006878F0 /* LocationDB.swift */; };
 		FA7A935226578A45006878F0 /* DataBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7A935126578A45006878F0 /* DataBaseManager.swift */; };
 		FA7A935426578AA4006878F0 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7A935326578AA4006878F0 /* Location.swift */; };
+		FA9D849F2665E6C300E5CEF7 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9D849E2665E6C300E5CEF7 /* UIImageExtension.swift */; };
+		FA9D84A22665E93500E5CEF7 /* ParseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9D84A12665E93500E5CEF7 /* ParseDTO.swift */; };
 		FAC874DE2660ABEF00FAA3A4 /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC874DD2660ABEF00FAA3A4 /* UILabelExtension.swift */; };
 		FAC874E02660C5C100FAA3A4 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC874DF2660C5C100FAA3A4 /* UIFontExtension.swift */; };
 		FAC874E32660C95C00FAA3A4 /* HotelSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC874E12660C95C00FAA3A4 /* HotelSectionView.swift */; };
@@ -93,6 +95,8 @@
 		FA7A934E2657749E006878F0 /* LocationDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDB.swift; sourceTree = "<group>"; };
 		FA7A935126578A45006878F0 /* DataBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseManager.swift; sourceTree = "<group>"; };
 		FA7A935326578AA4006878F0 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		FA9D849E2665E6C300E5CEF7 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		FA9D84A12665E93500E5CEF7 /* ParseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseDTO.swift; sourceTree = "<group>"; };
 		FAC874DD2660ABEF00FAA3A4 /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UILabelExtension.swift; path = ../../../../../../../../../Applications/UILabelExtension.swift; sourceTree = "<group>"; };
 		FAC874DF2660C5C100FAA3A4 /* UIFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
 		FAC874E12660C95C00FAA3A4 /* HotelSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelSectionView.swift; sourceTree = "<group>"; };
@@ -228,6 +232,7 @@
 		FA7942C52653F3B700D73017 /* JacksonBnB */ = {
 			isa = PBXGroup;
 			children = (
+				FA9D84A02665E91E00E5CEF7 /* ParsingDTO */,
 				FAC874DC2660ABDA00FAA3A4 /* Extenssions */,
 				FACAFB09265E372700FBEF41 /* Network */,
 				FACAFAFE265CD96500FBEF41 /* Delegate+DataSource */,
@@ -273,11 +278,20 @@
 			path = Persistance;
 			sourceTree = "<group>";
 		};
+		FA9D84A02665E91E00E5CEF7 /* ParsingDTO */ = {
+			isa = PBXGroup;
+			children = (
+				FA9D84A12665E93500E5CEF7 /* ParseDTO.swift */,
+			);
+			path = ParsingDTO;
+			sourceTree = "<group>";
+		};
 		FAC874DC2660ABDA00FAA3A4 /* Extenssions */ = {
 			isa = PBXGroup;
 			children = (
 				FAC874DD2660ABEF00FAA3A4 /* UILabelExtension.swift */,
 				FAC874DF2660C5C100FAA3A4 /* UIFontExtension.swift */,
+				FA9D849E2665E6C300E5CEF7 /* UIImageExtension.swift */,
 			);
 			path = Extenssions;
 			sourceTree = "<group>";
@@ -545,6 +559,7 @@
 			files = (
 				FA77FD8D2654AAA800F37BDD /* LottieAnimation.swift in Sources */,
 				FA7A935226578A45006878F0 /* DataBaseManager.swift in Sources */,
+				FA9D849F2665E6C300E5CEF7 /* UIImageExtension.swift in Sources */,
 				FAC874E32660C95C00FAA3A4 /* HotelSectionView.swift in Sources */,
 				FAC874DE2660ABEF00FAA3A4 /* UILabelExtension.swift in Sources */,
 				FACAFB11265F605300FBEF41 /* Hotel.swift in Sources */,
@@ -561,6 +576,7 @@
 				FA7942C72653F3B700D73017 /* AppDelegate.swift in Sources */,
 				FACAFB04265DEB7400FBEF41 /* FoundHotelsByListViewController.swift in Sources */,
 				FACAFB0B265E374300FBEF41 /* NetworkManager.swift in Sources */,
+				FA9D84A22665E93500E5CEF7 /* ParseDTO.swift in Sources */,
 				FA7942C92653F3B700D73017 /* SceneDelegate.swift in Sources */,
 				FA7A934C2656A494006878F0 /* LocationCell.swift in Sources */,
 				FACAFB0F265E65E500FBEF41 /* HotelsResponse.swift in Sources */,

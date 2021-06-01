@@ -20,13 +20,14 @@ class FoundHotelsByListViewController: UIViewController {
     
     var foundHotelsByListViewDelegate: FoundHotelsByListViewDelegate?
     var foundHotelsByListViewDataSource: FoundHotelsByListViewDataSource?
+    var parseDTO: ParseDTO?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         foundHotelsByListViewDelegate = FoundHotelsByListViewDelegate()
         foundHotelsByListViewDataSource = FoundHotelsByListViewDataSource()
-        
+        parseDTO = ParseDTO()
         foundHotelsColletionView.delegate = foundHotelsByListViewDelegate
         foundHotelsColletionView.dataSource = foundHotelsByListViewDataSource
         
@@ -35,7 +36,8 @@ class FoundHotelsByListViewController: UIViewController {
             switch result {
             case .success(let hotelsData):
                 guard let foundHotelsDataSource = self.foundHotelsByListViewDataSource else {return}
-                foundHotelsDataSource.foundHotels = self.parseResponseToData(from: hotelsData)
+                guard let parsedHoels = self.parseDTO?.parseResponseToData(from: hotelsData) else {return}
+                foundHotelsDataSource.foundHotels = parsedHoels
                 self.foundHotelsColletionView.reloadData()
             case .failure(let error):
                 print(error)
@@ -75,16 +77,7 @@ class FoundHotelsByListViewController: UIViewController {
         foundHotelsColletionView.register(hotelNib, forCellWithReuseIdentifier: HotelCell.reuseIdentifier)
         foundHotelsColletionView.register(hotelHeaderNib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HotelSectionView.reuseIdentifier)
     }
-    
-    func parseResponseToData(from hotelResponse: [HotelsResponse]) -> Hotels {
-        //DTO 파싱 역할하기. HotelResponse to Hotel
-        var foundHotels = Hotels(hotels: [])
-        hotelResponse.forEach { hotel in
-            foundHotels.hotels.append(Hotel(id: hotel.id, imageUrl: hotel.imageUrl, location: LocationDetail(latitude: hotel.location.latitude, longitude: hotel.location.longitude, address: hotel.location.address), name: hotel.name, likeCount: hotel.likeCount, price: hotel.price, option: hotel.option, additionalOption: hotel.additionalOption))
-        }
-        return foundHotels
-    }
-    
+
     func requestNetworkToGetHotels(by name: String, completion: @escaping (Result<([HotelsResponse]),Error>) -> Void ) {
         
         networkManager.getHotelsByLocation(by: name){ (result:Result<[HotelsResponse],Error>) in

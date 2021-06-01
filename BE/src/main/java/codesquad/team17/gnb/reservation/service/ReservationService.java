@@ -53,4 +53,12 @@ public class ReservationService {
     public List<ReservationResult> reservations(User user) {
         return reservationRepository.findByUserId(user.getId());
     }
+
+    public void cancel(User user, Long reservationId) {
+        //TODO: 예외 처리
+        reservationRepository.findByIdAndUserId(reservationId, user.getId())
+                .orElseThrow(() -> new NotFoundException("예약 없음"));
+
+        reservationRepository.deleteById(reservationId);
+    }
 }

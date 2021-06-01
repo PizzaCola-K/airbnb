@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import java.math.BigInteger;
 import java.sql.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class JdbcReservationRepository implements ReservationRepository {
@@ -57,6 +58,23 @@ public class JdbcReservationRepository implements ReservationRepository {
                 .addValue("userId", userId);
 
         return namedParameterJdbcTemplate.query(ReservationSql.FIND_BY_USER_ID, namedParameters, RESERVATION_RESULT_ROW_MAPPER);
+    }
+
+    @Override
+    public Optional<Reservation> findByIdAndUserId(Long reservationId, Long userId) {
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("reservationId", reservationId)
+                .addValue("guestId", userId);
+        return namedParameterJdbcTemplate.query(ReservationSql.FIND_BY_ID_AND_USER_ID, namedParameters, (rs, rowNum) -> new Reservation.Builder()
+                .id(rs.getLong("reservation_id")).build()
+        ).stream().findFirst();
+    }
+
+    @Override
+    public void deleteById(Long reservationId) {
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("reservationId", reservationId);
+        namedParameterJdbcTemplate.update(ReservationSql.DELETE_BY_ID, namedParameters);
     }
 
     private static final RowMapper<ReservationResult> RESERVATION_RESULT_ROW_MAPPER = (rs, rowNum) -> {

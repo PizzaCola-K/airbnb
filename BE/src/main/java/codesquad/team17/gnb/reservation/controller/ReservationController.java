@@ -5,6 +5,7 @@ import codesquad.team17.gnb.reservation.dto.ReservationResult;
 import codesquad.team17.gnb.reservation.model.Reservation;
 import codesquad.team17.gnb.reservation.service.ReservationService;
 import codesquad.team17.gnb.user.domain.User;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,5 +30,13 @@ public class ReservationController {
     @GetMapping
     public List<ReservationResult> reservations(@RequestAttribute User user) {
         return reservationService.reservations(user);
+    }
+
+    @DeleteMapping("/{reservationId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void cancel(
+            @RequestAttribute User user,
+            @PathVariable Long reservationId) {
+        reservationService.cancel(user, reservationId);
     }
 }

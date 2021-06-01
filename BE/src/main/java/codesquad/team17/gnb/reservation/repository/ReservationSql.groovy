@@ -21,4 +21,26 @@ class ReservationSql {
                 (:checkIn <= check_in AND check_in < :checkOut)
         ) 
 """
+    public static String FIND_BY_USER_ID = """
+        SELECT
+            r.reservation_id,
+            r.check_in,
+            r.check_out,
+            r.adult,
+            r.child,
+            r.infant,
+            r.price,
+            p.place_id,
+            p.image_url,
+            p.place_name,
+            p.city,
+            p.district,
+            p.address1,
+            p.address2,
+            p.host_id,
+            u.github
+        FROM reservation r
+        JOIN place p ON r.place_id = p.place_id AND r.guest_id = :userId
+        JOIN user u ON p.host_id = u.user_id
+"""
 }

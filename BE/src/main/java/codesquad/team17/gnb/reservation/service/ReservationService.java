@@ -4,11 +4,14 @@ import codesquad.team17.gnb.exception.NotFoundException;
 import codesquad.team17.gnb.place.domain.Place;
 import codesquad.team17.gnb.place.repository.PlaceRepository;
 import codesquad.team17.gnb.reservation.dto.ReservationRequest;
+import codesquad.team17.gnb.reservation.dto.ReservationResult;
 import codesquad.team17.gnb.reservation.model.Reservation;
 import codesquad.team17.gnb.reservation.repository.ReservationRepository;
 import codesquad.team17.gnb.user.domain.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class ReservationService {
@@ -45,5 +48,9 @@ public class ReservationService {
                 .build();
 
         return reservationRepository.insert(reservation);
+    }
+
+    public List<ReservationResult> reservations(User user) {
+        return reservationRepository.findByUserId(user.getId());
     }
 }

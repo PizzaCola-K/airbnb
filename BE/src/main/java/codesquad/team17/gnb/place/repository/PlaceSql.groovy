@@ -44,6 +44,8 @@ class PlaceSql {
         ) 
 """
 
+    public static String LIKE_COUNT_UP = "UPDATE place SET like_count = like_count + 1 WHERE place_id = :placeId"
+
     static String findBy(PlaceQueries placeQueries) {
         String SELECT_SQL = FIND_ALL + " WHERE maximum_number_of_people >= :people "
 

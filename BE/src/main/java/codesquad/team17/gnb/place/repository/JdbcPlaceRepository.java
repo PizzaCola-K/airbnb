@@ -85,4 +85,12 @@ public class JdbcPlaceRepository implements PlaceRepository {
         );
     }
 
+    @Override
+    public void like(Long id) {
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("placeId", id);
+
+        namedParameterJdbcTemplate.update(PlaceSql.LIKE_COUNT_UP, namedParameters);
+    }
+
 }

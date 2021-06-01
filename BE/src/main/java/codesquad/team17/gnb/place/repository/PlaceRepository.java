@@ -15,4 +15,5 @@ public interface PlaceRepository {
 
     List<Place> findAllByStayPeriod(LocalDate checkIn, LocalDate checkOut);
 
+    void like(Long id);
 }

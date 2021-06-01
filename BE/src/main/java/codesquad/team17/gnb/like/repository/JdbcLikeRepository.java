@@ -35,6 +35,12 @@ public class JdbcLikeRepository implements LikeRepository{
                 .findFirst();
     }
 
+    @Override
+    public void delete(Long userId, Long placeId) {
+        SqlParameterSource sqlParameterSource = getUserIdAndPlaceIdParameter(userId, placeId);
+        namedParameterJdbcTemplate.update(LikeSql.DELETE, sqlParameterSource);
+    }
+
     private SqlParameterSource getUserIdAndPlaceIdParameter(Long userId, Long placeId) {
         return new MapSqlParameterSource()
                 .addValue("userId", userId)

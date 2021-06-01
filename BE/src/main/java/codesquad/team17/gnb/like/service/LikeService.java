@@ -30,4 +30,8 @@ public class LikeService {
         Like like = new Like(user.getId(), likeRequest.getPlaceId());
         return likeRepository.insert(like);
     }
+
+    public void delete(User user, Long placeId) {
+        likeRepository.delete(user.getId(), placeId);
+    }
 }

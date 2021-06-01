@@ -4,6 +4,7 @@ import codesquad.team17.gnb.like.dto.LikeRequest;
 import codesquad.team17.gnb.like.model.Like;
 import codesquad.team17.gnb.like.service.LikeService;
 import codesquad.team17.gnb.user.domain.User;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -21,6 +22,14 @@ public class LikeController {
             @RequestAttribute User user,
             @RequestBody LikeRequest likeRequest) {
         return likeService.like(user, likeRequest);
+    }
+
+    @DeleteMapping("/{placeId}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    public void deleteLike (
+            @RequestAttribute User user,
+            @PathVariable Long placeId ) {
+        likeService.delete(user, placeId);
     }
 
 }

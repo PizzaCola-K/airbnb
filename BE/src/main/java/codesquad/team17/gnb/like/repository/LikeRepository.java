@@ -8,4 +8,6 @@ public interface LikeRepository {
     Like insert(Like like);
 
     Optional<Like> findByUserIdAndPlaceId(Long userId, Long placeId);
+
+    void delete(Long userId, Long placeId);
 }

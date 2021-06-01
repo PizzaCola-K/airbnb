@@ -12,5 +12,5 @@ VALUES (2, '코드하우스', 'https://codesquad.kr/img/place/img_5225.jpg', '�
         37.49082129914656, 127.03341667375932, '침실 2개 · 침대 2개 · 화장실 2개', '커피포트 · 주방', 1, 4,
         '코드하우스 깨끗하고 좋습니다', '50000');
 
-INSERT INTO reservation (reservation_id, place_id, check_in, check_out, adult, child, infant, price)
-VALUES (1, 1, '2021-05-18', '2021-05-22', 1, 0, 0, 100000);
+INSERT INTO reservation (reservation_id, place_id, guest_id, check_in, check_out, adult, child, infant, price)
+VALUES (1, 1, 1, '2021-05-18', '2021-05-22', 1, 0, 0, 100000);

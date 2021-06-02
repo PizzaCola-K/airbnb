@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Calendar } from '../../../ui-util/Calendar';
 import { popUpState } from '../../../ui-util/GlobalInterface';
 import Personnel from './personnel/Personnel';
-import { PriceSlider } from './PriceSlider';
+import Price from './price/price';
 
 interface IProps {
   popUpState: popUpState;
@@ -12,8 +12,8 @@ const PopUp = ({ popUpState }: IProps) => {
   return (
     <StylePopUp className='pop-up' popUpState={popUpState}>
       {popUpState.calendarPopUp && <Calendar />}
-      {popUpState.pricePopUp && <PriceSlider />}
-
+      {/* {popUpState.pricePopUp &&} */}
+      {popUpState.pricePopUp && <Price />}
       {/* 펭돌 이거 잠시 주석처리 해둘게요 */}
       {popUpState.personnelPopUp && <Personnel />}
     </StylePopUp>

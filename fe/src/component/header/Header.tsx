@@ -14,14 +14,14 @@ interface isProps {
 export const Header: React.FunctionComponent<isProps> = ({ active }) => {
   return (
     <StyleHeader active={active}>
+      <div className='global-navigation-bar'>
+        <Logo />
+        <Navigation />
+        <LoginButton />
+      </div>
       <PopUpProvider>
       <CalendarContext>
         <PersonnelProvider>
-          <div className='global-navigation-bar'>
-            <Logo />
-            <Navigation />
-            <LoginButton />
-          </div>
           <SearchBar />
         </PersonnelProvider>
         </CalendarContext>

@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import Info from './information/Info';
 import Sum from './sum/Sum';
 
-
 const ModalContent = () => {
     return (
         <StyledModalContent className='modal-content'>

@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 import { Calendar } from '../../../ui-util/Calendar';
-import { State } from '../SearchBar';
+import { popUpState } from '../../../ui-util/GlobalInterface';
 import Personnel from './personnel/Personnel';
+import Price from './price/price';
 
 interface IProps {
-  popUpState: State;
+  popUpState: popUpState;
 }
 
 const PopUp = ({ popUpState }: IProps) => {
@@ -12,7 +13,7 @@ const PopUp = ({ popUpState }: IProps) => {
     <StylePopUp className='pop-up' popUpState={popUpState}>
       {popUpState.calendarPopUp && <Calendar />}
       {/* {popUpState.pricePopUp &&} */}
-
+      {popUpState.pricePopUp && <Price />}
       {/* 펭돌 이거 잠시 주석처리 해둘게요 */}
       {popUpState.personnelPopUp && <Personnel />}
     </StylePopUp>
@@ -59,3 +60,22 @@ const StylePopUp = styled.div<IProps>`
 //   : popUpState.personnelPopUp === true
 //   ? `22.19rem`
 //   : null};
+
+async function getData(
+  city: string = '',
+  checkIn: string | number = '',
+  checkOut: string | number = ''
+) {
+  const query = [];
+  // location이 있을 때,
+  // checkin, out이 있을 때,
+  // 둘 다 있을 때,
+  if (city) query.push(`city=${city}`);
+  if (checkIn) query.push(`checkIn=${checkIn}`);
+  if (checkOut) query.push(`checkOut=${checkOut}`);
+  const url = query.reduce(
+    (acc, cur, i) => acc + cur + (i > 0 && i < query.length - 1 ? '&' : ''),
+    'http://abc.com/place?'
+  );
+  const data = await fetch(url);
+}

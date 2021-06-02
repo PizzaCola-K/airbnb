@@ -1,12 +1,16 @@
 import styled from 'styled-components'
+import { useContext } from 'react';
+import { ModalContext,usePriceState } from '../../../list/List';
 
 const Info = () => {
+    const [startDate,endDate] = useContext(ModalContext);
+    const price = usePriceState();
     return (
         <StyledInfo>
             {/* 맨위 가격 */}
             <StoreInfo>
                 <div>
-                    <Price>₩75000</Price>
+                    {price && <Price>{`₩${price.price}`}</Price>}
                     <Days>/박</Days>
                 </div>
                 <Review>후기 127개</Review>
@@ -16,11 +20,11 @@ const Info = () => {
                 <div>
                     <CheckIO>
                         <CheckTitle>체크인</CheckTitle>
-                        <CheckInfo>2021.5.17</CheckInfo>
+                        <CheckInfo>{startDate}</CheckInfo>
                     </CheckIO>
                     <CheckIO>
                         <CheckTitle>체크아웃</CheckTitle>
-                        <CheckInfo>2021.6.4</CheckInfo>
+                        <CheckInfo>{endDate}</CheckInfo>
                     </CheckIO>
                 </div>
                 <div>

@@ -1,50 +1,47 @@
 import styled from 'styled-components';
 import { FaRegHeart, FaHeart } from 'react-icons/fa';
 import { addCommaToNumber } from '../../util';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { usePriceDispatch } from './List';
+import { StayInterface } from '../ui-util/GlobalInterface';
 
-interface StayInterface {
-  images?: string[];
-  subTitle?: string;
-  title?: string;
-  description?: string;
-  price?: number;
-  wishCount?: number;
-  isWish?: boolean;
-  onShowModal: React.MouseEventHandler<HTMLElement>;
-}
-
-export const Stay: React.FunctionComponent<StayInterface> = ({
-  images = [],
-  subTitle = '서초구의 아파트 전체',
-  title = '서울특별시 강남구 강남대로62길 23 4층',
-  description = '최대 인원 3명, 침실 1개, 욕실 1개, 침대 1개, 헤어드라이어, 최대 인원 3명, 침실 1개, 욕실 1개, 침대 1개, 헤어드라이어',
-  price = 50000,
-  wishCount = 20,
-  isWish = false,
+export const Stay = ({
+  imageUrl,
+  location,
+  name,
+  likeCount,
+  price,
+  option,
+  additionalOption,
   onShowModal = (): void => {},
-}) => {
+}:StayInterface) => {
+  const dispatch = usePriceDispatch();
+  const isWish = false;
   const [wish, setWish] = useState(isWish);
+
   const toggleWish = () => {
     setWish(!wish);
   };
   return (
-    <StyleStay onClick={(e) => onShowModal(e)}>
+    <StyleStay onClick={(e) => {
+      onShowModal(e);
+      dispatch({price});
+      }} >
       <StyleImages>
-        <StyleImage img_src={images[0]} />
+        <StyleImage img_src={imageUrl} />
       </StyleImages>
       <StyleContent>
         <button onClick={toggleWish}>
           {wish ? <FaRegHeart /> : <FaHeart />}
         </button>
-        <p className='sub-title'>{subTitle}</p>
-        <p className='title'>{title}</p>
-        <p className='description'>{description}</p>
+        <p className='sub-title'>{location?.address}</p>
+        <p className='title'>{name}</p>
+        <p className='description'>{option}</p>
         <p className='price'>₩{addCommaToNumber(price)} / 박</p>
         <div className='content-bottom'>
           <p className='wish-count'>
             <FaHeart />
-            {wishCount}
+            {likeCount}
           </p>
           <p className='total-price'>₩{addCommaToNumber(price * 3)}</p>
         </div>
@@ -52,6 +49,7 @@ export const Stay: React.FunctionComponent<StayInterface> = ({
     </StyleStay>
   );
 };
+
 
 const StyleStay = styled.li`
   display: grid;
@@ -68,7 +66,7 @@ const StyleImages = styled.div`
   padding-right: 0.75rem;
 `;
 
-const StyleImage = styled.div<{ img_src: string }>`
+const StyleImage = styled.div<{ img_src: string[] }>`
   background-image: url(${(props) => props.img_src});
   background-size: cover;
   width: 100%;

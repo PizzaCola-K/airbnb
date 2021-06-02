@@ -8,6 +8,12 @@ export const LoginButton = () => {
     setToggle(!toggle);
   };
 
+  const onLogin = () => {
+    localStorage.setItem(
+      'prev',
+      window.location.pathname + window.location.search
+    );
+  };
   useEffect(() => {
     document.body.addEventListener('click', onCloseLoginModal);
     return function cleanup() {
@@ -26,7 +32,14 @@ export const LoginButton = () => {
       </StyleLoginButton>
       {toggle && (
         <StyleLoginModal className='login-modal'>
-          <li>로그인</li>
+          <li>
+            <a
+              onClick={onLogin}
+              href='https://github.com/login/oauth/authorize?client_id=eeab452e618124d52f83&redirect_uri=http://localhost:3000/login'
+            >
+              로그인
+            </a>
+          </li>
           <li>위시 리스트</li>
           <li>테스트</li>
         </StyleLoginModal>

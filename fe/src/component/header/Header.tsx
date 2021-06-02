@@ -1,9 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { LoginButton } from './gnb/LoginButton';
 import { Logo } from './gnb/Logo';
 import { Navigation } from './gnb/Navigation';
 import { SearchBar } from './search-bar/SearchBar';
+import { PopUpProvider } from '../ui-util/PopUpContext';
+import { PersonnelProvider } from '../ui-util/PersonnelContext'
+import { CalendarContext } from '../ui-util/CalendarContext'
 
 interface isProps {
   active: boolean;
@@ -17,7 +19,13 @@ export const Header: React.FunctionComponent<isProps> = ({ active }) => {
         <Navigation />
         <LoginButton />
       </div>
-      <SearchBar />
+      <PopUpProvider>
+      <CalendarContext>
+        <PersonnelProvider>
+          <SearchBar />
+        </PersonnelProvider>
+        </CalendarContext>
+      </PopUpProvider>
     </StyleHeader>
   );
 };

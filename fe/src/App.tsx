@@ -1,8 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
+import { Switch, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import { Header } from './component/header/Header';
 import { List } from './component/list/List';
 import { Main } from './component/main/Main';
+// import { RangeSlider } from './component/main/RangeSlider';
+import { Login } from './component/login/Login';
 
 function App() {
   const [active, setActive] = useState(false);
@@ -34,11 +37,17 @@ function App() {
 
   return (
     <div className='App'>
-      <StyleHeaderWrapper ref={target}>
-        <Header active={active} />
-      </StyleHeaderWrapper>
-      {/* <List /> */}
-      <Main />
+      <Switch>
+        <Route exact path={['/', '/list']}>
+          <StyleHeaderWrapper ref={target}>
+            <Header active={active} />
+          </StyleHeaderWrapper>
+          <Route path='/' component={Main} />
+          {/* <Route path='/' component={RangeSlider} /> */}
+          <Route path='/list' component={List} />
+        </Route>
+        <Route path='/login' component={Login} />
+      </Switch>
     </div>
   );
 }

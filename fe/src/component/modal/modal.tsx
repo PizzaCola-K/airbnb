@@ -1,11 +1,7 @@
 import styled from 'styled-components';
 import ModalContent from './modalContent/ModalContent';
 
-interface ModalInterface {
-  data: string;
-}
-
-const Modal: React.FunctionComponent<ModalInterface> = ({ data }) => {
+const Modal = () => {
   return (
     <StyledModal>
       <ModalContent />
@@ -24,5 +20,5 @@ const StyledModal = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.1);
 `;

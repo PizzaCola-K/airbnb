@@ -23,7 +23,8 @@ public class PlaceController {
 
     @GetMapping
     public List<PlaceSummary> placeSummaries(
+            @RequestAttribute(required = false) User user,
             PlaceQueries placeQueries) {
-        return placeService.placeSummaries(placeQueries, null);
+        return placeService.placeSummaries(placeQueries, user);
     }
 }

@@ -45,10 +45,11 @@ export const List = ({location}:Location) => {
   
   useEffect(() => {
     const data = async () => {
-      const result = await fetch('http://3.36.239.71/places').then((res) =>
+      const result = await fetch('http://3.36.239.71/api/places').then((res) =>
         res.json()
       );
       setStays(result);
+      console.log(result)
     };
     data();
   }, []);

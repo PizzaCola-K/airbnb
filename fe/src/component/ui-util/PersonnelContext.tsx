@@ -39,7 +39,7 @@ export const PersonnelProvider = ({
   const personDispatchValue = useMemo(() => personDispatch, [personDispatch]);
 
   return (
-    <personnelStateContext.Provider value={[personValue, personDsi]}>
+    <personnelStateContext.Provider value={personValue}>
       <personnelDispatchContext.Provider value={personDispatchValue}>
         {children}
       </personnelDispatchContext.Provider>

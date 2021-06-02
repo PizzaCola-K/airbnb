@@ -20,9 +20,12 @@ import java.util.Optional;
 @Service
 public class AuthService {
 
-    private final String CLIENT_ID;
-    private final String CLIENT_SECRET;
-    private final String REDIRECT_URI;
+    private final String WEB_CLIENT_ID;
+    private final String WEB_CLIENT_SECRET;
+    private final String WEB_REDIRECT_URI;
+    private final String IOS_CLIENT_ID;
+    private final String IOS_CLIENT_SECRET;
+    private final String IOS_REDIRECT_URI;
     private final String ACCESS_TOKEN_URI;
     private final String USER_URI;
 
@@ -31,16 +34,22 @@ public class AuthService {
 
     private final Logger logger = LoggerFactory.getLogger(AuthService.class);
 
-    public AuthService(@Value("${auth.github.web.clientId}") String CLIENT_ID,
-                       @Value("${auth.github.web.clientSecret}") String CLIENT_SECRET,
-                       @Value("${auth.github.web.redirectUri}") String REDIRECT_URI,
+    public AuthService(@Value("${auth.github.web.clientId}") String WEB_CLIENT_ID,
+                       @Value("${auth.github.web.clientSecret}") String WEB_CLIENT_SECRET,
+                       @Value("${auth.github.web.redirectUri}") String WEB_REDIRECT_URI,
+                       @Value("${auth.github.ios.clientId}") String IOS_CLIENT_ID,
+                       @Value("${auth.github.ios.clientSecret}") String IOS_CLIENT_SECRET,
+                       @Value("${auth.github.ios.redirectUri}") String IOS_REDIRECT_URI,
                        @Value("${auth.github.accessTokenUri}") String ACCESS_TOKEN_URI,
                        @Value("${auth.github.userUri}") String USER_URI,
                        UserRepository userRepository,
                        JwtUtils jwtUtils) {
-        this.CLIENT_ID = CLIENT_ID;
-        this.CLIENT_SECRET = CLIENT_SECRET;
-        this.REDIRECT_URI = REDIRECT_URI;
+        this.WEB_CLIENT_ID = WEB_CLIENT_ID;
+        this.WEB_CLIENT_SECRET = WEB_CLIENT_SECRET;
+        this.WEB_REDIRECT_URI = WEB_REDIRECT_URI;
+        this.IOS_CLIENT_ID = IOS_CLIENT_ID;
+        this.IOS_CLIENT_SECRET = IOS_CLIENT_SECRET;
+        this.IOS_REDIRECT_URI = IOS_REDIRECT_URI;
         this.ACCESS_TOKEN_URI = ACCESS_TOKEN_URI;
         this.USER_URI = USER_URI;
         this.userRepository = userRepository;
@@ -48,12 +57,16 @@ public class AuthService {
     }
 
     public AuthJwt issueTokenForWeb(String code) {
-        return issueToken(code);
+        return issueToken(code, WEB_CLIENT_ID, WEB_CLIENT_SECRET, WEB_REDIRECT_URI);
     }
 
-    private AuthJwt issueToken(String code) {
+    public AuthJwt issueTokenForIos(String code) {
+        return issueToken(code, IOS_CLIENT_ID, IOS_CLIENT_SECRET, IOS_REDIRECT_URI);
+    }
+
+    private AuthJwt issueToken(String code, String clientId, String clientSecret, String redirectUri) {
         RestTemplate request = new RestTemplate();
-        AccessTokenResponse accessToken = getAccessToken(code, request)
+        AccessTokenResponse accessToken = getAccessToken(code, clientId, clientSecret, redirectUri, request)
                 .orElseThrow(() -> new NotFoundException("요청 바디 없음"));
         logger.info("accessToken: {}", accessToken.getAccessToken());
 
@@ -66,11 +79,11 @@ public class AuthService {
         return jwtUtils.getJwt(user);
     }
 
-    private Optional<AccessTokenResponse> getAccessToken(String code, RestTemplate restTemplate) {
+    private Optional<AccessTokenResponse> getAccessToken(String code, String clientId, String clientSecret, String redirectUri, RestTemplate restTemplate) {
         RequestEntity<AccessTokenRequest> request = RequestEntity
                 .post(ACCESS_TOKEN_URI)
                 .header("Accept", "application/json")
-                .body(new AccessTokenRequest(CLIENT_ID, CLIENT_SECRET, code, REDIRECT_URI));
+                .body(new AccessTokenRequest(clientId, clientSecret, code, redirectUri));
 
         ResponseEntity<AccessTokenResponse> response = restTemplate
                 .exchange(request, AccessTokenResponse.class);

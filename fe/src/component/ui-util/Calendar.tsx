@@ -27,6 +27,7 @@ export const Calendar = () => {
           now={now}
           startDate={selectedDate?.startDate}
           endDate={selectedDate?.endDate}
+          tmpEndDate={selectedDate?.tmpEndDate}
           dateDispatch={dateDispatch}
         />
       );

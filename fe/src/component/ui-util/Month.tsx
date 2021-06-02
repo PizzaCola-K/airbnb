@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Dispatch } from 'react';
+import React, { Dispatch } from 'react';
 import { DateAction } from './CalendarContext';
 
 interface MonthProp {
@@ -7,6 +7,7 @@ interface MonthProp {
   now: Date;
   startDate: string | Date | null | undefined;
   endDate: string | Date | null | undefined;
+  tmpEndDate: string | Date | null | undefined;
   dateDispatch: Dispatch<DateAction> | null;
 }
 
@@ -34,6 +35,7 @@ export const Month = ({
   now,
   startDate,
   endDate,
+  tmpEndDate,
   dateDispatch,
 }: MonthProp) => {
   date.setDate(1);
@@ -47,6 +49,22 @@ export const Month = ({
   const monthText =
     date.getMonth() < 9 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1;
 
+  const handleMouseOver = (e: React.MouseEvent) => {
+    const tmpDate = date;
+    const target = e.target as HTMLElement;
+    if (!startDate || endDate || !dateDispatch) return;
+    if (
+      !target?.textContent ||
+      target?.textContent === '' ||
+      Number(target.textContent) > 31
+    ) {
+      return;
+    }
+    console.log('안와');
+    tmpDate.setDate(Number(target?.textContent));
+    tmpDate.setHours(0, 0, 0, 0);
+    dateDispatch({ type: 'SET_TMP_END_DATE', value: tmpDate });
+  };
   const handleClick = (e: React.MouseEvent) => {
     const tmpDate = date;
     const target = e.target as HTMLElement;
@@ -81,7 +99,10 @@ export const Month = ({
           <StyleWeek key={'week' + i}>{v}</StyleWeek>
         ))}
       </StyleWeeks>
-      <StyleDays onClick={(e) => handleClick(e)}>
+      <StyleDays
+        onClick={(e) => handleClick(e)}
+        onMouseOver={(e) => handleMouseOver(e)}
+      >
         {days.map((v, i) => {
           let previous = 0;
           let period = 0;
@@ -98,15 +119,18 @@ export const Month = ({
             )
               start = 1;
             if (
-              endDate &&
-              new Date(tmpDate).getTime() === new Date(endDate).getTime()
+              (endDate &&
+                new Date(tmpDate).getTime() === new Date(endDate).getTime()) ||
+              (tmpEndDate &&
+                new Date(tmpDate).getTime() === new Date(tmpEndDate).getTime())
             )
               end = 1;
             if (
-              startDate &&
-              endDate &&
-              tmpDate >= startDate &&
-              tmpDate <= endDate
+              (startDate &&
+                tmpDate >= startDate &&
+                endDate &&
+                tmpDate <= endDate) ||
+              (tmpEndDate && tmpDate <= tmpEndDate)
             )
               period = 1;
           } else {

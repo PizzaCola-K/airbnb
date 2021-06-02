@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import { Header } from './component/header/Header';
 import { List } from './component/list/List';
 import { Main } from './component/main/Main';
+// import { RangeSlider } from './component/main/RangeSlider';
+import { Login } from './component/login/Login';
 
 function App() {
   const [active, setActive] = useState(false);
@@ -35,12 +37,13 @@ function App() {
 
   return (
     <div className='App'>
-      <StyleHeaderWrapper ref={target}>
-        <Header active={active} />
-      </StyleHeaderWrapper>
       <Switch>
-        <Route path='/' component={Main} exact />
-        <Route path='/List' component={List} />
+          <StyleHeaderWrapper ref={target}>
+            <Header active={active} />
+          </StyleHeaderWrapper>
+          <Route path='/' component={Main} />
+          <Route path='/list' component={List} />
+          <Route path='/login' component={Login} />
       </Switch>
     </div>
   );

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useEffect,useState, MouseEvent, useContext } from 'react';
+import { useEffect, useState, MouseEvent, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
 import { SearchDate } from './SearchDate';
@@ -70,14 +70,15 @@ export const SearchBar = () => {
         ></SearchPersonnel>
         {/* 라우터 */}
         <StyleSearchButton to={{
-          pathname: "/List",
+          pathname: "/list",
           search: `?district=${''}&checkIn=${formatStartDate}&checkOut=${formatEndDate}&minPrice=${range[0]}&maxPrice=${range[1]}&adult=${personnel[0].count}&child=${personnel[1].count}&infant=${personnel[2].count}`,
           // hash: "#the-hash",
-          state: { startDate: startDate, endDate: endDate }
-        }}> 
-          <FaSearch />
-        </StyleSearchButton>
-        <PopUp popUpState={popUpState} />
+          state: { startDate: startDate, endDate: endDate },
+        }}
+      >
+        <FaSearch />
+      </StyleSearchButton>
+      <PopUp popUpState={popUpState} />
     </StyleSearchBar>
   );
 };
@@ -91,6 +92,10 @@ const StyleSearchBar = styled.div`
   background: #fff;
   border-radius: 3rem;
   position: relative;
+  .label-input:hover {
+    background-color: #f1f1f1;
+    border-radius: 2rem;
+  }
 `;
 
 const StyleSearchButton = styled(Link)`

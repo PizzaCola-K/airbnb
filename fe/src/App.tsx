@@ -38,12 +38,15 @@ function App() {
   return (
     <div className='App'>
       <Switch>
-          <StyleHeaderWrapper ref={target}>
-            <Header active={active} />
-          </StyleHeaderWrapper>
-          <Route path='/' component={Main} />
-          <Route path='/list' component={List} />
-          <Route path='/login' component={Login} />
+        <Route path='/login' />
+        <StyleHeaderWrapper ref={target}>
+          <Header active={active} />
+        </StyleHeaderWrapper>
+      </Switch>
+      <Switch>
+        <Route exact path='/' component={Main} />
+        <Route path='/list' component={List} />
+        <Route path='/login' component={Login} />
       </Switch>
     </div>
   );

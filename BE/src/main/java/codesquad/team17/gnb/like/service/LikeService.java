@@ -24,7 +24,7 @@ public class LikeService {
     public Like like(User user, LikeRequest likeRequest) {
         Long placeId = likeRequest.getPlaceId();
         Long userId = user.getId();
-        placeRepository.findById(placeId).orElseThrow(() -> new NotFoundException("숙소 없음"));
+        placeRepository.findById(placeId, userId).orElseThrow(() -> new NotFoundException("숙소 없음"));
 
         likeRepository.findByUserIdAndPlaceId(userId, likeRequest.getPlaceId()).ifPresent(like -> {
             //TODO: 예외처리
@@ -40,7 +40,7 @@ public class LikeService {
     public void delete(User user, Long placeId) {
         Long userId = user.getId();
 
-        placeRepository.findById(placeId).orElseThrow(() -> new NotFoundException("숙소 없음"));
+        placeRepository.findById(placeId, userId).orElseThrow(() -> new NotFoundException("숙소 없음"));
         likeRepository.findByUserIdAndPlaceId(userId, placeId).orElseThrow(() -> new NotFoundException("좋아요 없음"));
 
         placeRepository.dislike(placeId);

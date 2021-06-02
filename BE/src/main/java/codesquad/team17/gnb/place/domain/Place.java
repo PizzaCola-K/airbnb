@@ -14,6 +14,7 @@ public class Place {
     private final Long hostId;
     private final String description;
     private int likeCount;
+    private final boolean isLike;
 
     public Place(Builder builder) {
         this.id = builder.id;
@@ -26,6 +27,7 @@ public class Place {
         this.likeCount = builder.likeCount;
         this.hostId = builder.hostId;
         this.description = builder.description;
+        this.isLike = builder.isLike;
     }
 
     public Long getId() {
@@ -60,6 +62,10 @@ public class Place {
         return likeCount;
     }
 
+    public boolean isLike() {
+        return isLike;
+    }
+
     public Long getHostId() {
         return hostId;
     }
@@ -88,6 +94,7 @@ public class Place {
         private Option option;
 
         private int likeCount;
+        private boolean isLike;
 
         private Long hostId;
         private int maximumNumberOfPeople;
@@ -144,6 +151,11 @@ public class Place {
 
         public Builder price(int price) {
             this.price = price;
+            return this;
+        }
+
+        public Builder isLike(boolean isLike) {
+            this.isLike = isLike;
             return this;
         }
 

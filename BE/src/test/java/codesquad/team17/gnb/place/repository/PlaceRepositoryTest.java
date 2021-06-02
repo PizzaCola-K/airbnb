@@ -37,13 +37,13 @@ class PlaceRepositoryTest {
 
     @Test
     void getPlace() {
-        Place place = placeRepository.findById(1L).orElseThrow(() -> new NotFoundException("숙소 없음"));
+        Place place = placeRepository.findById(1L, null).orElseThrow(() -> new NotFoundException("숙소 없음"));
         assertThat(place).hasFieldOrPropertyWithValue("name", "코드스쿼드");
     }
 
     @Test
     void noPlace() {
-        assertThatThrownBy(() -> placeRepository.findById(3L).orElseThrow(() -> new NotFoundException("숙소 없음")))
+        assertThatThrownBy(() -> placeRepository.findById(3L, null).orElseThrow(() -> new NotFoundException("숙소 없음")))
                 .isInstanceOf(NotFoundException.class);
     }
 

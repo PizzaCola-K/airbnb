@@ -3,6 +3,7 @@ package codesquad.team17.gnb.place.service;
 import codesquad.team17.gnb.place.repository.PlaceRepository;
 import codesquad.team17.gnb.place.dto.PlaceQueries;
 import codesquad.team17.gnb.place.dto.PlaceSummary;
+import codesquad.team17.gnb.user.domain.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,8 +18,13 @@ public class PlaceService {
         this.placeRepository = placeRepository;
     }
 
-    public List<PlaceSummary> placeSummaries(PlaceQueries placeQueries) {
-        return placeRepository.findByPlaceQueries(placeQueries).stream()
+    public List<PlaceSummary> placeSummaries(PlaceQueries placeQueries, User loggedInUser) {
+        Long loggedInUserId = null;
+        if (loggedInUser != null) {
+            loggedInUserId = loggedInUser.getId();
+        }
+        
+        return placeRepository.findByPlaceQueries(placeQueries, loggedInUserId).stream()
                 .map(PlaceSummary::new)
                 .collect(Collectors.toList());
     }

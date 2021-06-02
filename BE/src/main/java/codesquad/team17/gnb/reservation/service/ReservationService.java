@@ -26,7 +26,7 @@ public class ReservationService {
 
     @Transactional
     public Reservation reserve(User user, ReservationRequest reservationRequest) {
-        Place place = placeRepository.findById(reservationRequest.getPlaceId())
+        Place place = placeRepository.findById(reservationRequest.getPlaceId(), user.getId())
                 .orElseThrow(() -> new NotFoundException("장소 없음"));
 
         place.checkNumberOfPeople(reservationRequest);

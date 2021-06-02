@@ -9,9 +9,9 @@ import java.util.Optional;
 
 public interface PlaceRepository {
 
-    Optional<Place> findById(Long id);
+    Optional<Place> findById(Long id, Long loggedInUserId);
 
-    List<Place> findByPlaceQueries(PlaceQueries placeQueries);
+    List<Place> findByPlaceQueries(PlaceQueries placeQueries, Long loggedInUserId);
 
     List<Place> findAllByStayPeriod(LocalDate checkIn, LocalDate checkOut);
 

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useEffect,useState, MouseEvent, useContext } from 'react';
+import { useEffect, useState, MouseEvent, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
 import { SearchDate } from './SearchDate';
@@ -13,7 +13,7 @@ export interface isOnClick {
   onClick: (e: MouseEvent<HTMLElement>) => void;
 }
 
-const getFormatDate = (date:Date):string => {
+const getFormatDate = (date: Date): string => {
   const month = date.getMonth() + 1;
   const day = date.getDate();
   return month + '-' + day;
@@ -26,8 +26,8 @@ export const SearchBar = () => {
   const selectedDate = useContext(CalendarDateContext)[0];
   const startDate = selectedDate?.startDate;
   const endDate = selectedDate?.endDate;
-  const formatStartDate:string = startDate ? getFormatDate(startDate) : '';
-  const formatEndDate:string = endDate ? getFormatDate(endDate) : '';
+  const formatStartDate: string = startDate ? getFormatDate(startDate) : '';
+  const formatEndDate: string = endDate ? getFormatDate(endDate) : '';
 
   useEffect(() => {
     document.addEventListener('click', (e) => {
@@ -57,21 +57,23 @@ export const SearchBar = () => {
 
   return (
     <StyleSearchBar className='search-bar'>
-        <SearchDate onClick={(e) => popUpON(e, `calendar`)}></SearchDate>
-        <SearchPrice onClick={(e) => popUpON(e, `price`)}></SearchPrice>
-        <SearchPersonnel
-          onClick={(e) => popUpON(e, `personnel`)}
-        ></SearchPersonnel>
-        {/* 라우터 */}
-        <StyleSearchButton to={{
-          pathname: "/list",
+      <SearchDate onClick={(e) => popUpON(e, `calendar`)}></SearchDate>
+      <SearchPrice onClick={(e) => popUpON(e, `price`)}></SearchPrice>
+      <SearchPersonnel
+        onClick={(e) => popUpON(e, `personnel`)}
+      ></SearchPersonnel>
+      {/* 라우터 */}
+      <StyleSearchButton
+        to={{
+          pathname: '/list',
           search: `?check-in=${formatStartDate}&check-out=${formatEndDate}`,
           // hash: "#the-hash",
-          state: { startDate: startDate, endDate: endDate }
-        }}> 
-          <FaSearch />
-        </StyleSearchButton>
-        <PopUp popUpState={popUpState} />
+          state: { startDate: startDate, endDate: endDate },
+        }}
+      >
+        <FaSearch />
+      </StyleSearchButton>
+      <PopUp popUpState={popUpState} />
     </StyleSearchBar>
   );
 };
@@ -85,6 +87,10 @@ const StyleSearchBar = styled.div`
   background: #fff;
   border-radius: 3rem;
   position: relative;
+  .label-input:hover {
+    background-color: #f1f1f1;
+    border-radius: 2rem;
+  }
 `;
 
 const StyleSearchButton = styled(Link)`

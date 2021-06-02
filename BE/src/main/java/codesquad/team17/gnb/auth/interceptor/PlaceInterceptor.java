@@ -26,7 +26,6 @@ public class PlaceInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String token = getJwt(request);
         if (token == null) {
-            logger.info("인터셉터");
             request.setAttribute("user", null);
             return true;
         }

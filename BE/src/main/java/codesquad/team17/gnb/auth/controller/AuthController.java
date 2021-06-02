@@ -17,7 +17,12 @@ public class AuthController {
     }
 
     @GetMapping("/github/web")
-    public AuthJwt issueToken(String code) {
+    public AuthJwt issueTokenForWeb(String code) {
         return authService.issueTokenForWeb(code);
+    }
+
+    @GetMapping("/github/ios")
+    public AuthJwt issueTokenForIos(String code) {
+        return authService.issueTokenForIos(code);
     }
 }

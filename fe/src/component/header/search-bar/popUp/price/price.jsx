@@ -2,12 +2,13 @@ import styled from "styled-components";
 import { useContext, useEffect, useState } from "react";
 import Bar from "./Bar";
 import InputSlide from "./InputSlide/InputSlide";
+import { usePriceState } from '../../../../ui-util/PriceContext'
 
 const Price = () => {
   const [state, setState] = useState("");
   let { list, minPrice, maxPrice } = state;
-  const [range, setRange] = useState([[],[]]);
-
+  const {range, setRange} = usePriceState();
+  
   useEffect(async () => {
     const data = await fetch(
       "https://codesquad-2021-api.herokuapp.com/airbnb/price"

@@ -2,8 +2,6 @@ import styled from "styled-components";
 import { Range, getTrackBackground } from "react-range";
 
 const InputSlide = ({minPrice, maxPrice, price, onChange }) => {
-  console.log(minPrice, maxPrice)
-  console.log(price)
   return (
     <Range
       draggableTrack

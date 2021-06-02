@@ -6,6 +6,7 @@ import { SearchBar } from './search-bar/SearchBar';
 import { PopUpProvider } from '../ui-util/PopUpContext';
 import { PersonnelProvider } from '../ui-util/PersonnelContext'
 import { CalendarContext } from '../ui-util/CalendarContext'
+import { PriceProvider } from '../ui-util/PriceContext'
 
 interface isProps {
   active: boolean;
@@ -22,7 +23,9 @@ export const Header: React.FunctionComponent<isProps> = ({ active }) => {
       <PopUpProvider>
       <CalendarContext>
         <PersonnelProvider>
-          <SearchBar />
+          <PriceProvider>
+            <SearchBar />
+          </PriceProvider>
         </PersonnelProvider>
         </CalendarContext>
       </PopUpProvider>

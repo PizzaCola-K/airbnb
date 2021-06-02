@@ -40,7 +40,7 @@ function App() {
       </StyleHeaderWrapper>
       <Switch>
         <Route path='/' component={Main} exact />
-        <Route path='/list' component={List} />
+        <Route path='/List' component={List} />
       </Switch>
     </div>
   );

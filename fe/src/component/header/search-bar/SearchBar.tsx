@@ -8,15 +8,18 @@ import { SearchPersonnel } from './SearchPersonnel';
 import PopUp from './popUp/PopUp';
 import { usePopUpState, usePopUpDispatch } from '../../ui-util/PopUpContext';
 import { CalendarDateContext } from '../../ui-util/CalendarContext';
+import { usePriceState } from '../../ui-util/PriceContext';
+import { usePersonnelState } from '../../ui-util/PersonnelContext'
 
 export interface isOnClick {
   onClick: (e: MouseEvent<HTMLElement>) => void;
 }
 
 const getFormatDate = (date:Date):string => {
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
-  return month + '-' + day;
+  const month = ('0' + (date.getMonth() + 1)).slice(-2);
+  const day = ('0' + date.getDate()).slice(-2);
+  const year = date.getFullYear();
+  return year+ '-' + month + '-' + day;
 };
 
 export const SearchBar = () => {
@@ -28,6 +31,8 @@ export const SearchBar = () => {
   const endDate = selectedDate?.endDate;
   const formatStartDate:string = startDate ? getFormatDate(startDate) : '';
   const formatEndDate:string = endDate ? getFormatDate(endDate) : '';
+  const {range, setRange} = usePriceState();
+  const personnel = usePersonnelState();
 
   useEffect(() => {
     document.addEventListener('click', (e) => {
@@ -55,6 +60,7 @@ export const SearchBar = () => {
     setClassName(checkInAndOut);
   };
 
+
   return (
     <StyleSearchBar className='search-bar'>
         <SearchDate onClick={(e) => popUpON(e, `calendar`)}></SearchDate>
@@ -64,8 +70,8 @@ export const SearchBar = () => {
         ></SearchPersonnel>
         {/* 라우터 */}
         <StyleSearchButton to={{
-          pathname: "/list",
-          search: `?check-in=${formatStartDate}&check-out=${formatEndDate}`,
+          pathname: "/List",
+          search: `?district=${''}&checkIn=${formatStartDate}&checkOut=${formatEndDate}&minPrice=${range[0]}&maxPrice=${range[1]}&adult=${personnel[0].count}&child=${personnel[1].count}&infant=${personnel[2].count}`,
           // hash: "#the-hash",
           state: { startDate: startDate, endDate: endDate }
         }}> 

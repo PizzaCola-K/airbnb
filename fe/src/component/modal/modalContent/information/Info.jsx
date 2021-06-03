@@ -2,10 +2,19 @@ import styled from 'styled-components'
 import { useContext, useState } from 'react';
 import { ModalContext,usePriceState, personnelContext } from '../../../list/List';
 import { Calendar } from '../../../ui-util/Calendar';
+import { CalendarDateContext } from './../../../ui-util/CalendarContext';
 import Reservation from '../reservation/Reservation';
 
-const Info = () => {
+const getFormatDate = date => {
+    const month = ('0' + (date.getMonth() + 1)).slice(-2);
+    const day = ('0' + date.getDate()).slice(-2);
+    const year = date.getFullYear();
+    return year+ '-' + month + '-' + day;
+};
+
+const Info = ({ placeId }) => {
     const [startDate, endDate] = useContext(ModalContext);
+    const [selectedDate, dateDispatch] = useContext(CalendarDateContext);
     const [onCalendar, setOnCalendar] = useState(false);
     const [onReservation, setOnReservation] = useState(false);
     const price = usePriceState();
@@ -15,14 +24,37 @@ const Info = () => {
         setOnCalendar(!onCalendar);
     }
 
-    const handleReservation = () => {
+    console.log('now',selectedDate)
+    const handleReservation = async () => {
+        const Authorization =
+            (localStorage.getItem('token') &&
+            'Bearer ' + localStorage.getItem('token')) ||
+            '';
+        const value = {
+            placeId,
+            checkIn: getFormatDate(selectedDate.startDate),
+            checkOut: getFormatDate(selectedDate.endDate),
+            adult: personnelState[0].count,
+            child: personnelState[1].count,
+            infant: personnelState[2].count
+        };
+        const data = await fetch('http://3.36.239.71/api/reservations', {
+            method: 'POST',
+            headers: {
+            Origin: 'http://localhost:3000',
+            Authorization,
+            },
+            body: JSON.stringify(value),
+        });
+        const json = await data.json();
+        console.log('post ' + json);
         setOnReservation(!onReservation);
+        return json;
         // setModal({show: false});
     }
     
     const personnelCount = () => {
         const personnel = personnelState.map(v => v.count).reduce((acc,cur) => acc+=cur,0);
-        console.log(personnel)
         return `게스트 ${personnel}명`;
     }
 

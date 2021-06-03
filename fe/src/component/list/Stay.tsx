@@ -5,34 +5,74 @@ import { useState, useEffect } from 'react';
 import { usePriceDispatch } from './List';
 import { StayInterface } from '../ui-util/GlobalInterface';
 
+const updateLike = async (placeId: number, wish: boolean) => {
+  const Authorization =
+    (localStorage.getItem('token') &&
+      'Bearer ' + localStorage.getItem('token')) ||
+    '';
+  const value = {
+    placeId,
+  };
+  if (wish) {
+    const data = await fetch('http://3.36.239.71/api/likes', {
+      method: 'POST',
+      headers: {
+        Origin: 'http://localhost:3000',
+        Authorization,
+      },
+      body: JSON.stringify(value),
+    });
+    const json = await data.json();
+    console.log('post ' + json);
+    return json;
+  } else {
+    const data = await fetch(`http://3.36.239.71/api/likes/${placeId}`, {
+      method: 'DELETE',
+      headers: {
+        Origin: 'http://localhost:3000',
+        Authorization,
+      },
+      body: JSON.stringify(value),
+    });
+    const json = await data.json();
+    console.log('delete ' + json);
+    return json;
+  }
+};
+
 export const Stay = ({
+  id,
   imageUrl,
   location,
   name,
+  like,
   likeCount,
   price,
   option,
   additionalOption,
   onShowModal = (): void => {},
-}:StayInterface) => {
+}: StayInterface) => {
   const dispatch = usePriceDispatch();
-  const isWish = false;
-  const [wish, setWish] = useState(isWish);
+  const [wish, setWish] = useState(like);
 
-  const toggleWish = () => {
+  const toggleWish = async () => {
+    const result = await updateLike(id, !wish);
+    console.log(result);
     setWish(!wish);
   };
   return (
-    <StyleStay onClick={(e) => {
-      onShowModal(e);
-      dispatch({price});
-      }} >
+    <StyleStay
+      onClick={(e) => {
+        onShowModal(e);
+        dispatch({ price });
+      }}
+    >
       <StyleImages>
         <StyleImage img_src={imageUrl} />
       </StyleImages>
       <StyleContent>
         <button onClick={toggleWish}>
-          {wish ? <FaRegHeart /> : <FaHeart />}
+          {wish ? <FaHeart /> : <FaRegHeart />}
         </button>
         <p className='sub-title'>{location?.address}</p>
         <p className='title'>{name}</p>
@@ -49,7 +89,6 @@ export const Stay = ({
     </StyleStay>
   );
 };
-
 
 const StyleStay = styled.li`
   display: grid;

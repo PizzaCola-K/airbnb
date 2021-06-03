@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 import ModalContent from './modalContent/ModalContent';
 
-interface showType {
-  show:boolean;
+interface ModalInterface {
+  placeId: number;
 }
 
-const Modal = () => {
+const Modal = ({ placeId }: ModalInterface) => {
   return (
     <StyledModal>
-      <ModalContent />
+      <ModalContent placeId={placeId} />
     </StyledModal>
   );
 };

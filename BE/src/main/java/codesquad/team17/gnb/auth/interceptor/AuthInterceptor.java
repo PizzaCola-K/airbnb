@@ -1,6 +1,7 @@
 package codesquad.team17.gnb.auth.interceptor;
 
 import codesquad.team17.gnb.auth.service.JwtUtils;
+import codesquad.team17.gnb.exception.BadRequest;
 import codesquad.team17.gnb.exception.NoAuthorizationException;
 import codesquad.team17.gnb.user.domain.User;
 import com.auth0.jwt.interfaces.DecodedJWT;
@@ -41,7 +42,7 @@ public class AuthInterceptor implements HandlerInterceptor {
         }
 
         if (!authorizationHeader.startsWith("Bearer")) {
-            throw new RuntimeException("토큰 타입 이상");
+            throw new BadRequest("토큰 타입 이상");
         }
         return authorizationHeader.substring("Bearer".length()).trim();
     }

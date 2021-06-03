@@ -1,5 +1,6 @@
 package codesquad.team17.gnb.like.service;
 
+import codesquad.team17.gnb.exception.BadRequest;
 import codesquad.team17.gnb.exception.NotFoundException;
 import codesquad.team17.gnb.like.dto.LikeRequest;
 import codesquad.team17.gnb.like.model.Like;
@@ -31,8 +32,7 @@ public class LikeService {
         placeRepository.findById(placeId, userId).orElseThrow(() -> new NotFoundException("숙소 없음"));
 
         likeRepository.findByUserIdAndPlaceId(userId, likeRequest.getPlaceId()).ifPresent(like -> {
-            //TODO: 예외처리
-            throw new RuntimeException("이미 좋아요를 추가함");
+            throw new BadRequest("이미 좋아요를 추가함");
         });
 
         placeRepository.like(placeId);

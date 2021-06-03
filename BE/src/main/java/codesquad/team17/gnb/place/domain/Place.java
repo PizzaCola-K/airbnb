@@ -1,5 +1,6 @@
 package codesquad.team17.gnb.place.domain;
 
+import codesquad.team17.gnb.exception.BadRequest;
 import codesquad.team17.gnb.reservation.dto.ReservationRequest;
 
 public class Place {
@@ -76,8 +77,7 @@ public class Place {
 
     public void checkNumberOfPeople(ReservationRequest reservationRequest) {
         if (maximumNumberOfPeople < reservationRequest.getNumberOfPeople()) {
-            //TODO : 예외 추가
-            throw new RuntimeException("인원 초과");
+            throw new BadRequest("인원 초과");
         }
     }
 

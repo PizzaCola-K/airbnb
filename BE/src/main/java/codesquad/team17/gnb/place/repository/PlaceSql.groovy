@@ -92,4 +92,26 @@ class PlaceSql {
 
         return SELECT_SQL
     }
+
+    public static String FIND_LIKES_PLACES_BY_USER_ID = """
+        SELECT
+            p.place_id,
+            p.place_name,
+            p.image_url,
+            p.city,
+            p.district,
+            p.address1,
+            p.address2,
+            p.latitude,
+            p.longitude,
+            p.`option`,
+            p.additional_option,
+            p.like_count,
+            p.host_id,
+            p.maximum_number_of_people,
+            p.description,
+            p.price,
+            l.user_id             
+        FROM place p JOIN `like` l ON p.place_id = l.place_id AND l.user_id = :userId 
+"""
 }

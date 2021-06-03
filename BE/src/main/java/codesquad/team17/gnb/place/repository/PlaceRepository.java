@@ -2,10 +2,12 @@ package codesquad.team17.gnb.place.repository;
 
 import codesquad.team17.gnb.place.domain.Place;
 import codesquad.team17.gnb.place.dto.PlaceQueries;
+import codesquad.team17.gnb.place.dto.PlaceSummary;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 public interface PlaceRepository {
 
@@ -18,4 +20,6 @@ public interface PlaceRepository {
     void like(Long id);
 
     void dislike(Long id);
+
+    Stream<Place> findLikesPlacesByUserId(Long userId);
 }

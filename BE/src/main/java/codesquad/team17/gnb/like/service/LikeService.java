@@ -4,10 +4,14 @@ import codesquad.team17.gnb.exception.NotFoundException;
 import codesquad.team17.gnb.like.dto.LikeRequest;
 import codesquad.team17.gnb.like.model.Like;
 import codesquad.team17.gnb.like.repository.LikeRepository;
+import codesquad.team17.gnb.place.dto.PlaceSummary;
 import codesquad.team17.gnb.place.repository.PlaceRepository;
 import codesquad.team17.gnb.user.domain.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class LikeService {
@@ -45,5 +49,11 @@ public class LikeService {
 
         placeRepository.dislike(placeId);
         likeRepository.delete(userId, placeId);
+    }
+
+    public List<PlaceSummary> getLikesPlaces(User user) {
+        return placeRepository.findLikesPlacesByUserId(user.getId())
+                .map(PlaceSummary::new)
+                .collect(Collectors.toList());
     }
 }

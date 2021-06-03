@@ -4,6 +4,7 @@ import codesquad.team17.gnb.place.domain.Location;
 import codesquad.team17.gnb.place.domain.Option;
 import codesquad.team17.gnb.place.domain.Place;
 import codesquad.team17.gnb.place.dto.PlaceQueries;
+import codesquad.team17.gnb.place.dto.PlaceSummary;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -14,6 +15,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 @Repository
 public class JdbcPlaceRepository implements PlaceRepository {
@@ -98,6 +100,13 @@ public class JdbcPlaceRepository implements PlaceRepository {
                 .addValue("placeId", id);
 
         namedParameterJdbcTemplate.update(PlaceSql.LIKE_COUNT_DOWN, namedParameters);
+    }
+
+    @Override
+    public Stream<Place> findLikesPlacesByUserId(Long userId) {
+        SqlParameterSource namedParameters = new MapSqlParameterSource("userId", userId);
+        return namedParameterJdbcTemplate
+                .queryForStream(PlaceSql.FIND_LIKES_PLACES_BY_USER_ID, namedParameters, PLACE_ROWMAPPER);
     }
 
 }

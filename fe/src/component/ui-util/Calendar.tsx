@@ -4,7 +4,8 @@ import { useReducer, useState, useEffect, useContext } from 'react';
 import { CalendarDateContext } from './CalendarContext';
 import { Month } from './Month';
 
-export const Calendar = () => {
+                      // popUpModal = boolean을 반환 true면 popUpModal에서 달력을 누른것.
+export const Calendar = ({popUpModal}:any) => {
   // alert(useContext(CalendarDateContext));
   const [selectedDate, dateDispatch] = useContext(CalendarDateContext);
   const [startMonth, setStartMonth] = useState(new Date());
@@ -29,6 +30,7 @@ export const Calendar = () => {
           endDate={selectedDate?.endDate}
           tmpEndDate={selectedDate?.tmpEndDate}
           dateDispatch={dateDispatch}
+          popUpModal={popUpModal}
         />
       );
     });

@@ -11,7 +11,7 @@ interface IProps {
 const PopUp = ({ popUpState }: IProps) => {
   return (
     <StylePopUp className='pop-up' popUpState={popUpState}>
-      {popUpState.calendarPopUp && <Calendar />}
+      {popUpState.calendarPopUp && <Calendar popUpModal={false} />}
       {/* {popUpState.pricePopUp &&} */}
       {popUpState.pricePopUp && <Price />}
       {/* 펭돌 이거 잠시 주석처리 해둘게요 */}

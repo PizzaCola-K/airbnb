@@ -13,7 +13,7 @@ export const SearchPersonnel = ({ onClick }: isOnClick) => {
   const personnel = state[0] + state[1];
   const baby = state[2];
 
-  const resetPesonnel = () => {
+  const resetPersonnel = () => {
     dispatch({ index: -1, counter: 0 });
   };
 
@@ -37,7 +37,7 @@ export const SearchPersonnel = ({ onClick }: isOnClick) => {
           onClick={onClick}
         />
       </div>
-      <StyleResetButton onClick={resetPesonnel}>
+      <StyleResetButton onClick={resetPersonnel}>
         <FaTimes />
       </StyleResetButton>
     </StyleSearchPersonnel>

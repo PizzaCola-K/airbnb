@@ -12,7 +12,7 @@ interface ContextType {
 export const PriceContext = createContext<ContextType | null>(null);
 
 export const PriceProvider = ({children}:IChildren) => {
-    const [range, setRange] = useState<number[][]>([[50000],[500000]])
+    const [range, setRange] = useState<number[][]>([[],[]])
 
     return (
         <PriceContext.Provider value={{range, setRange}}>

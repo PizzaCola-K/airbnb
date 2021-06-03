@@ -72,10 +72,8 @@ export const SearchBar = () => {
         <StyleSearchButton to={{
           pathname: "/list",
           search: `?district=${''}&checkIn=${formatStartDate}&checkOut=${formatEndDate}&minPrice=${range[0]}&maxPrice=${range[1]}&adult=${personnel[0].count}&child=${personnel[1].count}&infant=${personnel[2].count}`,
-          // hash: "#the-hash",
-          state: { startDate: startDate, endDate: endDate },
-        }}
-      >
+          state: { startDate: startDate, endDate: endDate, personnelState:personnel },
+        }}>
         <FaSearch />
       </StyleSearchButton>
       <PopUp popUpState={popUpState} />

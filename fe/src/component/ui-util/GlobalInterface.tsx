@@ -1,4 +1,4 @@
-import { Dispatch } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 
 export interface Action {
   type: string;
@@ -39,6 +39,7 @@ export interface LocationParams {
   state:{
     startDate:string,
     endDate:string,
+    personnelState:[]
   }
 };
 export interface Location {
@@ -64,6 +65,11 @@ export interface StayInterface {
 
 export interface priceState {
   price: number;
+}
+
+export interface modalState {
+  modal:{show:boolean};
+  setModal: Dispatch<SetStateAction<{show:boolean}>>
 }
 
 export type personnelState = {

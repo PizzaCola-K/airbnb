@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import ModalContent from './modalContent/ModalContent';
 
+interface showType {
+  show:boolean;
+}
+
 const Modal = () => {
   return (
     <StyledModal>

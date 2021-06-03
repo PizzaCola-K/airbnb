@@ -9,6 +9,7 @@ interface MonthProp {
   endDate: string | Date | null | undefined;
   tmpEndDate: string | Date | null | undefined;
   dateDispatch: Dispatch<DateAction> | null;
+  popUpModal: any;
 }
 
 interface StyleDayProp {
@@ -16,6 +17,7 @@ interface StyleDayProp {
   start: number;
   end: number;
   previous: number;
+  popUpModal:any;
 }
 
 const initDate = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -37,6 +39,7 @@ export const Month = ({
   endDate,
   tmpEndDate,
   dateDispatch,
+  popUpModal,
 }: MonthProp) => {
   date.setDate(1);
   const startWeek = date.getDay(); // 시작 요일
@@ -60,7 +63,7 @@ export const Month = ({
     ) {
       return;
     }
-    console.log('안와');
+    // console.log('안와');
     tmpDate.setDate(Number(target?.textContent));
     tmpDate.setHours(0, 0, 0, 0);
     dateDispatch({ type: 'SET_TMP_END_DATE', value: tmpDate });
@@ -143,6 +146,7 @@ export const Month = ({
               end={end}
               previous={previous}
               key={date.getDate() + i}
+              popUpModal={popUpModal}
             >
               {v}
             </StyleDay>
@@ -180,10 +184,10 @@ const StyleDays = styled.div`
 `;
 
 const StyleDay = styled.div`
-  padding: 1.2rem;
+  padding: ${({popUpModal}) => popUpModal ? '.5rem' : '1.2rem'};
   cursor: pointer;
   position: relative;
-  height: 3.9rem;
+  height: ${({popUpModal}) => popUpModal ? '2.5rem' : '3.9rem'};;
   border: 1px solid transparent;
   border-radius: 50%;
   ${(props: StyleDayProp) =>

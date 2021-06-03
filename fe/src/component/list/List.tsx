@@ -1,13 +1,15 @@
 import { useState, useEffect, createContext, useReducer, useContext } from 'react';
 import styled from 'styled-components';
 import { Stay } from './Stay';
-import { Location, StayInterface, priceState, priceAction, priceDispatch } from '../ui-util/GlobalInterface';
+import { Location, StayInterface, priceState, priceAction, priceDispatch, modalState} from '../ui-util/GlobalInterface';
 import Modal from '../modal/modal';
 import { CalendarContext } from '../ui-util/CalendarContext';
 
 export const ModalContext = createContext<[string,string] | null>(null);
 export const priceStateContext = createContext<priceState | null>(null);
 export const priceDispatchContext = createContext<priceDispatch | null>(null);
+export const showModalContext = createContext<modalState | null>(null);
+export const personnelContext = createContext<[] | null>(null);
 
 const initPrice:priceState = {
   price: 0,
@@ -42,6 +44,7 @@ export const List = ({location}:Location) => {
   const startDate = getFormatDate(new Date(location.state.startDate));
   const endDate = getFormatDate(new Date(location.state.endDate));
   const [price, priceDispatch] = useReducer(priceReducer,initPrice);
+  const personnelState = location.state.personnelState;
   
   useEffect(() => {
     const data = async () => {
@@ -49,7 +52,6 @@ export const List = ({location}:Location) => {
         res.json()
       );
       setStays(result);
-      console.log(result)
     };
     data();
   }, []);
@@ -90,7 +92,11 @@ export const List = ({location}:Location) => {
       </div>
       <ModalContext.Provider value={[startDate,endDate]}>
         <priceStateContext.Provider value={price}>
-          {modal.show && price && <Modal />}
+          <showModalContext.Provider value={{modal, setModal}}>
+            <personnelContext.Provider value={personnelState}>
+              {modal.show && price && <Modal />}
+              </personnelContext.Provider>
+          </showModalContext.Provider>
         </priceStateContext.Provider>
       </ModalContext.Provider>
     </StyleList>

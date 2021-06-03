@@ -12,9 +12,10 @@ const Price = () => {
   useEffect(async () => {
     const data = await fetch(
       "https://codesquad-2021-api.herokuapp.com/airbnb/price"
-    ).then((res) => res.json());
-    setState(data);
-    setRange([[Number(data.minPrice)],[Number(data.maxPrice)]])
+    );
+    const response = await data.json();
+    setState(response);
+    setRange([[Number(response.minPrice)],[Number(response.maxPrice)]])
   }, []);
 
   const barRender = () => {

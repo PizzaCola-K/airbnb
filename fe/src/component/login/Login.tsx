@@ -14,7 +14,6 @@ interface decodedInterface {
 
 export const Login = ({ history }: RouteComponentProps) => {
   const query = qs.parse(window.location.search, { ignoreQueryPrefix: true });
-
   const getLoginToken = async () => {
     const data = await fetch(
       `http://3.36.239.71/api/auth/github/web?code=${query.code}`

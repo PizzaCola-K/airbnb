@@ -1,10 +1,31 @@
 import styled from 'styled-components'
-import { useContext } from 'react';
-import { ModalContext,usePriceState } from '../../../list/List';
+import { useContext, useState } from 'react';
+import { ModalContext,usePriceState, personnelContext } from '../../../list/List';
+import { Calendar } from '../../../ui-util/Calendar';
+import Reservation from '../reservation/Reservation';
 
 const Info = () => {
-    const [startDate,endDate] = useContext(ModalContext);
+    const [startDate, endDate] = useContext(ModalContext);
+    const [onCalendar, setOnCalendar] = useState(false);
+    const [onReservation, setOnReservation] = useState(false);
     const price = usePriceState();
+    const personnelState = useContext(personnelContext);
+    
+    const calendarToggle = () => {
+        setOnCalendar(!onCalendar);
+    }
+
+    const handleReservation = () => {
+        setOnReservation(!onReservation);
+        // setModal({show: false});
+    }
+    
+    const personnelCount = () => {
+        const personnel = personnelState.map(v => v.count).reduce((acc,cur) => acc+=cur,0);
+        console.log(personnel)
+        return `게스트 ${personnel}명`;
+    }
+
     return (
         <StyledInfo>
             {/* 맨위 가격 */}
@@ -18,29 +39,41 @@ const Info = () => {
             {/* 체크인 체크아웃 인원 예약하기 예약확정 */}
             <UserInfo>
                 <div>
-                    <CheckIO>
+                    <CheckIO onClick={calendarToggle}>
                         <CheckTitle>체크인</CheckTitle>
                         <CheckInfo>{startDate}</CheckInfo>
                     </CheckIO>
-                    <CheckIO>
+                    <CheckIO onClick={calendarToggle}>
                         <CheckTitle>체크아웃</CheckTitle>
                         <CheckInfo>{endDate}</CheckInfo>
                     </CheckIO>
                 </div>
+                {onCalendar && <StyledCalendar><Calendar popUpModal={onCalendar}/></StyledCalendar>}
                 <div>
                     <CheckIO>
                         <CheckTitle>인원</CheckTitle>
-                        <CheckInfo>게스트 3명</CheckInfo>
+                        <CheckInfo >{personnelCount()}</CheckInfo>
                     </CheckIO>
                 </div>
             </UserInfo>
-            <ReservationButton>예약하기</ReservationButton>
+            <ReservationButton onClick={handleReservation}>예약하기</ReservationButton>
+            {onReservation && <Reservation/>}
             <Warning>예약 확정 전에는 요금이 청구되지 않습니다.</Warning>
         </StyledInfo>
     )
 }
 
 export default Info;
+
+const StyledCalendar = styled.div`
+    position:absolute;
+    margin-top:.1rem;
+    border-radius: 2rem;
+    left:30rem;
+    z-index: 100;
+    background-color: white;
+    width: 40%;
+`;
 
 const Warning = styled.div`
     padding:1rem;
@@ -76,6 +109,7 @@ const UserInfo = styled.div`
     }
 `;
 const CheckIO = styled.div`
+    cursor: pointer;
     width: 50%;
     padding-left:1rem;
     padding: 0.5rem 1rem;

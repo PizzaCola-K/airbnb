@@ -2,15 +2,23 @@ import styled from 'styled-components';
 import { FaTimes } from 'react-icons/fa';
 import { LabelInput } from '../../ui-util/LabelInput';
 import { isOnClick } from './SearchBar';
+import { usePriceState } from '../../ui-util/PriceContext'
 
 export const SearchPrice = ({ onClick }: isOnClick) => {
+  const price = usePriceState();
+  
+  const showPrice = () => {
+    if(price.range === [[],[]]) return '금액대 설정'
+    return `${price.range[0]}원 ~ ${price.range[1]}원`
+  }
+
   return (
     <StyleSearchPrice>
       <div>
         <LabelInput
           type='text'
           title='요금'
-          value=''
+          value={showPrice()}
           placeholder='금액대 설정'
           disabled={true}
           onClick={onClick}

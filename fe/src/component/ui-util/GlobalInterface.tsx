@@ -39,6 +39,7 @@ export interface LocationParams {
   state:{
     startDate:string,
     endDate:string,
+    rangeState:number[][],
     personnelState:[]
   }
 };

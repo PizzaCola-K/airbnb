@@ -14,8 +14,10 @@ const Bar = ({ height, index, range }) => {
 export default Bar;
 
 const StyledBar = styled.div`
+  box-sizing: border-box;
+  margin:0 .1rem;
   height: ${({ barStyle }) => `${barStyle}px`};
-  width: 4%;
+  width: 3.4%;
   background-color: ${({ index, left, right }) =>
      index < (left-50000) / 20000
       ? "#E5E5E5"

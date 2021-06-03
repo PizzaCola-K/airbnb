@@ -1,12 +1,17 @@
 import styled from 'styled-components';
 import { FaUser, FaBars } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
+import WishList from './wish-list/WishList'
 
 export const LoginButton = () => {
   const [toggle, setToggle] = useState(false);
+  const [wish,setWish] = useState(false);
   const onToggleLoginModal = () => {
     setToggle(!toggle);
   };
+  const onWishList = () => {
+    setWish(!wish);
+  }
 
   const onLogin = () => {
     localStorage.setItem(
@@ -40,13 +45,18 @@ export const LoginButton = () => {
               로그인
             </a>
           </li>
-          <li>위시 리스트</li>
+          <StyledWishList onClick={onWishList}>위시 리스트</StyledWishList>
+          { wish && <WishList /> }          
           <li>테스트</li>
         </StyleLoginModal>
       )}
     </StyleLoginButtonWrap>
   );
 };
+
+const StyledWishList = styled.li`
+  position:relative;
+`;
 
 const StyleLoginButtonWrap = styled.div`
   position: relative;

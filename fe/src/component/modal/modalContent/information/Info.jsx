@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { useContext, useState } from 'react';
-import { ModalContext,usePriceState, personnelContext } from '../../../list/List';
+import { ModalContext,useListPrice, personnelContext } from '../../../list/List';
 import { Calendar } from '../../../ui-util/Calendar';
 import Reservation from '../reservation/Reservation';
 
@@ -8,7 +8,7 @@ const Info = () => {
     const [startDate, endDate] = useContext(ModalContext);
     const [onCalendar, setOnCalendar] = useState(false);
     const [onReservation, setOnReservation] = useState(false);
-    const price = usePriceState();
+    const price = useListPrice();
     const personnelState = useContext(personnelContext);
     
     const calendarToggle = () => {

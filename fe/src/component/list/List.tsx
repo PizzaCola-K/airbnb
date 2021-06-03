@@ -21,13 +21,13 @@ const priceReducer = (state: priceState, action:priceAction):typeof initPrice =>
   return newState;
 }
 
-export const usePriceState = ():priceState => {
+export const useListPrice = ():priceState => {
   const priceState = useContext(priceStateContext);
   if (!priceState) throw new Error('Cannot find SampleProvider');
   return priceState;
 }
 
-export const usePriceDispatch = ():priceDispatch => {
+export const useListPriceDispatch = ():priceDispatch => {
   const dispatch = useContext(priceDispatchContext);
   if (!dispatch) throw new Error('Cannot find SampleProvider');
   return dispatch;
@@ -45,16 +45,16 @@ export const List = ({location}:Location) => {
   const endDate = getFormatDate(new Date(location.state.endDate));
   const [price, priceDispatch] = useReducer(priceReducer,initPrice);
   const personnelState = location.state.personnelState;
+  const range = location.state.rangeState;
   
   useEffect(() => {
     const data = async () => {
-      const result = await fetch('http://3.36.239.71/api/places'+window.location.search).then((res) =>
-        res.json()
-      );
-      setStays(result);
+      const result = await fetch('http://3.36.239.71/api/places'+window.location.search)
+      const res = await result.json()
+      setStays(res);
     };
     data();
-  }, []);
+  }, [personnelState,range]);
 
   const [modal, setModal] = useState({show: false});
   const onShowModal = (event: React.MouseEvent<HTMLElement>): void => {
@@ -95,7 +95,7 @@ export const List = ({location}:Location) => {
           <showModalContext.Provider value={{modal, setModal}}>
             <personnelContext.Provider value={personnelState}>
               {modal.show && price && <Modal />}
-              </personnelContext.Provider>
+            </personnelContext.Provider>
           </showModalContext.Provider>
         </priceStateContext.Provider>
       </ModalContext.Provider>

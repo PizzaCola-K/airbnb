@@ -4,8 +4,9 @@ import { Range, getTrackBackground } from "react-range";
 const InputSlide = ({minPrice, maxPrice, price, onChange }) => {
   return (
     <Range
+      allowOverlap={true}
       draggableTrack
-      step={18000}
+      step={20000}
       min={minPrice}
       max={maxPrice}
       values={price}

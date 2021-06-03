@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { FaRegHeart, FaHeart } from 'react-icons/fa';
 import { addCommaToNumber } from '../../util';
 import { useState, useEffect } from 'react';
-import { usePriceDispatch } from './List';
+import { useListPriceDispatch } from './List';
 import { StayInterface } from '../ui-util/GlobalInterface';
 
 export const Stay = ({
@@ -15,7 +15,7 @@ export const Stay = ({
   additionalOption,
   onShowModal = (): void => {},
 }:StayInterface) => {
-  const dispatch = usePriceDispatch();
+  const dispatch = useListPriceDispatch();
   const isWish = false;
   const [wish, setWish] = useState(isWish);
 

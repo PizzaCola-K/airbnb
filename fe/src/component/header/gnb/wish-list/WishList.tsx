@@ -8,17 +8,19 @@ const WishList = () => {
     (localStorage.getItem('token') &&
       'Bearer ' + localStorage.getItem('token')) ||
     '';
-
+    const value = localStorage.getItem("placeId");
+    console.log(value)
     useEffect(() => {
         const data = async () => {
-            const result = await fetch('http://3.36.239.71/api/reservations',{
+            const result = await fetch('http://3.36.239.71/api/likes',{
                 method: "GET",
                 headers: {
-                    // Origin: localhost:3000 이 들어갈떄와 안들어갈때의 차이를 모르겠음. 들어갈땐 POST 요청일때만인가요?
+                    Origin: 'http://localhost:3000',
                     Authorization,
                 },
             });
             const response = await result.json();
+            console.log(response)
             setList(response);
         }
         data();

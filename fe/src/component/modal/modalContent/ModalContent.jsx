@@ -2,10 +2,10 @@ import styled from 'styled-components';
 import Info from './information/Info';
 import Sum from './sum/Sum';
 
-const ModalContent = () => {
+const ModalContent = ({ placeId }) => {
     return (
         <StyledModalContent className='modal-content'>
-            <Info />
+            <Info placeId={placeId} />
             <Sum />
         </StyledModalContent>
     )

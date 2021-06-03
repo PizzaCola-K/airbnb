@@ -1,4 +1,5 @@
 import { createContext, useReducer } from 'react';
+import qs from 'qs';
 
 interface DateInterface {
   startDate: Date | null;
@@ -52,11 +53,17 @@ export const CalendarContext = ({
 }: {
   children: React.ReactNode;
 }) => {
+  const query = qs.parse(window.location.search, { ignoreQueryPrefix: true });
+  let checkIn: Date | null = null;
+  let checkOut: Date | null = null;
+  if (query?.checkIn) checkIn = new Date(query?.checkIn as string) || null;
+  if (query?.checkOut) checkOut = new Date(query?.checkOut as string) || null;
   const [date, dateDispatch] = useReducer(dateReducer, {
-    startDate: null,
-    endDate: null,
+    startDate: checkIn,
+    endDate: checkOut,
     tmpEndDate: null,
   });
+  console.log(date);
   return (
     <CalendarDateContext.Provider value={[date, dateDispatch]}>
       {children}

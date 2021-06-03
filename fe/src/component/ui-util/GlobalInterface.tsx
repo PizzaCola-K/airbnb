@@ -45,7 +45,7 @@ export interface LocationParams {
 };
 export interface Location {
   location: LocationParams;
-  [key:string] : LocationParams
+  [key: string]: LocationParams;
 }
 
 export interface StayInterface {
@@ -53,10 +53,11 @@ export interface StayInterface {
   imageUrl: string[];
   name: string;
   location: {
-    latitude: number,
-    longitude: number,
-    address: string
+    latitude: number;
+    longitude: number;
+    address: string;
   };
+  like: boolean;
   likeCount: number;
   price: number;
   option: string;
@@ -69,8 +70,8 @@ export interface priceState {
 }
 
 export interface modalState {
-  modal:{show:boolean};
-  setModal: Dispatch<SetStateAction<{show:boolean}>>
+  modal: { show: boolean; placeId: number };
+  setModal: Dispatch<SetStateAction<{ show: boolean; placeId: number }>>;
 }
 
 export type personnelState = {

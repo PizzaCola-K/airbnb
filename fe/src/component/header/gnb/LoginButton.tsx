@@ -44,6 +44,9 @@ export const LoginButton = () => {
       </StyleLoginButton>
       {toggle && (
         <StyleLoginModal className='login-modal'>
+          {name !== '' && (
+            <li>{name}님 환영합니다! 🥑</li> )
+          }
           {name !== '' ? (
             <li onClick={onLogout}>로그아웃</li>
           ) : (
@@ -57,7 +60,7 @@ export const LoginButton = () => {
             </li>
           )}
           <StyledWishList onClick={onWishList}>위시 리스트</StyledWishList>
-          {wish && <WishList />}
+          <WishList wish={wish} setWish={setWish} />
           <li>예약 목록</li>
         </StyleLoginModal>
       )}
@@ -92,7 +95,8 @@ const StyleLoginButton = styled.button`
 const StyleLoginModal = styled.ul`
   position: absolute;
   right: 0;
-  width: 10rem;
+  width: 11rem;
+  z-index: 2;
   border-radius: 0.25rem;
   padding: 1rem 2rem;
   background-color: #fff;

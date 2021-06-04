@@ -8,7 +8,6 @@ interface BarType {
 }
 
 const Bar = ({ height, index, range }: BarType) => {
-  console.log(range);
   const barHeight = height;
   return (
     <StyledBar barStyle={barHeight} index={index} range={range}></StyledBar>

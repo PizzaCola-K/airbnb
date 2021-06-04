@@ -1,9 +1,10 @@
 import styled from 'styled-components'
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ModalContext,useListPrice, personnelContext } from '../../../list/List';
 import { Calendar } from '../../../ui-util/Calendar';
 import { CalendarDateContext } from './../../../ui-util/CalendarContext';
 import Reservation from '../reservation/Reservation';
+import qs from 'qs';
 
 const getFormatDate = date => {
     const month = ('0' + (date.getMonth() + 1)).slice(-2);
@@ -13,18 +14,21 @@ const getFormatDate = date => {
 };
 
 const Info = ({ placeId }) => {
-    const [startDate, endDate] = useContext(ModalContext);
-    const [selectedDate, dateDispatch] = useContext(CalendarDateContext);
+    const param = qs.parse(window.location.search, { ignoreQueryPrefix: true });
+    const [date, setDate] = useState({
+        startDate: new Date(param.checkIn),
+        endDate: new Date(param.checkOut)
+    });
+    console.log(date);
     const [onCalendar, setOnCalendar] = useState(false);
     const [onReservation, setOnReservation] = useState(false);
     const price = useListPrice();
     const personnelState = useContext(personnelContext);
-    
+
     const calendarToggle = () => {
         setOnCalendar(!onCalendar);
     }
 
-    console.log('now',selectedDate)
     const handleReservation = async () => {
         const Authorization =
             (localStorage.getItem('token') &&
@@ -32,8 +36,8 @@ const Info = ({ placeId }) => {
             '';
         const value = {
             placeId,
-            checkIn: getFormatDate(selectedDate.startDate),
-            checkOut: getFormatDate(selectedDate.endDate),
+            checkIn: getFormatDate(date.startDate),
+            checkOut: getFormatDate(date.endDate),
             adult: personnelState[0].count,
             child: personnelState[1].count,
             infant: personnelState[2].count
@@ -41,13 +45,13 @@ const Info = ({ placeId }) => {
         const data = await fetch('http://3.36.239.71/api/reservations', {
             method: 'POST',
             headers: {
-            Origin: 'http://localhost:3000',
-            Authorization,
+                'Content-Type' : 'application/json',
+                Origin: 'http://localhost:3000',
+                Authorization,
             },
             body: JSON.stringify(value),
         });
         const json = await data.json();
-        console.log('post ' + json);
         setOnReservation(!onReservation);
         return json;
         // setModal({show: false});
@@ -73,11 +77,11 @@ const Info = ({ placeId }) => {
                 <div>
                     <CheckIO onClick={calendarToggle}>
                         <CheckTitle>체크인</CheckTitle>
-                        <CheckInfo>{startDate}</CheckInfo>
+                        <CheckInfo>{getFormatDate(date.startDate)}</CheckInfo>
                     </CheckIO>
                     <CheckIO onClick={calendarToggle}>
                         <CheckTitle>체크아웃</CheckTitle>
-                        <CheckInfo>{endDate}</CheckInfo>
+                        <CheckInfo>{getFormatDate(date.endDate)}</CheckInfo>
                     </CheckIO>
                 </div>
                 {onCalendar && <StyledCalendar><Calendar popUpModal={onCalendar}/></StyledCalendar>}

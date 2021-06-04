@@ -10,11 +10,14 @@ const Reservation = () => {
     }
 
     return (
-        <StyledReservation>
-            <div>🎉예약되었습니다🎉</div>
-            <div>감사합니다.</div>
-            <ReservationButton onClick={handleModal}>확인</ReservationButton>
-        </StyledReservation>
+        <>
+            <StyledReservation>
+                <div className="modal-title">🎉예약되었습니다🎉</div>
+                <div className="modal-content">감사합니다.</div>
+                <ReservationButton onClick={handleModal}>확인</ReservationButton>
+            </StyledReservation>
+            <StyledBg />
+        </>
     )
 }
 
@@ -28,17 +31,34 @@ const ReservationButton = styled.div`
     justify-content: center;
     color:white;
     width:152px;
-    height:25px;
+    padding: 0.25rem;
+    margin-bottom: 1rem;
     border-radius: .2rem;
 `;
 
 const StyledReservation = styled.div`
     position:absolute;
+    z-index: 1;
     top:22rem;
     background-color: white;
     text-align: -webkit-center;
     border-radius: .5rem;
     margin:auto;
     width:352px;
-    height:85px;
+    .modal-title {
+        padding: 1rem;
+    }
+    .modal-content {
+        margin-bottom: 0.5rem;
+    }
+`;
+
+const StyledBg = styled.div`
+    z-index: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    position: fixed;
 `;

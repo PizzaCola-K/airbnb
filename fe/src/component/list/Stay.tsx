@@ -7,7 +7,6 @@ import { StayInterface } from '../ui-util/GlobalInterface';
 
 const updateLike = async (placeId: number, wish: boolean) => {
   localStorage.setItem("placeId", `${placeId}`);
-  // console.log("너냐?",placeId)
   const Authorization =
     (localStorage.getItem('token') &&
       'Bearer ' + localStorage.getItem('token')) ||
@@ -19,13 +18,13 @@ const updateLike = async (placeId: number, wish: boolean) => {
     const data = await fetch('http://3.36.239.71/api/likes', {
       method: 'POST',
       headers: {
+        'Content-Type' : 'application/json',
         Origin: 'http://localhost:3000',
         Authorization,
       },
       body: JSON.stringify(value),
     });
     const json = await data.json();
-    console.log('post ' + json);
     return json;
   } else {
     const data = await fetch(`http://3.36.239.71/api/likes/${placeId}`, {
@@ -37,7 +36,6 @@ const updateLike = async (placeId: number, wish: boolean) => {
       body: JSON.stringify(value),
     });
     const json = await data.json();
-    console.log('delete ' + json);
     return json;
   }
 };
@@ -56,11 +54,9 @@ export const Stay = ({
 }: StayInterface) => {
   const dispatch = useListPriceDispatch();
   const [wish, setWish] = useState(like);
-  console.log(wish)
 
   const toggleWish = async () => {
     const result = await updateLike(id, !wish);
-    console.log(result);
     setWish(!wish);
   };
   return (
@@ -98,6 +94,7 @@ const StyleStay = styled.li`
   grid-template-columns: 1fr 1fr;
   padding: 1.5rem 0;
   border-bottom: 1px solid transparent;
+  cursor: pointer;
   &:not(:last-child) {
     border-bottom-color: #e0e0e0;
   }

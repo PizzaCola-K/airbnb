@@ -11,7 +11,7 @@ interface DateInterface {
 export interface DateAction {
   type: string;
   value: Date;
-  [key: string]: string | Date;
+  [key: string]: string | Date | undefined;
 }
 
 export const CalendarDateContext = createContext<
@@ -63,7 +63,6 @@ export const CalendarContext = ({
     endDate: checkOut,
     tmpEndDate: null,
   });
-  console.log(date);
   return (
     <CalendarDateContext.Provider value={[date, dateDispatch]}>
       {children}

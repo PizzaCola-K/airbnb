@@ -40,7 +40,7 @@ function App() {
       <Switch>
         <Route path='/login' />
         <StyleHeaderWrapper ref={target}>
-          <Header active={active} />
+          <Header active={active} show={true} />
         </StyleHeaderWrapper>
       </Switch>
       <Switch>

@@ -7,14 +7,16 @@ import { PopUpProvider } from '../ui-util/PopUpContext';
 import { PersonnelProvider } from '../ui-util/PersonnelContext';
 import { CalendarContext } from '../ui-util/CalendarContext';
 import { PriceProvider } from '../ui-util/PriceContext';
+import { useEffect } from 'react';
 
 interface isProps {
   active: boolean;
+  show: boolean;
 }
 
-export const Header: React.FunctionComponent<isProps> = ({ active }) => {
+export const Header: React.FunctionComponent<isProps> = ({ active, show = true }) => {
   return (
-    <StyleHeader active={active}>
+    <StyleHeader active={active} show={show}>
       <div className='global-navigation-bar'>
         <Logo />
         <Navigation />
@@ -24,7 +26,7 @@ export const Header: React.FunctionComponent<isProps> = ({ active }) => {
         <CalendarContext>
           <PersonnelProvider>
             <PriceProvider>
-              <SearchBar />
+              {show && <SearchBar />}
             </PriceProvider>
           </PersonnelProvider>
         </CalendarContext>
@@ -45,5 +47,8 @@ const StyleHeader = styled.header`
   .global-navigation-bar {
     display: flex;
     justify-content: space-between;
+  }
+  .search-bar {
+    display: ${(props) => props.show ? 'grid' : 'none'};
   }
 `;

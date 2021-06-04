@@ -9,17 +9,17 @@ import PopUp from './popUp/PopUp';
 import { usePopUpState, usePopUpDispatch } from '../../ui-util/PopUpContext';
 import { CalendarDateContext } from '../../ui-util/CalendarContext';
 import { usePriceState } from '../../ui-util/PriceContext';
-import { usePersonnelState } from '../../ui-util/PersonnelContext'
+import { usePersonnelState } from '../../ui-util/PersonnelContext';
 
 export interface isOnClick {
   onClick: (e: MouseEvent<HTMLElement>) => void;
 }
 
-const getFormatDate = (date:Date):string => {
+const getFormatDate = (date: Date): string => {
   const month = ('0' + (date.getMonth() + 1)).slice(-2);
   const day = ('0' + date.getDate()).slice(-2);
   const year = date.getFullYear();
-  return year+ '-' + month + '-' + day;
+  return year + '-' + month + '-' + day;
 };
 
 export const SearchBar = () => {
@@ -29,9 +29,9 @@ export const SearchBar = () => {
   const selectedDate = useContext(CalendarDateContext)[0];
   const startDate = selectedDate?.startDate;
   const endDate = selectedDate?.endDate;
-  const formatStartDate:string = startDate ? getFormatDate(startDate) : '';
-  const formatEndDate:string = endDate ? getFormatDate(endDate) : '';
-  const {range, setRange} = usePriceState();
+  const formatStartDate: string = startDate ? getFormatDate(startDate) : '';
+  const formatEndDate: string = endDate ? getFormatDate(endDate) : '';
+  const { range, setRange } = usePriceState();
   const personnel = usePersonnelState();
 
   useEffect(() => {
@@ -60,20 +60,35 @@ export const SearchBar = () => {
     setClassName(checkInAndOut);
   };
 
+  const popUpOff = () => {
+    popUpDispatch({ type: `repeat` });
+  };
 
   return (
     <StyleSearchBar className='search-bar'>
-        <SearchDate onClick={(e) => popUpON(e, `calendar`)}></SearchDate>
-        <SearchPrice onClick={(e) => popUpON(e, `price`)}></SearchPrice>
-        <SearchPersonnel
-          onClick={(e) => popUpON(e, `personnel`)}
-        ></SearchPersonnel>
-        {/* 라우터 */}
-        <StyleSearchButton to={{
-          pathname: "/list",
-          search: `?district=${''}&checkIn=${formatStartDate}&checkOut=${formatEndDate}&minPrice=${range[0]}&maxPrice=${range[1]}&adult=${personnel[0].count}&child=${personnel[1].count}&infant=${personnel[2].count}`,
-          state: { startDate: startDate, endDate: endDate, rangeState: range, personnelState:personnel },
-        }}>
+      <SearchDate onClick={(e) => popUpON(e, `calendar`)}></SearchDate>
+      <SearchPrice onClick={(e) => popUpON(e, `price`)}></SearchPrice>
+      <SearchPersonnel
+        onClick={(e) => popUpON(e, `personnel`)}
+      ></SearchPersonnel>
+      {/* 라우터 */}
+      <StyleSearchButton
+        onClick={popUpOff}
+        to={{
+          pathname: '/list',
+          search: `?district=${''}&checkIn=${formatStartDate}&checkOut=${formatEndDate}&minPrice=${
+            range[0]
+          }&maxPrice=${range[1]}&adult=${personnel[0].count}&child=${
+            personnel[1].count
+          }&infant=${personnel[2].count}`,
+          state: {
+            startDate: startDate,
+            endDate: endDate,
+            rangeState: range,
+            personnelState: personnel,
+          },
+        }}
+      >
         <FaSearch />
       </StyleSearchButton>
       <PopUp popUpState={popUpState} />

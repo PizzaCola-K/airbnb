@@ -1,19 +1,19 @@
-import styled from "styled-components";
-import { useEffect, useState, useMemo } from "react";
-import Bar from "./Bar";
-import InputSlide from './InputSlide/InputSlide'
+import styled from 'styled-components';
+import { useEffect, useState, useMemo } from 'react';
+import Bar from './Bar';
+import InputSlide from './InputSlide/InputSlide';
 
 interface stateType {
-    list:number[],
-    minPrice:number,
-    maxPrice:number[]
+  list: number[];
+  minPrice: number;
+  maxPrice: number[];
 }
 
-const initState:stateType = {
-    list:[],
-    minPrice:0,
-    maxPrice:[]
-}
+const initState: stateType = {
+  list: [],
+  minPrice: 0,
+  maxPrice: [],
+};
 
 const Price = () => {
   const [state, setState] = useState<stateType>(initState);
@@ -22,16 +22,16 @@ const Price = () => {
 
   useEffect(() => {
     const data = async () => {
-        const price = await fetch(
-        "https://codesquad-2021-api.herokuapp.com/airbnb/price"
-        ).then((res) => res.json());
-        setState(price);
-    }
+      const price = await fetch(
+        'https://codesquad-2021-api.herokuapp.com/airbnb/price'
+      ).then((res) => res.json());
+      setState(price);
+    };
     data();
   }, []);
 
-  const priceDistribution:Array<number> = Array(25).fill(0);
-  list.forEach((v:number) => {
+  const priceDistribution: Array<number> = Array(25).fill(0);
+  list.forEach((v: number) => {
     priceDistribution[parseInt(String((v - 50000) / 20000))] += 1;
   });
 
@@ -44,7 +44,13 @@ const Price = () => {
   return (
     <>
       <StyledChart>{state && <StyledBar>{barRender()}</StyledBar>}</StyledChart>
-      <InputSlide min={0} max={100} step={1} price={range} onChange={setRange} />
+      <InputSlide
+        min={0}
+        max={100}
+        step={1}
+        price={range}
+        onChange={setRange}
+      />
     </>
   );
 };

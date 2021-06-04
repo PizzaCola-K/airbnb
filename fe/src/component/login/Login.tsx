@@ -21,8 +21,9 @@ export const Login = ({ history }: RouteComponentProps) => {
     const json = await data.json();
     const decoded: decodedInterface = jwt_decode(json.jwt);
     localStorage.setItem('token', json.jwt);
-    if (decoded?.id) {
-      localStorage.setItem('id', decoded?.id.toString());
+    if (decoded?.id && decoded?.github) {
+      localStorage.setItem('id', decoded.id.toString());
+      localStorage.setItem('name', decoded.github.toString());
     }
     const nextURL = localStorage.getItem('prev') || '/';
     localStorage.removeItem('prev');

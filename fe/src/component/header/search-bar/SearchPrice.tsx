@@ -3,15 +3,16 @@ import { useMemo } from 'react';
 import { FaTimes } from 'react-icons/fa';
 import { LabelInput } from '../../ui-util/LabelInput';
 import { isOnClick } from './SearchBar';
-import { usePriceState } from '../../ui-util/PriceContext'
+import { usePriceState } from '../../ui-util/PriceContext';
 
 export const SearchPrice = ({ onClick }: isOnClick) => {
   const price = usePriceState();
-  
+
   const showPrice = () => {
-    if(price.range[0][0]===0 && price.range[1][0]===0) return '금액대 설정'
-    return `${price.range[0]}원 ~ ${price.range[1]}원`
-  }
+    if (price.range[0][0] === 0 && price.range[1][0] === 0)
+      return '금액대 설정';
+    return `${price.range[0]}원 ~ ${price.range[1]}원`;
+  };
 
   return (
     <StyleSearchPrice>
@@ -36,6 +37,12 @@ const StyleSearchPrice = styled.div`
   position: relative;
   & > div {
     display: flex;
+  }
+  .label-input {
+    width: 100%;
+    input {
+      max-width: 100%;
+    }
   }
 `;
 

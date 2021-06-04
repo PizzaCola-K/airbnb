@@ -17,7 +17,7 @@ interface StyleDayProp {
   start: number;
   end: number;
   previous: number;
-  popUpModal:any;
+  popUpModal: any;
 }
 
 const initDate = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -42,8 +42,8 @@ export const Month = ({
   popUpModal,
 }: MonthProp) => {
   date.setDate(1);
-  const startWeek = date.getDay(); // 시작 요일
-  const lastDate = getLastDay(date); // 종료 일
+  const startWeek = date.getDay();
+  const lastDate = getLastDay(date);
   const days = new Array(startWeek).fill('').concat(
     Array(lastDate)
       .fill(0)
@@ -63,7 +63,6 @@ export const Month = ({
     ) {
       return;
     }
-    // console.log('안와');
     tmpDate.setDate(Number(target?.textContent));
     tmpDate.setHours(0, 0, 0, 0);
     dateDispatch({ type: 'SET_TMP_END_DATE', value: tmpDate });
@@ -82,15 +81,9 @@ export const Month = ({
     tmpDate.setDate(Number(target?.textContent));
     tmpDate.setHours(0, 0, 0, 0);
     if (!startDate || startDate > tmpDate) {
-      // 1. SET_START 시작일이 없는 경우 ==> 시작일 할당
-      // 3. SET_START 시작일이 있으면서 종료일이 없고 시작일 이전 일을 선택하는 경우 ==> 시작일 갱신
-      // 4. SET_START_REMOVE_PREV 시작일이 있으면서 종료일이 있고 시작일 이전 일을 선택하는 경우 ==> 시작일 갱신, 종료일 지우기
       const type = endDate ? 'SET_START_REMOVE_PREV' : 'SET_START';
       dateDispatch({ type, value: tmpDate });
     } else {
-      // 2. SET_END 종료일이 없는 경우 ==> 종료일 할당
-      // 5. SET_REMOVE 종료일이 있으면서 종료일 이후 일을 선택하는 경우 ==> 종료일 갱신
-      // 6. SET_END 종료일이 있으면서 시작일과 종료일 사이를 선택하는 경우 ==> 종료일 갱신
       dateDispatch({ type: 'SET_END', value: tmpDate });
     }
   };
@@ -128,14 +121,14 @@ export const Month = ({
                 new Date(tmpDate).getTime() === new Date(tmpEndDate).getTime())
             )
               end = 1;
-            if (
-              (startDate &&
-                tmpDate >= startDate &&
-                endDate &&
-                tmpDate <= endDate) ||
-              (tmpEndDate && tmpDate <= tmpEndDate)
-            )
-              period = 1;
+            if (startDate && tmpDate >= startDate) {
+              if (
+                (endDate && tmpDate <= endDate) ||
+                (tmpEndDate && tmpDate <= tmpEndDate)
+              ) {
+                period = 1;
+              }
+            }
           } else {
             previous = v === '' ? 1 : previous;
           }
@@ -184,10 +177,10 @@ const StyleDays = styled.div`
 `;
 
 const StyleDay = styled.div`
-  padding: ${({popUpModal}) => popUpModal ? '.5rem' : '1.2rem'};
+  padding: ${({ popUpModal }) => (popUpModal ? '.5rem' : '1.2rem')};
   cursor: pointer;
   position: relative;
-  height: ${({popUpModal}) => popUpModal ? '2.5rem' : '3.9rem'};;
+  height: ${({ popUpModal }) => (popUpModal ? '2.5rem' : '3.9rem')};
   border: 1px solid transparent;
   border-radius: 50%;
   ${(props: StyleDayProp) =>

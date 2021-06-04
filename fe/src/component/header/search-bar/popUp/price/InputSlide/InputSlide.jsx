@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import { Range, getTrackBackground } from "react-range";
+import styled from 'styled-components';
+import { Range, getTrackBackground } from 'react-range';
 
-const InputSlide = ({minPrice, maxPrice, price, onChange }) => {
+const InputSlide = ({ minPrice, maxPrice, price, onChange }) => {
   return (
     <Range
       allowOverlap={true}
@@ -11,8 +11,13 @@ const InputSlide = ({minPrice, maxPrice, price, onChange }) => {
       max={maxPrice}
       values={price}
       onChange={(values) => onChange(values)}
-      renderTrack={({props,children}) => (
-        <StyledRangeTrack {...props} min={minPrice} max={maxPrice} price={price} >
+      renderTrack={({ props, children }) => (
+        <StyledRangeTrack
+          {...props}
+          min={minPrice}
+          max={maxPrice}
+          price={price}
+        >
           {children}
         </StyledRangeTrack>
       )}
@@ -33,7 +38,7 @@ const StyledRangeTrack = styled.div`
   background: ${(props) =>
     getTrackBackground({
       values: props.price,
-      colors: ["transparent", "black", "transparent"],
+      colors: ['transparent', 'black', 'transparent'],
       min: props.min,
       max: props.max,
     })};

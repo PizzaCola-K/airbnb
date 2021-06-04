@@ -1,23 +1,30 @@
 import styled from 'styled-components';
 import { FaUser, FaBars } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
-import WishList from './wish-list/WishList'
+import WishList from './wish-list/WishList';
 
 export const LoginButton = () => {
+  const name = localStorage.getItem('name') ? localStorage.getItem('name') : '';
   const [toggle, setToggle] = useState(false);
-  const [wish,setWish] = useState(false);
+  const [wish, setWish] = useState(false);
   const onToggleLoginModal = () => {
     setToggle(!toggle);
   };
   const onWishList = () => {
     setWish(!wish);
-  }
+  };
 
   const onLogin = () => {
     localStorage.setItem(
       'prev',
       window.location.pathname + window.location.search
     );
+  };
+  const onLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('name');
+    localStorage.removeItem('id');
+    setToggle(!toggle);
   };
   useEffect(() => {
     document.body.addEventListener('click', onCloseLoginModal);
@@ -37,17 +44,21 @@ export const LoginButton = () => {
       </StyleLoginButton>
       {toggle && (
         <StyleLoginModal className='login-modal'>
-          <li>
-            <a
-              onClick={onLogin}
-              href='https://github.com/login/oauth/authorize?client_id=eeab452e618124d52f83&redirect_uri=http://localhost:3000/login'
-            >
-              로그인
-            </a>
-          </li>
+          {name !== '' ? (
+            <li onClick={onLogout}>로그아웃</li>
+          ) : (
+            <li>
+              <a
+                onClick={onLogin}
+                href='https://github.com/login/oauth/authorize?client_id=eeab452e618124d52f83&redirect_uri=http://localhost:3000/login'
+              >
+                로그인
+              </a>
+            </li>
+          )}
           <StyledWishList onClick={onWishList}>위시 리스트</StyledWishList>
-          { wish && <WishList /> }          
-          <li>테스트</li>
+          {wish && <WishList />}
+          <li>예약 목록</li>
         </StyleLoginModal>
       )}
     </StyleLoginButtonWrap>
@@ -55,7 +66,7 @@ export const LoginButton = () => {
 };
 
 const StyledWishList = styled.li`
-  position:relative;
+  position: relative;
 `;
 
 const StyleLoginButtonWrap = styled.div`
@@ -86,10 +97,18 @@ const StyleLoginModal = styled.ul`
   padding: 1rem 2rem;
   background-color: #fff;
   margin-top: 1rem;
+  box-shadow: 1px 1px 6px #d2d2d2;
   li {
+    cursor: pointer;
     padding: 1rem 0;
     &:not(:last-child) {
       border-bottom: 1px solid #c4c4c4;
+    }
+    a {
+      color: #333;
+    }
+    &:hover {
+      font-weight: 600;
     }
   }
 `;

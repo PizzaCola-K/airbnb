@@ -3,7 +3,9 @@ package codesquad.team17.gnb.place.controller;
 import codesquad.team17.gnb.place.dto.PlaceQueries;
 import codesquad.team17.gnb.place.dto.PlaceSummary;
 import codesquad.team17.gnb.place.service.PlaceService;
+import codesquad.team17.gnb.user.domain.User;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,7 +22,9 @@ public class PlaceController {
     }
 
     @GetMapping
-    public List<PlaceSummary> placeSummaries(PlaceQueries placeQueries) {
-        return placeService.placeSummaries(placeQueries);
+    public List<PlaceSummary> placeSummaries(
+            @RequestAttribute(required = false) User user,
+            PlaceQueries placeQueries) {
+        return placeService.placeSummaries(placeQueries, user);
     }
 }

@@ -68,7 +68,6 @@ public class AuthService {
         RestTemplate request = new RestTemplate();
         AccessTokenResponse accessToken = getAccessToken(code, clientId, clientSecret, redirectUri, request)
                 .orElseThrow(() -> new NotFoundException("요청 바디 없음"));
-        logger.info("accessToken: {}", accessToken.getAccessToken());
 
         GithubUser githubUser = getUserFromOauth(accessToken, request)
                 .orElseThrow(() -> new NotFoundException("요청 바디 없음"));

@@ -10,6 +10,7 @@ public class PlaceSummary {
     private final OptionDto options;
     private final int maximumNumberOfPeople;
     private final int likeCount;
+    private final boolean isLike;
     private final int price;
 
     public PlaceSummary(Place place) {
@@ -20,6 +21,7 @@ public class PlaceSummary {
         this.options = new OptionDto(place.getOption());
         this.maximumNumberOfPeople = place.getMaximumNumberOfPeople();
         this.likeCount = place.getLikeCount();
+        this.isLike = place.isLike();
         this.price = place.getPrice();
     }
 
@@ -49,6 +51,10 @@ public class PlaceSummary {
 
     public int getLikeCount() {
         return likeCount;
+    }
+
+    public boolean isLike() {
+        return isLike;
     }
 
     public int getPrice() {

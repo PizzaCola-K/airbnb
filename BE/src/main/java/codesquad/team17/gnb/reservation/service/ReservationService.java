@@ -1,5 +1,6 @@
 package codesquad.team17.gnb.reservation.service;
 
+import codesquad.team17.gnb.exception.BadRequest;
 import codesquad.team17.gnb.exception.NotFoundException;
 import codesquad.team17.gnb.place.domain.Place;
 import codesquad.team17.gnb.place.repository.PlaceRepository;
@@ -26,14 +27,13 @@ public class ReservationService {
 
     @Transactional
     public Reservation reserve(User user, ReservationRequest reservationRequest) {
-        Place place = placeRepository.findById(reservationRequest.getPlaceId())
+        Place place = placeRepository.findById(reservationRequest.getPlaceId(), user.getId())
                 .orElseThrow(() -> new NotFoundException("장소 없음"));
 
         place.checkNumberOfPeople(reservationRequest);
 
         if (!reservationRepository.canBeReserved(reservationRequest)) {
-            //TODO: 예외처리
-            throw new RuntimeException("다른 예약이 있음");
+            throw new BadRequest("다른 예약이 있음");
         }
 
         Reservation reservation = new Reservation.Builder()
@@ -55,7 +55,6 @@ public class ReservationService {
     }
 
     public void cancel(User user, Long reservationId) {
-        //TODO: 예외 처리
         reservationRepository.findByIdAndUserId(reservationId, user.getId())
                 .orElseThrow(() -> new NotFoundException("예약 없음"));
 
